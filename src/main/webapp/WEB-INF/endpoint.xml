@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxws="http://cxf.apache.org/jaxws" xmlns:soap="http://cxf.apache.org/bindings/soap"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd http://cxf.apache.org/bindings/soap">
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+
+	<bean id="getAuctionsForManager" class="pl.edu.agh.eaiib.auctions.webservice.GetAuctionsForManagerSoapImpl" />
+
+	<jaxws:endpoint id="GetAuctionsForManagerSoap" implementor="#getAuctionsForManager" address="/GetAuctionsForManager">
+		<jaxws:binding>
+			<soap:soapBinding mtomEnabled="true" version="1.2" />
+		</jaxws:binding>
+		<jaxws:features>
+			<bean class="org.apache.cxf.feature.LoggingFeature" />
+		</jaxws:features>
+	</jaxws:endpoint>
+
+
+	<bean id="getAuctionsForClient" class="pl.edu.agh.eaiib.auctions.webservice.GetAuctionsForClientSoapImpl" />
+
+	<jaxws:endpoint id="GetAuctionsForClientSoap" implementor="#getAuctionsForClient" address="/GetAuctionsForClient">
+
+		<jaxws:binding>
+			<soap:soapBinding mtomEnabled="true" version="1.2" />
+		</jaxws:binding>
+		<jaxws:features>
+			<bean class="org.apache.cxf.feature.LoggingFeature" />
+		</jaxws:features>
+	</jaxws:endpoint>
+
+	<bean id="putAuctionByManager" class="pl.edu.agh.eaiib.auctions.webservice.PutAuctionByManagerSoapImpl" />
+
+	<jaxws:endpoint id="PutAuctionByManagerSoap" implementor="#putAuctionByManager" address="/PutAuctionByManager">
+
+		<jaxws:binding>
+			<soap:soapBinding mtomEnabled="true" version="1.2" />
+		</jaxws:binding>
+		<jaxws:features>
+			<bean class="org.apache.cxf.feature.LoggingFeature" />
+		</jaxws:features>
+	</jaxws:endpoint>
+
+	<bean id="putAuctionFinalizationFormByClient" class="pl.edu.agh.eaiib.auctions.webservice.PutAuctionFinalizationFormByClientSoapImpl" />
+
+	<jaxws:endpoint id="PutAuctionFinalizationFormByClientSoap" implementor="#putAuctionFinalizationFormByClient" address="/PutAuctionFinalizationFormByClient">
+
+		<jaxws:binding>
+			<soap:soapBinding mtomEnabled="true" version="1.2" />
+		</jaxws:binding>
+		<jaxws:features>
+			<bean class="org.apache.cxf.feature.LoggingFeature" />
+		</jaxws:features>
+	</jaxws:endpoint>
+
+	<bean id="putBetByClient" class="pl.edu.agh.eaiib.auctions.webservice.PutBetByClientSoapImpl" />
+
+	<jaxws:endpoint id="PutBetByClientSoap" implementor="#putBetByClient" address="/PutBetByClient">
+
+		<jaxws:binding>
+			<soap:soapBinding mtomEnabled="true" version="1.2" />
+		</jaxws:binding>
+		<jaxws:features>
+			<bean class="org.apache.cxf.feature.LoggingFeature" />
+		</jaxws:features>
+	</jaxws:endpoint>
+</beans>

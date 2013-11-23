@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://eaiib.agh.edu.pl/auctions/wsdl/" name="AuctionManagerAPI" targetNamespace="http://eaiib.agh.edu.pl/auctions/wsdl/">
+	<documentation>
+		Auction Module API wsdl
+		v1.0.0 Dariusz Wołek
+	</documentation> 
+	<types>
+		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ev="http://eaiib.agh.edu.pl/auctions/xsd/" targetNamespace="http://eaiib.agh.edu.pl/auctions/xsd/" elementFormDefault="qualified">
+			<xsd:element name="Error" type="xsd:string"/>
+			
+			<xsd:element name="GetAuctionsForClient" type="ev:GetAuctionsForClient"/>
+			<xsd:element name="GetAuctionsForClientResponse" type="ev:GetAuctionsForClientResponse"/>
+			<xsd:element name="PutBetByClient" type="ev:PutBetByClient"/>
+			<xsd:element name="PutBetByClientResponse" type="ev:PutBetByClientResponse"/>
+			<xsd:element name="PutAuctionFinalizationFormByClient" type="ev:PutAuctionFinalizationFormByClient"/>
+			<xsd:element name="PutAuctionFinalizationFormByClientResponse" type="ev:PutAuctionFinalizationFormByClientResponse"/>
+			
+			<xsd:element name="GetAuctionsForManager" type="ev:GetAuctionsForManager"/>
+			<xsd:element name="GetAuctionsForManagerResponse" type="ev:GetAuctionsForManagerResponse"/>
+			<xsd:element name="PutAuctionByManager" type="ev:PutAuctionByManager"/>
+			<xsd:element name="PutAuctionByManagerResponse" type="ev:PutAuctionByManagerResponse"/>
+			
+			<xsd:complexType name="PutAuctionByManager">
+				<xsd:sequence>
+					<xsd:element minOccurs="1" maxOccurs="1" name="Auction" type="ev:AuctionType"/>
+					<xsd:element minOccurs="1" maxOccurs="1" name="AMLogin" type="xsd:string"/>
+					<xsd:element minOccurs="1" maxOccurs="1" name="AuctionManagerContactData" type="ev:AuctionManagerContactDataType"/>
+				</xsd:sequence>
+			</xsd:complexType>
+					
+			<xsd:complexType name="PutAuctionByManagerResponse">
+				<xsd:sequence>
+					<xsd:element minOccurs="1" maxOccurs="1" name="Auction" type="ev:AuctionType"/>
+					<xsd:element minOccurs="1" maxOccurs="1" name="AMLogin" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="PutAuctionFinalizationFormByClient">
+				<xsd:sequence>
+					<xsd:element minOccurs="1" maxOccurs="1" name="AuctionId" type="xsd:string"/>
+					<xsd:element minOccurs="1" maxOccurs="1" name="ClientLogin" type="xsd:string"/>
+					<xsd:element minOccurs="1" maxOccurs="1" name="ClientContactData" type="ev:ClientContactDataType"/>
+				</xsd:sequence>
+			</xsd:complexType>
+					
+			<xsd:complexType name="PutAuctionFinalizationFormByClientResponse">
+				<xsd:sequence>
+					<xsd:element minOccurs="1" maxOccurs="1" name="AMLogin" type="xsd:string"/>
+					<xsd:element minOccurs="1" maxOccurs="1" name="ClientLogin" type="xsd:string"/>
+					<xsd:element minOccurs="1" maxOccurs="1" name="AuctionManagerContactData" type="ev:AuctionManagerContactDataType"/>
+					<xsd:element minOccurs="1" maxOccurs="1" name="Auction" type="ev:AuctionType"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="PutBetByClient">
+				<xsd:sequence>
+					<xsd:element minOccurs="1" maxOccurs="1" name="ClientLogin" type="xsd:string"/>
+					<xsd:element minOccurs="1" maxOccurs="1" name="AuctionId" type="xsd:string"/>
+					<xsd:element minOccurs="1" maxOccurs="1" name="Bet" type="ev:BetType"/>
+				</xsd:sequence>
+			</xsd:complexType>
+					
+			<xsd:complexType name="PutBetByClientResponse">
+				<xsd:sequence>
+					<xsd:element minOccurs="1" maxOccurs="1" name="ClientLogin" type="xsd:string"/>
+					<xsd:element minOccurs="1" maxOccurs="1" name="Auction" type="ev:AuctionType"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="GetAuctionsForManager">
+				<xsd:sequence>
+					<xsd:element minOccurs="1" maxOccurs="1" name="AMLogin" type="xsd:string"/>
+					<xsd:element minOccurs="0" maxOccurs="1" name="AuctionListFilter" type="ev:AuctionListFilterType"/>
+				</xsd:sequence>
+			</xsd:complexType>
+					
+			<xsd:complexType name="GetAuctionsForManagerResponse">
+				<xsd:sequence>
+					<xsd:element minOccurs="1" maxOccurs="1" name="AMLogin" type="xsd:string"/>
+					<xsd:element minOccurs="1" maxOccurs="1" name="AuctionList" type="ev:AuctionListType"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="GetAuctionsForClient">
+				<xsd:sequence>
+					<xsd:element minOccurs="1" maxOccurs="1" name="ClientLogin" type="xsd:string"/>
+					<xsd:element minOccurs="0" maxOccurs="1" name="AuctionListFilter" type="ev:AuctionListFilterType"/>
+				</xsd:sequence>
+			</xsd:complexType>
+					
+			<xsd:complexType name="GetAuctionsForClientResponse">
+				<xsd:sequence>
+					<xsd:element minOccurs="1" maxOccurs="1" name="ClientLogin" type="xsd:string"/>
+					<xsd:element minOccurs="1" maxOccurs="1" name="AuctionList" type="ev:AuctionListType"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="AuctionListFilterType">
+				<xsd:sequence>
+					<xsd:element minOccurs="0" maxOccurs="1" name="AuctionId" type="xsd:string"/>
+					<xsd:element minOccurs="0" maxOccurs="1" name="AuctionTitleFilter" type="xsd:string"/>
+					<xsd:element minOccurs="0" maxOccurs="1" name="Finished" type="xsd:boolean"/>
+					<xsd:element minOccurs="0" maxOccurs="1" name="My" type="xsd:boolean"/>
+					<xsd:element minOccurs="0" maxOccurs="1" name="FilterDateFrom" type="xsd:dateTime"/>
+					<xsd:element minOccurs="0" maxOccurs="1" name="FilterDateTill" type="xsd:dateTime"/>
+				</xsd:sequence>				
+			</xsd:complexType>
+			
+			<xsd:complexType name="AuctionListType">
+				<xsd:sequence>
+					<xsd:element minOccurs="1" maxOccurs="unbounded" name="Auction" type="ev:AuctionType"/>
+				</xsd:sequence>
+			</xsd:complexType>	
+			
+			<xsd:complexType name="AuctionType">
+				<xsd:sequence>
+					<xsd:element minOccurs="0" maxOccurs="1" name="AuctionId" type="xsd:string"/>
+					<xsd:element minOccurs="0" maxOccurs="1" name="AuctionTitle" type="xsd:string"/>
+					<xsd:element minOccurs="0" maxOccurs="unbounded" name="AuctionImgUrl" type="xsd:string"/>
+					<xsd:element minOccurs="0" maxOccurs="1" name="AuctionStart" type="xsd:dateTime"/>
+					<xsd:element minOccurs="0" maxOccurs="1" name="AuctionEnd" type="xsd:dateTime"/>
+					<xsd:element minOccurs="0" maxOccurs="1" name="AuctionStartPrice" type="ev:Price"/>
+					<xsd:element minOccurs="0" maxOccurs="1" name="AuctionCurrentPrice" type="ev:Price"/>
+					<xsd:element minOccurs="0" maxOccurs="1" name="AuctionDescription" type="xsd:string"/>
+					<xsd:element minOccurs="0" maxOccurs="1" name="AuctionDeliveryDesc" type="xsd:string"/>
+					<xsd:element minOccurs="0" maxOccurs="1" name="Finished" type="xsd:boolean"/>
+					<xsd:element minOccurs="0" maxOccurs="1" name="Won" type="xsd:boolean"/>
+					<xsd:element minOccurs="0" maxOccurs="1" name="Finalized" type="xsd:boolean"/>
+					<xsd:element minOccurs="0" maxOccurs="1" name="AMLogin" type="xsd:string"/>
+					<xsd:element minOccurs="0" maxOccurs="1" name="BetList" type="ev:BetListType"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="AuctionManagerContactDataType">
+				<xsd:sequence>
+					<xsd:element minOccurs="1" maxOccurs="1" name="AMName" type="xsd:string"/>
+					<xsd:element minOccurs="1" maxOccurs="1" name="AMSurname" type="xsd:string"/>
+					<xsd:element minOccurs="1" maxOccurs="1" name="AMPhone" type="ev:Phone"/>
+					<xsd:element minOccurs="1" maxOccurs="1" name="AMEmail" type="ev:Email"/>
+					<xsd:element minOccurs="1" maxOccurs="1" name="AMAccountNb" type="xsd:string"/>
+					<xsd:element minOccurs="1" maxOccurs="1" name="AMAccountBank" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="ClientContactDataType">
+				<xsd:sequence>
+					<xsd:element minOccurs="1" maxOccurs="1" name="ClientName" type="xsd:string"/>
+					<xsd:element minOccurs="1" maxOccurs="1" name="ClientSurname" type="xsd:string"/>
+					<xsd:element minOccurs="1" maxOccurs="1" name="ClientAddress" type="xsd:string"/>
+					<xsd:element minOccurs="1" maxOccurs="1" name="ClientPhone" type="ev:Phone"/>
+					<xsd:element minOccurs="1" maxOccurs="1" name="ClientEmail" type="ev:Email"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="BetListType">
+				<xsd:sequence>
+					<xsd:element minOccurs="1" maxOccurs="unbounded" name="Bet" type="ev:BetType"/>
+				</xsd:sequence>
+			</xsd:complexType>	
+			
+			<xsd:complexType name="BetType">
+				<xsd:sequence>
+					<xsd:element minOccurs="1" maxOccurs="1" name="BetPrice" type="ev:Price"/>
+					<xsd:element minOccurs="1" maxOccurs="1" name="BetTime" type="xsd:dateTime"/>
+					<xsd:element minOccurs="1" maxOccurs="1" name="ClientLogin" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:simpleType name="Phone">
+				<xsd:restriction base="xsd:string">
+					<xsd:pattern value="[0-9]{9,11}"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+			
+			<xsd:simpleType name="Email">
+				<xsd:restriction base="xsd:string">
+					<xsd:pattern value="[a-zA-Z0-9]+@.[a-zA-Z0-9]+.[a-zA-Z0-9]+"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+			
+			<xsd:simpleType name="Price">
+				<xsd:restriction base="xsd:string">
+					<xsd:pattern value="[0-9]+.[0-9]{2}"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:schema>
+	</types>
+	<message name="PutAuctionByManagerSoapIn" xmlns:ev="http://eaiib.agh.edu.pl/auctions/xsd/">
+		<part name="PutAuctionByManager" element="ev:PutAuctionByManager"/>
+	</message>
+	<message name="PutAuctionByManagerSoapOut" xmlns:ev="http://eaiib.agh.edu.pl/auctions/xsd/">
+		<part name="PutAuctionByManagerResponse" element="ev:PutAuctionByManagerResponse"/>
+	</message>
+	<message name="PutAuctionFinalizationFormByClientSoapIn" xmlns:ev="http://eaiib.agh.edu.pl/auctions/xsd/">
+		<part name="PutAuctionFinalizationFormByClient" element="ev:PutAuctionFinalizationFormByClient"/>
+	</message>
+	<message name="PutAuctionFinalizationFormByClientSoapOut" xmlns:ev="http://eaiib.agh.edu.pl/auctions/xsd/">
+		<part name="PutAuctionFinalizationFormByClientResponse" element="ev:PutAuctionFinalizationFormByClientResponse"/>
+	</message>
+	<message name="PutBetByClientSoapIn" xmlns:ev="http://eaiib.agh.edu.pl/auctions/xsd/">
+		<part name="PutBetByClient" element="ev:PutBetByClient"/>
+	</message>
+	<message name="PutBetByClientSoapOut" xmlns:ev="http://eaiib.agh.edu.pl/auctions/xsd/">
+		<part name="PutBetByClientResponse" element="ev:PutBetByClientResponse"/>
+	</message>
+	<message name="GetAuctionsForManagerSoapIn" xmlns:ev="http://eaiib.agh.edu.pl/auctions/xsd/">
+		<part name="GetAuctionsForManager" element="ev:GetAuctionsForManager"/>
+	</message>
+	<message name="GetAuctionsForManagerSoapOut" xmlns:ev="http://eaiib.agh.edu.pl/auctions/xsd/">
+		<part name="GetAuctionsForManagerResponse" element="ev:GetAuctionsForManagerResponse"/>
+	</message>
+	<message name="GetAuctionsForClientSoapIn" xmlns:ev="http://eaiib.agh.edu.pl/auctions/xsd/">
+		<part name="GetAuctionsForClient" element="ev:GetAuctionsForClient"/>
+	</message>
+	<message name="GetAuctionsForClientSoapOut" xmlns:ev="http://eaiib.agh.edu.pl/auctions/xsd/">
+		<part name="GetAuctionsForClientResponse" element="ev:GetAuctionsForClientResponse"/>
+	</message>
+	<message name="Error" xmlns:ev="http://eaiib.agh.edu.pl/auctions/xsd/">
+		<part name="error" element="ev:Error"/>
+	</message>
+	<portType name="PutAuctionByManagerSoap">
+		<operation name="PutAuctionByManager">
+			<documentation>Method for pushing data about auction by Auction Manager into the module</documentation> 
+			<input name="PutAuctionByManagerSoapIn" message="tns:PutAuctionByManagerSoapIn"/>
+			<output name="PutAuctionByManagerSoapOut" message="tns:PutAuctionByManagerSoapOut"/>
+		</operation>
+	</portType>
+	<portType name="PutBetByClientSoap">
+		<operation name="PutBetByClient">
+			<documentation>Method for pushing bets by Client for aucion</documentation> 
+			<input name="PutBetByClientSoapIn" message="tns:PutBetByClientSoapIn"/>
+			<output name="PutBetByClientSoapOut" message="tns:PutBetByClientSoapOut"/>
+		</operation>
+	</portType>
+	<portType name="PutAuctionFinalizationFormByClientSoap">
+		<operation name="PutAuctionFinalizationFormByClient">
+			<documentation>Method for pushing into system required form with finalization data</documentation> 
+			<input name="PutAuctionFinalizationFormByClientSoapIn" message="tns:PutAuctionFinalizationFormByClientSoapIn"/>
+			<output name="PutAuctionFinalizationFormByClientSoapOut" message="tns:PutAuctionFinalizationFormByClientSoapOut"/>
+		</operation>
+	</portType>
+	<portType name="GetAuctionsForManagerSoap">
+		<operation name="GetAuctionsForManager">
+			<documentation>Methor for searching auctions by menager (only own auctions)</documentation> 
+			<input name="GetAuctionsForManagerSoapIn" message="tns:GetAuctionsForManagerSoapIn"/>
+			<output name="GetAuctionsForManagerSoapOut" message="tns:GetAuctionsForManagerSoapOut"/>
+		</operation>
+	</portType>
+	<portType name="GetAuctionsForClientSoap">
+		<operation name="GetAuctionsForClient">
+			<documentation>Method for searching auctions by client (all not finished + taken part)</documentation> 
+			<input name="GetAuctionsForClientSoapIn" message="tns:GetAuctionsForClientSoapIn"/>
+			<output name="GetAuctionsForClientSoapOut" message="tns:GetAuctionsForClientSoapOut"/>
+		</operation>
+	</portType>
+	<binding name="PutAuctionByManagerSoap" type="tns:PutAuctionByManagerSoap">
+		<soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="PutAuctionByManager">
+			<soap12:operation soapAction="http://eaiib.agh.edu.pl/auction/PutAuctionByManager" style="document"/>
+			<input>
+				<soap12:body use="literal"/>
+			</input>
+			<output>
+				<soap12:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<binding name="PutAuctionFinalizationFormByClientSoap" type="tns:PutAuctionFinalizationFormByClientSoap">
+		<soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="PutAuctionFinalizationFormByClient">
+			<soap12:operation soapAction="http://eaiib.agh.edu.pl/auction/PutAuctionFinalizationFormByClient" style="document"/>
+			<input>
+				<soap12:body use="literal"/>
+			</input>
+			<output>
+				<soap12:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<binding name="PutBetByClientSoap" type="tns:PutBetByClientSoap">
+		<soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="PutBetByClient">
+			<soap12:operation soapAction="http://eaiib.agh.edu.pl/auction/PutBetByClient" style="document"/>
+			<input>
+				<soap12:body use="literal"/>
+			</input>
+			<output>
+				<soap12:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<binding name="GetAuctionsForManagerSoap" type="tns:GetAuctionsForManagerSoap">
+		<soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="GetAuctionsForManager">
+			<soap12:operation soapAction="http://eaiib.agh.edu.pl/auction/GetAuctionsForManager" style="document"/>
+			<input>
+				<soap12:body use="literal"/>
+			</input>
+			<output>
+				<soap12:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<binding name="GetAuctionsForClientSoap" type="tns:GetAuctionsForClientSoap">
+		<soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="GetAuctionsForClient">
+			<soap12:operation soapAction="http://eaiib.agh.edu.pl/auction/GetAuctionsForClient" style="document"/>
+			<input>
+				<soap12:body use="literal"/>
+			</input>
+			<output>
+				<soap12:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<service name="AuctionAPI">
+		<port name="PutAuctionByManagerPort" binding="tns:PutAuctionByManagerSoap">
+			<soap12:address location="http://localhost/auction/am"/>
+        </port>
+		<port name="PutAuctionFinalizationFormByClientPort" binding="tns:PutAuctionFinalizationFormByClientSoap">
+			<soap12:address location="http://localhost/auction/am"/>
+        </port>
+		<port name="PutBetByClientPort" binding="tns:PutBetByClientSoap">
+			<soap12:address location="http://localhost/auction/am"/>
+        </port>
+		<port name="GetAuctionsForManagerPort" binding="tns:GetAuctionsForManagerSoap">
+			<soap12:address location="http://localhost/auction/am"/>
+        </port>
+		<port name="GetAuctionsForClientPort" binding="tns:GetAuctionsForClientSoap">
+			<soap12:address location="http://localhost/auction/am"/>
+        </port>
+    </service>
+</definitions>
