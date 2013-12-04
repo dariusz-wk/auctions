@@ -2,7 +2,9 @@ package pl.edu.agh.eaiib.auctions.webservice;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
+import javax.jws.WebService;
 import javax.jws.WebParam.Mode;
+import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.ws.Holder;
 import javax.xml.ws.RequestWrapper;
 import javax.xml.ws.ResponseWrapper;
@@ -11,6 +13,8 @@ import pl.edu.agh.eaiib.auctions.wsdl.PutBetByClientSoap;
 import pl.edu.agh.eaiib.auctions.xsd.AuctionType;
 import pl.edu.agh.eaiib.auctions.xsd.BetType;
 
+@WebService(targetNamespace = "http://eaiib.agh.edu.pl/auctions/wsdl/", name = "PutBetByClientSoap")
+@XmlSeeAlso({pl.edu.agh.eaiib.auctions.xsd.ObjectFactory.class})
 public class PutBetByClientSoapImpl implements PutBetByClientSoap {
 
 	@Override

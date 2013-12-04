@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxws="http://cxf.apache.org/jaxws" xmlns:soap="http://cxf.apache.org/bindings/soap"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd http://cxf.apache.org/bindings/soap">
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd http://cxf.apache.org/bindings/soap http://cxf.apache.org/schemas/configuration/soap.xsd">
 	<import resource="classpath:META-INF/cxf/cxf.xml" />
 	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
 	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
 
 	<bean id="getAuctionsForManager" class="pl.edu.agh.eaiib.auctions.webservice.GetAuctionsForManagerSoapImpl" />
 
-	<jaxws:endpoint id="GetAuctionsForManagerSoap" implementor="#getAuctionsForManager" address="/GetAuctionsForManager">
+	<jaxws:endpoint xmlns:tns="http://eaiib.agh.edu.pl/auctions/wsdl/" endpointName="tns:GetAuctionsForManagerPort" serviceName="tns:AuctionAPI" id="GetAuctionsForManagerSoap"
+		implementor="#getAuctionsForManager" address="/GetAuctionsForManager" wsdlLocation="WEB-INF/AuctionAPI.wsdl">
 		<jaxws:binding>
 			<soap:soapBinding mtomEnabled="true" version="1.2" />
 		</jaxws:binding>
@@ -19,7 +20,7 @@
 
 	<bean id="getAuctionsForClient" class="pl.edu.agh.eaiib.auctions.webservice.GetAuctionsForClientSoapImpl" />
 
-	<jaxws:endpoint id="GetAuctionsForClientSoap" implementor="#getAuctionsForClient" address="/GetAuctionsForClient">
+	<jaxws:endpoint xmlns:tns="http://eaiib.agh.edu.pl/auctions/wsdl/" endpointName="tns:GetAuctionsForClientPort" serviceName="tns:AuctionAPI" id="GetAuctionsForClientSoap" implementor="#getAuctionsForClient" address="/GetAuctionsForClient" wsdlLocation="WEB-INF/AuctionAPI.wsdl">
 
 		<jaxws:binding>
 			<soap:soapBinding mtomEnabled="true" version="1.2" />
@@ -31,7 +32,7 @@
 
 	<bean id="putAuctionByManager" class="pl.edu.agh.eaiib.auctions.webservice.PutAuctionByManagerSoapImpl" />
 
-	<jaxws:endpoint id="PutAuctionByManagerSoap" implementor="#putAuctionByManager" address="/PutAuctionByManager">
+	<jaxws:endpoint xmlns:tns="http://eaiib.agh.edu.pl/auctions/wsdl/" endpointName="tns:PutAuctionByManagerPort" serviceName="tns:AuctionAPI" id="PutAuctionByManagerSoap" implementor="#putAuctionByManager" address="/PutAuctionByManager" wsdlLocation="WEB-INF/AuctionAPI.wsdl">
 
 		<jaxws:binding>
 			<soap:soapBinding mtomEnabled="true" version="1.2" />
@@ -43,7 +44,8 @@
 
 	<bean id="putAuctionFinalizationFormByClient" class="pl.edu.agh.eaiib.auctions.webservice.PutAuctionFinalizationFormByClientSoapImpl" />
 
-	<jaxws:endpoint id="PutAuctionFinalizationFormByClientSoap" implementor="#putAuctionFinalizationFormByClient" address="/PutAuctionFinalizationFormByClient">
+	<jaxws:endpoint xmlns:tns="http://eaiib.agh.edu.pl/auctions/wsdl/" endpointName="tns:PutAuctionFinalizationFormByClientPort" serviceName="tns:AuctionAPI" id="PutAuctionFinalizationFormByClientSoap" implementor="#putAuctionFinalizationFormByClient" address="/PutAuctionFinalizationFormByClient"
+		wsdlLocation="WEB-INF/AuctionAPI.wsdl">
 
 		<jaxws:binding>
 			<soap:soapBinding mtomEnabled="true" version="1.2" />
@@ -55,7 +57,7 @@
 
 	<bean id="putBetByClient" class="pl.edu.agh.eaiib.auctions.webservice.PutBetByClientSoapImpl" />
 
-	<jaxws:endpoint id="PutBetByClientSoap" implementor="#putBetByClient" address="/PutBetByClient">
+	<jaxws:endpoint xmlns:tns="http://eaiib.agh.edu.pl/auctions/wsdl/" endpointName="tns:PutBetByClientPort" serviceName="tns:AuctionAPI" id="PutBetByClientSoap" implementor="#putBetByClient" address="/PutBetByClient" wsdlLocation="WEB-INF/AuctionAPI.wsdl">
 
 		<jaxws:binding>
 			<soap:soapBinding mtomEnabled="true" version="1.2" />
