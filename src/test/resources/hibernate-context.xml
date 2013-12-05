@@ -12,8 +12,8 @@
 			http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
 	   		">
 
-	<context:property-placeholder location="/WEB-INF/spring.properties" />
-
+	<context:property-placeholder location="spring.properties" />
+	
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean" p:dataSource-ref="dataSource" p:configLocation="${hibernate.config}"
@@ -31,6 +31,8 @@
 		<jdbc:script location="classpath:db/data.sql" />
 	</jdbc:initialize-database>
 
-	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager" p:sessionFactory-ref="sessionFactory" />
-
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
 </beans>
