@@ -4,37 +4,28 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.CollectionTable;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.Cascade;
 
 import pl.edu.agh.eaiib.auctions.core.model.BaseBean;
 
 @Entity
 @Table(name = "AUCTION")
-public class AuctionBean extends BaseBean<Long> {
+public class Auction extends BaseBean<Long> {
 
 	@Id
 	@GeneratedValue
 	@Column(name = "AUCTION_ID")
 	protected Long id;
+
 	@Column(name = "AUCTION_TITLE")
 	protected String auctionTitle;
-
-	@ElementCollection
-	@CollectionTable(name = "AUCTION_IMAGES", joinColumns = @JoinColumn(updatable=true, name = "AUCTION_ID"))
-	@Column(name = "AUCTION_IMAGE")
-	@Cascade(value=org.hibernate.annotations.CascadeType.ALL)
-	protected List<String> auctionImgUrl;
 
 	@Column(name = "AUCTION_START")
 	protected Date auctionStart;
@@ -66,8 +57,17 @@ public class AuctionBean extends BaseBean<Long> {
 	@Column(name = "AUCTION_OWNER")
 	protected String amLogin;
 
-	@OneToMany(orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	protected List<AuctionBetBean> betList;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "id")
+	private List<Image> auctionImgUrl;
+
+	@OneToOne(mappedBy = "amAuction", fetch = FetchType.LAZY, optional = true, orphanRemoval = true, cascade = CascadeType.ALL)
+	protected Contact auctionManagerContact;
+
+	@OneToOne(mappedBy = "buyerAuction", fetch = FetchType.LAZY, optional = true, orphanRemoval = true, cascade = CascadeType.ALL)
+	protected Contact buyerContact;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "id")
+	protected List<Bet> betList;
 
 	public Long getId() {
 		return id;
@@ -83,14 +83,6 @@ public class AuctionBean extends BaseBean<Long> {
 
 	public void setAuctionTitle(String auctionTitle) {
 		this.auctionTitle = auctionTitle;
-	}
-
-	public List<String> getAuctionImgUrl() {
-		return auctionImgUrl;
-	}
-
-	public void setAuctionImgUrl(List<String> auctionImgUrl) {
-		this.auctionImgUrl = auctionImgUrl;
 	}
 
 	public Date getAuctionStart() {
@@ -173,12 +165,36 @@ public class AuctionBean extends BaseBean<Long> {
 		this.amLogin = amLogin;
 	}
 
-	public List<AuctionBetBean> getBetList() {
+	public List<Bet> getBetList() {
 		return betList;
 	}
 
-	public void setBetList(List<AuctionBetBean> betList) {
+	public void setBetList(List<Bet> betList) {
 		this.betList = betList;
+	}
+
+	public Contact getAuctionManagerContact() {
+		return auctionManagerContact;
+	}
+
+	public void setAuctionManagerContact(Contact auctionManagerContact) {
+		this.auctionManagerContact = auctionManagerContact;
+	}
+
+	public Contact getBuyerContact() {
+		return buyerContact;
+	}
+
+	public void setBuyerContact(Contact buyerContact) {
+		this.buyerContact = buyerContact;
+	}
+
+	public List<Image> getAuctionImgUrl() {
+		return auctionImgUrl;
+	}
+
+	public void setAuctionImgUrl(List<Image> auctionImgUrl) {
+		this.auctionImgUrl = auctionImgUrl;
 	}
 
 }

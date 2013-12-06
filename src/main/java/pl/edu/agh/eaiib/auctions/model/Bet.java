@@ -2,7 +2,6 @@ package pl.edu.agh.eaiib.auctions.model;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,7 +15,7 @@ import pl.edu.agh.eaiib.auctions.core.model.BaseBean;
 
 @Entity
 @Table(name = "BET")
-public class AuctionBetBean extends BaseBean<Long> {
+public class Bet extends BaseBean<Long> {
 
 	@Id
 	@GeneratedValue
@@ -28,9 +27,10 @@ public class AuctionBetBean extends BaseBean<Long> {
 	protected Date betTime;
 	@Column(name = "CLIENT_ID")
 	protected String cientId;
-	@ManyToOne(cascade=CascadeType.DETACH)
+
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "AUCTION_ID", nullable = false)
-	private AuctionBean auction;
+	private Auction auction;
 
 	public Long getId() {
 		return id;
@@ -64,11 +64,11 @@ public class AuctionBetBean extends BaseBean<Long> {
 		this.cientId = cientId;
 	}
 
-	public AuctionBean getAuction() {
+	public Auction getAuction() {
 		return auction;
 	}
 
-	public void setAuction(AuctionBean auction) {
+	public void setAuction(Auction auction) {
 		this.auction = auction;
 	}
 }

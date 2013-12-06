@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,7 +41,8 @@ public abstract class BaseDaoImpl<B extends BaseBean<S>, S extends Serializable>
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public void save(B obj) {
-		getHibernateTemplate().saveOrUpdate(obj);
+		HibernateTemplate ht = getHibernateTemplate();
+		ht.saveOrUpdate(obj);
 	}
 
 	@Override

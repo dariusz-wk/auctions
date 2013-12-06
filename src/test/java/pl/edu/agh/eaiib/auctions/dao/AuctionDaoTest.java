@@ -17,8 +17,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import pl.edu.agh.eaiib.auctions.model.AuctionBean;
-import pl.edu.agh.eaiib.auctions.model.AuctionBetBean;
+import pl.edu.agh.eaiib.auctions.model.Auction;
+import pl.edu.agh.eaiib.auctions.model.Bet;
+import pl.edu.agh.eaiib.auctions.model.Image;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "/test-config.xml" })
@@ -33,20 +34,26 @@ public class AuctionDaoTest {
 	public void basicTest() {
 		Assert.assertNotNull(auctionDao);
 		
-		AuctionBean auction = new AuctionBean();
+		Auction auction = new Auction();
 		auction.setAmLogin("ADMIN");
 		auction.setAuctionCurrentPrice(100.0);
 		auction.setAuctionDeliveryDesc("Bla bla bla");
 		auction.setAuctionDescription("Bla");
 		auction.setAuctionEnd(new Date());
-		auction.setAuctionImgUrl(Arrays.asList(new String[]{"img1","img2"}));
+		Image i1 = new Image();
+		i1.setAuction(auction);
+		i1.setUrl("url1");
+		Image i2 = new Image();
+		i2.setAuction(auction);
+		i2.setUrl("url2");
+		auction.setAuctionImgUrl(Arrays.asList(new Image[]{i1,i2}));
 		auction.setAuctionStart(new Date());
 		auction.setAuctionStartPrice(90.0);
 		auction.setAuctionTitle("AUCTION TEST");
 		
-		List<AuctionBetBean> bets = new ArrayList<AuctionBetBean>();
+		List<Bet> bets = new ArrayList<Bet>();
 		
-		AuctionBetBean bet = new AuctionBetBean();
+		Bet bet = new Bet();
 		bet.setBetPrice(100.0);
 		bet.setBetTime(new Date());
 		bet.setCientId("CLIENT");
@@ -63,10 +70,10 @@ public class AuctionDaoTest {
 		Assert.assertEquals(1, ids.size());
 		
 		for(Long id: ids){
-			AuctionBean savedAuction = auctionDao.getEager(id);
+			Auction savedAuction = auctionDao.getEager(id);
 			Assert.assertEquals(100.0, savedAuction.getAuctionCurrentPrice(), 0.001);
-			List<AuctionBetBean> savedBets = savedAuction.getBetList(); 
-			for(AuctionBetBean savedBet: savedBets){
+			List<Bet> savedBets = savedAuction.getBetList(); 
+			for(Bet savedBet: savedBets){
 				Assert.assertEquals(100.0, savedBet.getBetPrice(), 0.001);				
 			}
 		}
@@ -75,13 +82,6 @@ public class AuctionDaoTest {
 	
 	@After
 	public void clean(){
-		List<Long> ids = auctionDao.getAllIds();
-		for(Long id:ids){
-			AuctionBean a = auctionDao.getEager(id);
-			a.setAuctionImgUrl(Collections.EMPTY_LIST);
-			a.setBetList(Collections.EMPTY_LIST);
-			auctionDao.save(a);
-		}
 		cleanerBean.clean();
 	}
 }

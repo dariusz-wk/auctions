@@ -13,9 +13,5 @@
 	<bean id="auctionDao" class="pl.edu.agh.eaiib.auctions.dao.AuctionDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
-	
-	<bean id="auctionBetDao" class="pl.edu.agh.eaiib.auctions.dao.AuctionBetDaoImpl">	
-		<property name="sessionFactory" ref="sessionFactory"/>
-	</bean>
-	
+		
 </beans>

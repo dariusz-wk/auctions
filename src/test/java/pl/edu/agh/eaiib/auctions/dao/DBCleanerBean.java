@@ -13,9 +13,11 @@ public class DBCleanerBean {
 
 	public void clean() {
 		
-		Query query = sessionFactory.getCurrentSession().createQuery("delete from AuctionBetBean");
-		query.executeUpdate();
-		query = sessionFactory.getCurrentSession().createQuery("delete from AuctionBean");
+//		Query query = sessionFactory.getCurrentSession().createQuery("delete from Bet");
+//		query.executeUpdate();
+		//query = sessionFactory.getCurrentSession().createQuery("delete from Contact");
+		//query.executeUpdate();
+		Query query = sessionFactory.getCurrentSession().createQuery("delete from Auction");
 		query.executeUpdate();
 	}
 }
