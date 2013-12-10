@@ -66,4 +66,6 @@
 			<bean class="org.apache.cxf.feature.LoggingFeature" />
 		</jaxws:features>
 	</jaxws:endpoint>
+	
+	<import resource="integration.xml"/>
 </beans>

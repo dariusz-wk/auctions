@@ -1,0 +1,242 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://service.useraccounts.agh.edu.pl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="RoleServiceImplService" targetNamespace="http://service.useraccounts.agh.edu.pl/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://service.useraccounts.agh.edu.pl/" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://service.useraccounts.agh.edu.pl/">
+  <xs:element name="addRole" type="tns:addRole"/>
+  <xs:element name="addRoleResponse" type="tns:addRoleResponse"/>
+  <xs:element name="createRole" type="tns:createRole"/>
+  <xs:element name="createRoleResponse" type="tns:createRoleResponse"/>
+  <xs:element name="getAllRoles" type="tns:getAllRoles"/>
+  <xs:element name="getAllRolesResponse" type="tns:getAllRolesResponse"/>
+  <xs:element name="getUserRole" type="tns:getUserRole"/>
+  <xs:element name="getUserRoleResponse" type="tns:getUserRoleResponse"/>
+  <xs:element name="removeRole" type="tns:removeRole"/>
+  <xs:element name="removeRoleResponse" type="tns:removeRoleResponse"/>
+  <xs:element name="revokeRole" type="tns:revokeRole"/>
+  <xs:element name="revokeRoleResponse" type="tns:revokeRoleResponse"/>
+  <xs:complexType name="getUserRole">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="login" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getUserRoleResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="addRole">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="login" type="xs:string"/>
+      <xs:element minOccurs="0" name="role" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="addRoleResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getAllRoles">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="getAllRolesResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="createRole">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="role" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="createRoleResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="removeRole">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="role" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="removeRoleResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="revokeRole">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="login" type="xs:string"/>
+      <xs:element minOccurs="0" name="role" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="revokeRoleResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserException" type="tns:UserException"/>
+  <xs:complexType name="UserException">
+    <xs:sequence>
+      <xs:element name="exceptionCode" nillable="true" type="xs:int"/>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="createRole">
+    <wsdl:part element="tns:createRole" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllRolesResponse">
+    <wsdl:part element="tns:getAllRolesResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserRole">
+    <wsdl:part element="tns:getUserRole" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeRole">
+    <wsdl:part element="tns:removeRole" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="revokeRole">
+    <wsdl:part element="tns:revokeRole" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllRoles">
+    <wsdl:part element="tns:getAllRoles" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createRoleResponse">
+    <wsdl:part element="tns:createRoleResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="revokeRoleResponse">
+    <wsdl:part element="tns:revokeRoleResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UserException">
+    <wsdl:part element="tns:UserException" name="UserException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addRoleResponse">
+    <wsdl:part element="tns:addRoleResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeRoleResponse">
+    <wsdl:part element="tns:removeRoleResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserRoleResponse">
+    <wsdl:part element="tns:getUserRoleResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addRole">
+    <wsdl:part element="tns:addRole" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="RoleService">
+    <wsdl:operation name="getUserRole">
+      <wsdl:input message="tns:getUserRole" name="getUserRole">
+    </wsdl:input>
+      <wsdl:output message="tns:getUserRoleResponse" name="getUserRoleResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UserException" name="UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addRole">
+      <wsdl:input message="tns:addRole" name="addRole">
+    </wsdl:input>
+      <wsdl:output message="tns:addRoleResponse" name="addRoleResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllRoles">
+      <wsdl:input message="tns:getAllRoles" name="getAllRoles">
+    </wsdl:input>
+      <wsdl:output message="tns:getAllRolesResponse" name="getAllRolesResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createRole">
+      <wsdl:input message="tns:createRole" name="createRole">
+    </wsdl:input>
+      <wsdl:output message="tns:createRoleResponse" name="createRoleResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeRole">
+      <wsdl:input message="tns:removeRole" name="removeRole">
+    </wsdl:input>
+      <wsdl:output message="tns:removeRoleResponse" name="removeRoleResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="revokeRole">
+      <wsdl:input message="tns:revokeRole" name="revokeRole">
+    </wsdl:input>
+      <wsdl:output message="tns:revokeRoleResponse" name="revokeRoleResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="RoleServiceImplServiceSoapBinding" type="tns:RoleService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="addRole">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addRole">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addRoleResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserRole">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getUserRole">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUserRoleResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createRole">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="createRole">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="createRoleResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllRoles">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getAllRoles">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAllRolesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeRole">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="removeRole">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeRoleResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="revokeRole">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="revokeRole">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="revokeRoleResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="RoleServiceImplService">
+    <wsdl:port binding="tns:RoleServiceImplServiceSoapBinding" name="RoleServiceImplPort">
+      <soap:address location="http://localhost:8080/userAccounts/services/RoleService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

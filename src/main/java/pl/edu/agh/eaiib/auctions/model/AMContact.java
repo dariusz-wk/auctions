@@ -9,16 +9,20 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+
 import pl.edu.agh.eaiib.auctions.core.model.BaseBean;
 
 @Entity
-@Table(name="CONTACT")
-public class Contact extends BaseBean<Long> {
+@Table(name = "AM_CONTACT")
+public class AMContact extends BaseBean<Long> {
 	@Id
-	@GeneratedValue
-	@Column(name = "CONTACT_ID")
+	@GeneratedValue(generator="amc_gen")
+    @GenericGenerator(name="amc_gen", strategy="foreign", parameters=@Parameter(name="property", value="auction"))
+	@Column(name = "AUCTION_ID")
 	private Long id;
-	
+
 	@Column(name = "LOGIN")
 	private String login;
 
@@ -40,17 +44,17 @@ public class Contact extends BaseBean<Long> {
 	@Column(name = "SURNAME")
 	private String surname;
 
-	@Column(name = "ADDRESS")
-	private String address;
-	
 	@OneToOne(fetch = FetchType.LAZY)
 	@PrimaryKeyJoinColumn
-	private Auction buyerAuction;
+	private Auction auction;
 
-	@OneToOne(fetch = FetchType.LAZY)
-	@PrimaryKeyJoinColumn
-	private Auction amAuction;
-	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getLogin() {
 		return login;
@@ -108,37 +112,14 @@ public class Contact extends BaseBean<Long> {
 		this.surname = surname;
 	}
 
-	public String getAddress() {
-		return address;
+	public Auction getAuction() {
+		return auction;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setAuction(Auction auction) {
+		this.auction = auction;
 	}
 
-	public Auction getBuyerAuction() {
-		return buyerAuction;
-	}
-
-	public void setBuyerAuction(Auction buyerAuction) {
-		this.buyerAuction = buyerAuction;
-	}
-
-	public Auction getAmAuction() {
-		return amAuction;
-	}
-
-	public void setAmAuction(Auction amAuction) {
-		this.amAuction = amAuction;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
+	
 
 }

@@ -1,0 +1,204 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://service.useraccounts.agh.edu.pl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="UsersParametersServiceImplService" targetNamespace="http://service.useraccounts.agh.edu.pl/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://service.useraccounts.agh.edu.pl/" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://service.useraccounts.agh.edu.pl/">
+  <xs:element name="getLogs" type="tns:getLogs"/>
+  <xs:element name="getLogsResponse" type="tns:getLogsResponse"/>
+  <xs:element name="getUserParam" type="tns:getUserParam"/>
+  <xs:element name="getUserParamResponse" type="tns:getUserParamResponse"/>
+  <xs:element name="getUserParams" type="tns:getUserParams"/>
+  <xs:element name="getUserParamsResponse" type="tns:getUserParamsResponse"/>
+  <xs:element name="setUserParam" type="tns:setUserParam"/>
+  <xs:element name="setUserParamResponse" type="tns:setUserParamResponse"/>
+  <xs:complexType name="setUserParam">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="login" type="xs:string"/>
+      <xs:element minOccurs="0" name="paramKey" type="xs:string"/>
+      <xs:element minOccurs="0" name="paramValue" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="setUserParamResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getUserParam">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="login" type="xs:string"/>
+      <xs:element minOccurs="0" name="paramKey" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getUserParamResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getUserParams">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="login" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getUserParamsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:parameters"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="parameters">
+    <xs:sequence>
+      <xs:element name="map">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="entry">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element minOccurs="0" name="key" type="xs:string"/>
+                  <xs:element minOccurs="0" name="value" type="xs:string"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getLogs">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="startTime" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="endTime" type="xs:dateTime"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getLogsResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserException" type="tns:UserException"/>
+  <xs:complexType name="UserException">
+    <xs:sequence>
+      <xs:element name="exceptionCode" nillable="true" type="xs:int"/>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getLogs">
+    <wsdl:part element="tns:getLogs" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UserException">
+    <wsdl:part element="tns:UserException" name="UserException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserParam">
+    <wsdl:part element="tns:getUserParam" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserParamResponse">
+    <wsdl:part element="tns:getUserParamResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserParamsResponse">
+    <wsdl:part element="tns:getUserParamsResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLogsResponse">
+    <wsdl:part element="tns:getLogsResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setUserParamResponse">
+    <wsdl:part element="tns:setUserParamResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserParams">
+    <wsdl:part element="tns:getUserParams" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setUserParam">
+    <wsdl:part element="tns:setUserParam" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="UsersParametersService">
+    <wsdl:operation name="setUserParam">
+      <wsdl:input message="tns:setUserParam" name="setUserParam">
+    </wsdl:input>
+      <wsdl:output message="tns:setUserParamResponse" name="setUserParamResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserParam">
+      <wsdl:input message="tns:getUserParam" name="getUserParam">
+    </wsdl:input>
+      <wsdl:output message="tns:getUserParamResponse" name="getUserParamResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UserException" name="UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUserParams">
+      <wsdl:input message="tns:getUserParams" name="getUserParams">
+    </wsdl:input>
+      <wsdl:output message="tns:getUserParamsResponse" name="getUserParamsResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UserException" name="UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getLogs">
+      <wsdl:input message="tns:getLogs" name="getLogs">
+    </wsdl:input>
+      <wsdl:output message="tns:getLogsResponse" name="getLogsResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UserException" name="UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="UsersParametersServiceImplServiceSoapBinding" type="tns:UsersParametersService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getUserParam">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getUserParam">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUserParamResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setUserParam">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="setUserParam">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setUserParamResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserParams">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getUserParams">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUserParamsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getLogs">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getLogs">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getLogsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="UsersParametersServiceImplService">
+    <wsdl:port binding="tns:UsersParametersServiceImplServiceSoapBinding" name="UsersParametersServiceImplPort">
+      <soap:address location="http://localhost:8080/userAccounts/services/UsersParametersService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

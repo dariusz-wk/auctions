@@ -1,5 +1,6 @@
 package pl.edu.agh.eaiib.auctions.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -12,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
 
 import pl.edu.agh.eaiib.auctions.core.model.BaseBean;
 
@@ -57,16 +60,20 @@ public class Auction extends BaseBean<Long> {
 	@Column(name = "AUCTION_OWNER")
 	protected String amLogin;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "id")
+	@OneToMany(mappedBy = "auction", orphanRemoval = true)
+	@Cascade(value={org.hibernate.annotations.CascadeType.ALL})
 	private List<Image> auctionImgUrl;
 
-	@OneToOne(mappedBy = "amAuction", fetch = FetchType.LAZY, optional = true, orphanRemoval = true, cascade = CascadeType.ALL)
-	protected Contact auctionManagerContact;
+	@OneToOne(mappedBy = "auction", optional = true, orphanRemoval = true)
+	@Cascade(value={org.hibernate.annotations.CascadeType.ALL})
+	protected AMContact auctionManagerContact;
 
-	@OneToOne(mappedBy = "buyerAuction", fetch = FetchType.LAZY, optional = true, orphanRemoval = true, cascade = CascadeType.ALL)
-	protected Contact buyerContact;
+	@OneToOne(mappedBy = "auction", optional = true, orphanRemoval = true)
+	@Cascade(value={org.hibernate.annotations.CascadeType.ALL})
+	protected BuyerContact buyerContact;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "id")
+	@OneToMany(mappedBy = "auction", orphanRemoval = true)
+	@Cascade(value={org.hibernate.annotations.CascadeType.ALL})
 	protected List<Bet> betList;
 
 	public Long getId() {
@@ -166,31 +173,48 @@ public class Auction extends BaseBean<Long> {
 	}
 
 	public List<Bet> getBetList() {
+		if(betList == null){
+			betList =  new ArrayList<Bet>();
+		}
 		return betList;
+	}
+	public void addBet(Bet bet) {
+		getBetList().add(bet);
+		bet.setAuction(this);
 	}
 
 	public void setBetList(List<Bet> betList) {
 		this.betList = betList;
 	}
 
-	public Contact getAuctionManagerContact() {
+	public AMContact getAuctionManagerContact() {
 		return auctionManagerContact;
 	}
 
-	public void setAuctionManagerContact(Contact auctionManagerContact) {
+	public void setAuctionManagerContact(AMContact auctionManagerContact) {
 		this.auctionManagerContact = auctionManagerContact;
+		auctionManagerContact.setAuction(this);
 	}
 
-	public Contact getBuyerContact() {
+	public BuyerContact getBuyerContact() {
 		return buyerContact;
 	}
 
-	public void setBuyerContact(Contact buyerContact) {
+	public void setBuyerContact(BuyerContact buyerContact) {
 		this.buyerContact = buyerContact;
+		 buyerContact.setAuction(this);
 	}
 
 	public List<Image> getAuctionImgUrl() {
+		if(this.auctionImgUrl == null){
+			this.auctionImgUrl =  new ArrayList<Image>();
+		}
 		return auctionImgUrl;
+	}
+
+	public void addAuctionImgUrl(Image auctionImgUrl) {
+		getAuctionImgUrl().add(auctionImgUrl);
+		auctionImgUrl.setAuction(this);
 	}
 
 	public void setAuctionImgUrl(List<Image> auctionImgUrl) {

@@ -2,7 +2,6 @@ package pl.edu.agh.eaiib.auctions.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -22,8 +21,8 @@ public class Image extends BaseBean<Long> {
 	@Column(name = "URL")
 	private String url;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "AUCTION_ID", nullable = false)
+	@ManyToOne
+	@JoinColumn(name = "AUCTION_ID", nullable = false,referencedColumnName="")
 	private Auction auction;
 	
 	public Long getId() {
