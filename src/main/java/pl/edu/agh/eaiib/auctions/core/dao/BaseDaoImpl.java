@@ -15,7 +15,7 @@ import pl.edu.agh.eaiib.auctions.core.model.BaseBean;
 
 public abstract class BaseDaoImpl<B extends BaseBean<S>, S extends Serializable> extends HibernateDaoSupport implements BaseDao<B, S> {
 
-	private final Class<B> clazz;
+	protected final Class<B> clazz;
 
 	@SuppressWarnings("unchecked")
 	public BaseDaoImpl() {

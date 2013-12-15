@@ -64,8 +64,8 @@ public class AuctionServiceImpl implements AuctionService {
 	}
 
 	@Override
-	public List<Auction> find(String title, boolean finished, String amLogin, String clientLogin, Date from, Date till) {
-		return auctionDao.find(title, finished, amLogin, clientLogin, from, till);
+	public List<Auction> find(String title, boolean finished,boolean finalized, String amLogin, String clientLogin, Date from, Date till) {
+		return auctionDao.find(title, finished, finalized, amLogin, clientLogin, from, till);
 	}
 
 }
