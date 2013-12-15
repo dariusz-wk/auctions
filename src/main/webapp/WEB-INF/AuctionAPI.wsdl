@@ -30,8 +30,9 @@
 					
 			<xsd:complexType name="PutAuctionByManagerResponse">
 				<xsd:sequence>
-					<xsd:element minOccurs="1" maxOccurs="1" name="Auction" type="ev:AuctionType"/>
-					<xsd:element minOccurs="1" maxOccurs="1" name="AMLogin" type="xsd:string"/>
+					<xsd:element minOccurs="0" maxOccurs="1" name="Auction" type="ev:AuctionType"/>
+					<xsd:element minOccurs="0" maxOccurs="1" name="AMLogin" type="xsd:string"/>
+					<xsd:element minOccurs="0" maxOccurs="1" name="Errors" type="xsd:string"/>
 				</xsd:sequence>
 			</xsd:complexType>
 			
@@ -45,10 +46,11 @@
 					
 			<xsd:complexType name="PutAuctionFinalizationFormByClientResponse">
 				<xsd:sequence>
-					<xsd:element minOccurs="1" maxOccurs="1" name="AMLogin" type="xsd:string"/>
-					<xsd:element minOccurs="1" maxOccurs="1" name="ClientLogin" type="xsd:string"/>
-					<xsd:element minOccurs="1" maxOccurs="1" name="AuctionManagerContactData" type="ev:AuctionManagerContactDataType"/>
-					<xsd:element minOccurs="1" maxOccurs="1" name="Auction" type="ev:AuctionType"/>
+					<xsd:element minOccurs="0" maxOccurs="1" name="AMLogin" type="xsd:string"/>
+					<xsd:element minOccurs="0" maxOccurs="1" name="ClientLogin" type="xsd:string"/>
+					<xsd:element minOccurs="0" maxOccurs="1" name="AuctionManagerContactData" type="ev:AuctionManagerContactDataType"/>
+					<xsd:element minOccurs="0" maxOccurs="1" name="Auction" type="ev:AuctionType"/>
+					<xsd:element minOccurs="0" maxOccurs="1" name="Errors" type="xsd:string"/>
 				</xsd:sequence>
 			</xsd:complexType>
 			
@@ -62,8 +64,9 @@
 					
 			<xsd:complexType name="PutBetByClientResponse">
 				<xsd:sequence>
-					<xsd:element minOccurs="1" maxOccurs="1" name="ClientLogin" type="xsd:string"/>
-					<xsd:element minOccurs="1" maxOccurs="1" name="Auction" type="ev:AuctionType"/>
+					<xsd:element minOccurs="0" maxOccurs="1" name="ClientLogin" type="xsd:string"/>
+					<xsd:element minOccurs="0" maxOccurs="1" name="Auction" type="ev:AuctionType"/>
+					<xsd:element minOccurs="0" maxOccurs="1" name="Errors" type="xsd:string"/>
 				</xsd:sequence>
 			</xsd:complexType>
 			
@@ -76,8 +79,9 @@
 					
 			<xsd:complexType name="GetAuctionsForManagerResponse">
 				<xsd:sequence>
-					<xsd:element minOccurs="1" maxOccurs="1" name="AMLogin" type="xsd:string"/>
-					<xsd:element minOccurs="1" maxOccurs="1" name="AuctionList" type="ev:AuctionListType"/>
+					<xsd:element minOccurs="0" maxOccurs="1" name="AMLogin" type="xsd:string"/>
+					<xsd:element minOccurs="0" maxOccurs="1" name="AuctionList" type="ev:AuctionListType"/>
+					<xsd:element minOccurs="0" maxOccurs="1" name="Errors" type="xsd:string"/>
 				</xsd:sequence>
 			</xsd:complexType>
 			
@@ -90,8 +94,9 @@
 					
 			<xsd:complexType name="GetAuctionsForClientResponse">
 				<xsd:sequence>
-					<xsd:element minOccurs="1" maxOccurs="1" name="ClientLogin" type="xsd:string"/>
-					<xsd:element minOccurs="1" maxOccurs="1" name="AuctionList" type="ev:AuctionListType"/>
+					<xsd:element minOccurs="0" maxOccurs="1" name="ClientLogin" type="xsd:string"/>
+					<xsd:element minOccurs="0" maxOccurs="1" name="AuctionList" type="ev:AuctionListType"/>
+					<xsd:element minOccurs="0" maxOccurs="1" name="Errors" type="xsd:string"/>
 				</xsd:sequence>
 			</xsd:complexType>
 			

@@ -1,31 +1,80 @@
 package pl.edu.agh.eaiib.auctions.webservice;
 
-import javax.jws.WebMethod;
-import javax.jws.WebParam;
+import java.util.Calendar;
+
 import javax.jws.WebService;
-import javax.jws.WebParam.Mode;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.ws.Holder;
-import javax.xml.ws.RequestWrapper;
-import javax.xml.ws.ResponseWrapper;
 
+import org.apache.log4j.Logger;
+
+import pl.edu.agh.eaiib.auctions.core.webservice.SoapWebService;
+import pl.edu.agh.eaiib.auctions.model.Auction;
+import pl.edu.agh.eaiib.auctions.model.Bet;
+import pl.edu.agh.eaiib.auctions.utils.Utils;
 import pl.edu.agh.eaiib.auctions.wsdl.PutBetByClientSoap;
 import pl.edu.agh.eaiib.auctions.xsd.AuctionType;
+import pl.edu.agh.eaiib.auctions.xsd.BetListType;
 import pl.edu.agh.eaiib.auctions.xsd.BetType;
 
 @WebService(targetNamespace = "http://eaiib.agh.edu.pl/auctions/wsdl/", name = "PutBetByClientSoap")
-@XmlSeeAlso({pl.edu.agh.eaiib.auctions.xsd.ObjectFactory.class})
-public class PutBetByClientSoapImpl implements PutBetByClientSoap {
+@XmlSeeAlso({ pl.edu.agh.eaiib.auctions.xsd.ObjectFactory.class })
+public class PutBetByClientSoapImpl extends SoapWebService implements PutBetByClientSoap {
 
+	private static final Logger log= Logger.getLogger(PutBetByClientSoapImpl.class);
+	
 	@Override
-	@RequestWrapper(localName = "PutBetByClient", targetNamespace = "http://eaiib.agh.edu.pl/auctions/xsd/", className = "pl.edu.agh.eaiib.auctions.xsd.PutBetByClient")
-	@WebMethod(operationName = "PutBetByClient", action = "http://eaiib.agh.edu.pl/auction/PutBetByClient")
-	@ResponseWrapper(localName = "PutBetByClientResponse", targetNamespace = "http://eaiib.agh.edu.pl/auctions/xsd/", className = "pl.edu.agh.eaiib.auctions.xsd.PutBetByClientResponse")
-	public void putBetByClient(@WebParam(mode = Mode.INOUT, name = "ClientLogin", targetNamespace = "http://eaiib.agh.edu.pl/auctions/xsd/") Holder<String> clientLogin,
-			@WebParam(name = "AuctionId", targetNamespace = "http://eaiib.agh.edu.pl/auctions/xsd/") String auctionId, @WebParam(name = "Bet", targetNamespace = "http://eaiib.agh.edu.pl/auctions/xsd/") BetType bet,
-			@WebParam(mode = Mode.OUT, name = "Auction", targetNamespace = "http://eaiib.agh.edu.pl/auctions/xsd/") Holder<AuctionType> auction) {
-		// TODO Auto-generated method stub
+	public void putBetByClient(Holder<String> clientLoginHolder, String auctionId, BetType bet, Holder<AuctionType> auction, Holder<String> errors) {
+		log.trace("putBetByClient");
+		
+		String clientLogin = clientLoginHolder.value;
 
+		clientLoginHolder.value = null;
+
+		if (!hasClientPrivilages(clientLogin)) {
+			log.trace("Lack of privileges!");
+			errors.value = "Lack of provileges!";
+			return;
+		}
+		
+		String errorMsg = null;
+		if (null != (errorMsg = validate(clientLogin, auctionId,bet))) {
+			log.error("error: " + errorMsg);
+			errors.value = "errorMsg";
+			return;
+		}
+
+		Bet betBean = new Bet();
+		betBean.setBetPrice(Utils.parseDouble(bet.getBetPrice()));
+		betBean.setBetTime(Calendar.getInstance().getTime());
+		betBean.setCientId(clientLogin);
+		
+		Auction auctionBean = auctionService.addBet(Utils.parseLong(auctionId), betBean);
+		if(auctionBean == null){
+			log.error("adding bet to auction faild");
+			errors.value = "Cannot add bet to auction "+auctionId;
+			return;
+		}
+		AuctionType auctionOut = new AuctionType();
+		auctionOut.setAuctionId(auctionBean.getId().toString());
+		auctionOut.setAMLogin(auctionBean.getAmLogin());
+		auctionOut.setAuctionCurrentPrice(Utils.formatCurrency(auctionBean.getAuctionCurrentPrice()));
+		
+		BetType bestBetOut = new BetType();
+		Bet bestBet = auctionBean.getBetList().get(auctionBean.getBetList().size()-1);
+		bestBetOut.setBetPrice(Utils.formatCurrency(bestBet.getBetPrice()));
+		bestBetOut.setClientLogin(bestBet.getCientId());
+		bestBetOut.setBetTime(Utils.formatGeorgianCalendar(bestBet.getBetTime()));
+		
+		BetListType betList = new BetListType();
+		betList.getBet().add(bestBetOut);
+		
+		auctionOut.setBetList(betList);
+		auction.value=auctionOut;
+	}
+
+	private String validate(String clientLogin, String auctionId, BetType bet) {
+		return null;
 	}
 
 }

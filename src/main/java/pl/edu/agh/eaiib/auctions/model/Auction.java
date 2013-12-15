@@ -4,16 +4,15 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
 import org.hibernate.annotations.Cascade;
 
 import pl.edu.agh.eaiib.auctions.core.model.BaseBean;
@@ -40,7 +39,7 @@ public class Auction extends BaseBean<Long> {
 	protected double auctionStartPrice;
 
 	@Column(name = "AUCTION_CURRENT_PRICE")
-	protected double auctionCurrentPrice;
+	protected Double auctionCurrentPrice;
 
 	@Column(name = "AUCTION_DESC")
 	protected String auctionDescription;
@@ -61,20 +60,25 @@ public class Auction extends BaseBean<Long> {
 	protected String amLogin;
 
 	@OneToMany(mappedBy = "auction", orphanRemoval = true)
-	@Cascade(value={org.hibernate.annotations.CascadeType.ALL})
+	@Cascade(value = { org.hibernate.annotations.CascadeType.ALL })
 	private List<Image> auctionImgUrl;
 
 	@OneToOne(mappedBy = "auction", optional = true, orphanRemoval = true)
-	@Cascade(value={org.hibernate.annotations.CascadeType.ALL})
+	@Cascade(value = { org.hibernate.annotations.CascadeType.ALL })
 	protected AMContact auctionManagerContact;
 
 	@OneToOne(mappedBy = "auction", optional = true, orphanRemoval = true)
-	@Cascade(value={org.hibernate.annotations.CascadeType.ALL})
+	@Cascade(value = { org.hibernate.annotations.CascadeType.ALL })
 	protected BuyerContact buyerContact;
 
 	@OneToMany(mappedBy = "auction", orphanRemoval = true)
-	@Cascade(value={org.hibernate.annotations.CascadeType.ALL})
+	@Cascade(value = { org.hibernate.annotations.CascadeType.ALL })
 	protected List<Bet> betList;
+
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this);
+	}
 
 	public Long getId() {
 		return id;
@@ -116,11 +120,11 @@ public class Auction extends BaseBean<Long> {
 		this.auctionStartPrice = auctionStartPrice;
 	}
 
-	public double getAuctionCurrentPrice() {
+	public Double getAuctionCurrentPrice() {
 		return auctionCurrentPrice;
 	}
 
-	public void setAuctionCurrentPrice(double auctionCurrentPrice) {
+	public void setAuctionCurrentPrice(Double auctionCurrentPrice) {
 		this.auctionCurrentPrice = auctionCurrentPrice;
 	}
 
@@ -173,11 +177,12 @@ public class Auction extends BaseBean<Long> {
 	}
 
 	public List<Bet> getBetList() {
-		if(betList == null){
-			betList =  new ArrayList<Bet>();
+		if (betList == null) {
+			betList = new ArrayList<Bet>();
 		}
 		return betList;
 	}
+
 	public void addBet(Bet bet) {
 		getBetList().add(bet);
 		bet.setAuction(this);
@@ -202,12 +207,12 @@ public class Auction extends BaseBean<Long> {
 
 	public void setBuyerContact(BuyerContact buyerContact) {
 		this.buyerContact = buyerContact;
-		 buyerContact.setAuction(this);
+		buyerContact.setAuction(this);
 	}
 
 	public List<Image> getAuctionImgUrl() {
-		if(this.auctionImgUrl == null){
-			this.auctionImgUrl =  new ArrayList<Image>();
+		if (this.auctionImgUrl == null) {
+			this.auctionImgUrl = new ArrayList<Image>();
 		}
 		return auctionImgUrl;
 	}

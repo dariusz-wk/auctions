@@ -9,6 +9,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
@@ -18,8 +19,8 @@ import pl.edu.agh.eaiib.auctions.core.model.BaseBean;
 @Table(name = "AM_CONTACT")
 public class AMContact extends BaseBean<Long> {
 	@Id
-	@GeneratedValue(generator="amc_gen")
-    @GenericGenerator(name="amc_gen", strategy="foreign", parameters=@Parameter(name="property", value="auction"))
+	@GeneratedValue(generator = "amc_gen")
+	@GenericGenerator(name = "amc_gen", strategy = "foreign", parameters = @Parameter(name = "property", value = "auction"))
 	@Column(name = "AUCTION_ID")
 	private Long id;
 
@@ -47,6 +48,11 @@ public class AMContact extends BaseBean<Long> {
 	@OneToOne(fetch = FetchType.LAZY)
 	@PrimaryKeyJoinColumn
 	private Auction auction;
+
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this);
+	}
 
 	public Long getId() {
 		return id;
@@ -119,7 +125,5 @@ public class AMContact extends BaseBean<Long> {
 	public void setAuction(Auction auction) {
 		this.auction = auction;
 	}
-
-	
 
 }

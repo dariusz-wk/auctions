@@ -4,12 +4,12 @@ public class AuthServiceImpl implements AuthService {
 
 	@Override
 	public boolean hasManagementPrivileges(String login) {
-		return (login.equals("AM"));
+		return true;
 	}
 
 	@Override
 	public boolean hasClientPrivileges(String login) {
-		return (login.equals("Client"));
+		return true;
 	}
 
 }

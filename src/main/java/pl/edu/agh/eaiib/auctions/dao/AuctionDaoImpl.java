@@ -1,5 +1,10 @@
 package pl.edu.agh.eaiib.auctions.dao;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+
 import org.hibernate.Hibernate;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +23,13 @@ public class AuctionDaoImpl extends BaseDaoImpl<Auction, Long> implements Auctio
 		Hibernate.initialize(auction.getAuctionManagerContact());
 		Hibernate.initialize(auction.getBuyerContact());
 		return auction;
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public List<Auction> find(String title, boolean finished, String amLogin, String clientLogin, Date from, Date till) {
+		// TODO Auto-generated method stub
+		return Collections.EMPTY_LIST;
 	}
 
 }

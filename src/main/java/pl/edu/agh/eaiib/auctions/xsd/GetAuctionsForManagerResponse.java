@@ -17,8 +17,9 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="AMLogin" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="AuctionList" type="{http://eaiib.agh.edu.pl/auctions/xsd/}AuctionListType"/>
+ *         &lt;element name="AMLogin" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="AuctionList" type="{http://eaiib.agh.edu.pl/auctions/xsd/}AuctionListType" minOccurs="0"/>
+ *         &lt;element name="Errors" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -30,14 +31,17 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "GetAuctionsForManagerResponse", propOrder = {
     "amLogin",
-    "auctionList"
+    "auctionList",
+    "errors"
 })
 public class GetAuctionsForManagerResponse {
 
-    @XmlElement(name = "AMLogin", required = true)
+    @XmlElement(name = "AMLogin")
     protected String amLogin;
-    @XmlElement(name = "AuctionList", required = true)
+    @XmlElement(name = "AuctionList")
     protected AuctionListType auctionList;
+    @XmlElement(name = "Errors")
+    protected String errors;
 
     /**
      * Gets the value of the amLogin property.
@@ -85,6 +89,30 @@ public class GetAuctionsForManagerResponse {
      */
     public void setAuctionList(AuctionListType value) {
         this.auctionList = value;
+    }
+
+    /**
+     * Gets the value of the errors property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getErrors() {
+        return errors;
+    }
+
+    /**
+     * Sets the value of the errors property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setErrors(String value) {
+        this.errors = value;
     }
 
 }

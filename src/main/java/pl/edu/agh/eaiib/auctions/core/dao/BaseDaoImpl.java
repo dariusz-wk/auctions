@@ -40,9 +40,9 @@ public abstract class BaseDaoImpl<B extends BaseBean<S>, S extends Serializable>
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-	public void save(B obj) {
+	public S save(B obj) {
 		HibernateTemplate ht = getHibernateTemplate();
-		ht.saveOrUpdate(obj);
+		return (S) ht.save(obj);
 	}
 
 	@Override
@@ -53,5 +53,12 @@ public abstract class BaseDaoImpl<B extends BaseBean<S>, S extends Serializable>
 		@SuppressWarnings("unchecked")
 		List<S> list = query.list();
 		return list;
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public void update(B obj) {
+		HibernateTemplate ht = getHibernateTemplate();
+		ht.update(obj);
 	}
 }
