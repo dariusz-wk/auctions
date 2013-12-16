@@ -67,5 +67,15 @@ public class AuctionServiceImpl implements AuctionService {
 	public List<Auction> find(String title, boolean finished,boolean finalized, String amLogin, String clientLogin, Date from, Date till) {
 		return auctionDao.find(title, finished, finalized, amLogin, clientLogin, from, till);
 	}
+	
+	@Override
+	public void update(Auction auctionBean) {
+		auctionDao.update(auctionBean);
+	}
+
+	@Override
+	public List<Auction> findToFinish() {
+		return auctionDao.findToFinish();
+	}
 
 }

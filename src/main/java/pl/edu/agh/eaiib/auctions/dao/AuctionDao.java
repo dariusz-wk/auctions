@@ -8,4 +8,6 @@ import pl.edu.agh.eaiib.auctions.model.Auction;
 
 public interface AuctionDao extends BaseDao<Auction, Long> {
 	List<Auction> find(String title, boolean finished, boolean finalized, String amLogin, String clientLogin, Date from, Date till);
+
+	List<Auction> findToFinish();
 }

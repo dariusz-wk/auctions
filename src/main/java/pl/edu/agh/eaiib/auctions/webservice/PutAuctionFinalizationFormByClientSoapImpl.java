@@ -7,6 +7,11 @@ import javax.xml.ws.Holder;
 import org.apache.log4j.Logger;
 
 import pl.edu.agh.eaiib.auctions.core.webservice.SoapWebService;
+import pl.edu.agh.eaiib.auctions.model.AMContact;
+import pl.edu.agh.eaiib.auctions.model.Auction;
+import pl.edu.agh.eaiib.auctions.model.Bet;
+import pl.edu.agh.eaiib.auctions.model.BuyerContact;
+import pl.edu.agh.eaiib.auctions.utils.Utils;
 import pl.edu.agh.eaiib.auctions.wsdl.PutAuctionFinalizationFormByClientSoap;
 import pl.edu.agh.eaiib.auctions.xsd.AuctionManagerContactDataType;
 import pl.edu.agh.eaiib.auctions.xsd.AuctionType;
@@ -21,8 +26,70 @@ public class PutAuctionFinalizationFormByClientSoapImpl extends SoapWebService i
 	@Override
 	public void putAuctionFinalizationFormByClient(String auctionId, Holder<String> clientLogin, ClientContactDataType clientContactData, Holder<String> amLogin, Holder<AuctionManagerContactDataType> auctionManagerContactData,
 			Holder<AuctionType> auction, Holder<String> errors) {
-		// TODO Auto-generated method stub
+		log.trace("putAuctionFinalizationFormByClient " + clientLogin.value);
+		// get references to incoming data
+		String clientLoginName = clientLogin.value;
+		Long auctionI = Utils.parseLong(auctionId);
+
+		// clear holders for output
+		clientLogin.value = null;
+
+		if (!hasClientPrivilages(clientLoginName)) {
+			log.trace("Lack of privileges!");
+			errors.value = "Lack of provileges!";
+			return;
+		}
 		
+		String errorMsg = null;
+		if (null != (errorMsg = validate(clientContactData))) {
+			log.error("error: " + errorMsg);
+			errors.value = "errorMsg";
+			return;
+		}
+		
+		Auction auctionBean = auctionService.get(auctionI);
+		
+		Bet bestBet = auctionBean.getBetList().get(auctionBean.getBetList().size()-1);
+		if(auction == null || auctionBean.getFinished() == false || auctionBean.getFinalized() || !bestBet.getCientId().equals(clientLoginName) ){
+			log.trace("Lack of privileges!");
+			errors.value = "Lack of provileges!";
+			return;
+		}
+		
+		
+		BuyerContact contact = new BuyerContact();
+		contact.setAddress(clientContactData.getClientAddress());
+		contact.setAuction(auctionBean);
+		contact.setEmail(clientContactData.getClientEmail());
+		contact.setLogin(clientLoginName);
+		contact.setName(clientContactData.getClientName());
+		contact.setPhone(clientContactData.getClientPhone());
+		contact.setSurname(clientContactData.getClientSurname());
+		auctionBean.setFinalized(true);
+		
+		auctionService.update(auctionBean);
+		
+		AMContact amContact = auctionBean.getAuctionManagerContact();
+		AuctionManagerContactDataType auctionManagerContact = new AuctionManagerContactDataType();
+		auctionManagerContact.setAMAccountBank(amContact.getBank());
+		auctionManagerContact.setAMAccountNb(amContact.getBankAccountNb());
+		auctionManagerContact.setAMEmail(amContact.getEmail());
+		auctionManagerContact.setAMName(amContact.getName());
+		auctionManagerContact.setAMPhone(amContact.getPhone());
+		auctionManagerContact.setAMSurname(amContact.getSurname());
+		auctionManagerContactData.value = auctionManagerContact;
+		
+		clientLogin.value = clientLoginName;
+		amLogin.value = auctionBean.getAmLogin();
+		AuctionType auctionOut = new AuctionType();
+		auctionOut.setAuctionCurrentPrice(Utils.formatCurrency(auctionBean.getAuctionCurrentPrice()));
+		auctionOut.setAuctionTitle(auctionBean.getAuctionTitle());
+		auctionOut.setFinalized(auctionBean.getFinalized());
+	}
+
+	private String validate(ClientContactDataType clientContactData) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

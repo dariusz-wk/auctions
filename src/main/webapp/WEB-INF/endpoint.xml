@@ -69,4 +69,5 @@
 	
 	<import resource="integration.xml"/>
 	<import resource="classpath:/beans.xml"/>
+	<import resource="classpath:/quartz.xml"/>
 </beans>

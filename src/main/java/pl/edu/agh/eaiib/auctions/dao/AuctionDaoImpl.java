@@ -1,13 +1,11 @@
 package pl.edu.agh.eaiib.auctions.dao;
 
-import java.util.Collection;
-import java.util.Collections;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Hibernate;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.transaction.annotation.Propagation;
@@ -61,6 +59,29 @@ public class AuctionDaoImpl extends BaseDaoImpl<Auction, Long> implements Auctio
 			
 			
 		}
+		@SuppressWarnings("unchecked")
+		List<Auction> list= crit.list();
+		for(Auction auction: list){
+			Hibernate.initialize(auction.getBetList());
+			Hibernate.initialize(auction.getAuctionImgUrl());
+			Hibernate.initialize(auction.getAuctionManagerContact());
+			Hibernate.initialize(auction.getBuyerContact());
+		}
+	
+		return list;
+	}
+
+	@Override
+	public List<Auction> findToFinish() {
+		Session session = getSessionFactory().getCurrentSession();
+		Criteria crit = session.createCriteria(Auction.class);
+		
+		crit.add(Restrictions.eq("finished", false));
+		
+		Date currentDate = Calendar.getInstance().getTime();
+		
+		crit.add(Restrictions.le("auctionEnd", currentDate));	
+			
 		@SuppressWarnings("unchecked")
 		List<Auction> list= crit.list();
 		for(Auction auction: list){
