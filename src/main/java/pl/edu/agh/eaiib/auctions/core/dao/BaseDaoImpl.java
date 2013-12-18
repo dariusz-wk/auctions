@@ -56,7 +56,7 @@ public abstract class BaseDaoImpl<B extends BaseBean<S>, S extends Serializable>
 	}
 
 	@Override
-	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public void update(B obj) {
 		HibernateTemplate ht = getHibernateTemplate();
 		ht.update(obj);

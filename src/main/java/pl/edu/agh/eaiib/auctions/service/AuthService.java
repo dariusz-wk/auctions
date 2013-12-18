@@ -1,7 +1,9 @@
 package pl.edu.agh.eaiib.auctions.service;
 
-public interface AuthService {
-	public boolean hasManagementPrivileges(String login);
+import javax.xml.ws.WebServiceContext;
 
-	public boolean hasClientPrivileges(String login);
+public interface AuthService {
+	public boolean hasManagementPrivileges(WebServiceContext context, String login);
+
+	public boolean hasClientPrivileges(WebServiceContext context, String login);
 }

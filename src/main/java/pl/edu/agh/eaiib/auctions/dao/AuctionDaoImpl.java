@@ -72,6 +72,7 @@ public class AuctionDaoImpl extends BaseDaoImpl<Auction, Long> implements Auctio
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<Auction> findToFinish() {
 		Session session = getSessionFactory().getCurrentSession();
 		Criteria crit = session.createCriteria(Auction.class);
