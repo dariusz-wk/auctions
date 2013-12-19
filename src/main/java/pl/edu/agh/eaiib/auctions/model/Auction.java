@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.hibernate.annotations.Cascade;
@@ -75,6 +76,9 @@ public class Auction extends BaseBean<Long> {
 	@Cascade(value = { org.hibernate.annotations.CascadeType.ALL })
 	protected List<Bet> betList;
 
+	@Transient
+	private	String error = null;
+	
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this);
@@ -224,6 +228,14 @@ public class Auction extends BaseBean<Long> {
 
 	public void setAuctionImgUrl(List<Image> auctionImgUrl) {
 		this.auctionImgUrl = auctionImgUrl;
+	}
+
+	public String getError() {
+		return error;
+	}
+
+	public void setError(String error) {
+		this.error = error;
 	}
 
 }

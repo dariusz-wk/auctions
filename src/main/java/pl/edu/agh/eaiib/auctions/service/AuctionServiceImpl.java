@@ -33,23 +33,31 @@ public class AuctionServiceImpl implements AuctionService {
 	public Auction addBet(Long auctionId, Bet betBean) {
 		Auction auction = auctionDao.getEager(auctionId);
 		if (auction == null) {
-			return null;
+			Auction a = new Auction();
+			a.setError("Auction not found");
+			return a;
 		}
 		if (auction.getAuctionCurrentPrice() == null && auction.getAuctionStartPrice() - betBean.getBetPrice() >= 0) {
 			log.debug("Not enought - bet is less then start price");
-			return null;
+			Auction a = new Auction();
+			a.setError("Not enought - bet is less then start price");
+			return a;
 		}
 
 		if (auction.getAuctionCurrentPrice() != null && auction.getAuctionCurrentPrice() - betBean.getBetPrice() >= 0) {
 			log.debug("Not enought - bet is less then start current");
-			return null;
+			Auction a = new Auction();
+			a.setError("Not enought - bet is less then start current");
+			return a;
 		}
 
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(betBean.getBetTime());
 		if (cal.after(auction.getAuctionEnd())) {
 			log.debug("Bet is too late");
-			return null;
+			Auction a = new Auction();
+			a.setError("Bet is too late");
+			return a;
 		}
 
 		auction.addBet(betBean);

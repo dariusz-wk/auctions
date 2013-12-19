@@ -27,7 +27,7 @@ public class AMContact extends BaseBean<Long> {
 	@Column(name = "LOGIN")
 	private String login;
 
-	@Column(length = 16, name = "BANK_ACCOUNT_NB")
+	@Column(name = "BANK_ACCOUNT_NB")
 	private String bankAccountNb;
 
 	@Column(name = "BANK")

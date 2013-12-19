@@ -36,7 +36,7 @@ public class PutAuctionByManagerSoapImpl extends SoapWebService implements PutAu
 			errors.value = "Lack of provileges!";
 			return;
 		}
-		
+
 		String errorMsg = null;
 		if (null != (errorMsg = validate(auction, auctionManagerContactData))) {
 			log.error("error: " + errorMsg);
@@ -71,17 +71,84 @@ public class PutAuctionByManagerSoapImpl extends SoapWebService implements PutAu
 			errors.value = "Auction creation fail";
 			return;
 		}
-		
+
 		auctionHolder.value = new AuctionType();
 		auctionHolder.value.setAuctionId(id.toString());
-		amLoginHolder.value = amLoginName;		
+		amLoginHolder.value = amLoginName;
 
 		log.debug("OBJECT TO SAVE " + auction.toString());
 	}
 
 	private String validate(AuctionType auction, AuctionManagerContactDataType auctionManagerContactData) {
-		// TODO validate all field and return string on eny error
-		return null;
+		String errors = "";
+		if (auction == null) {
+			errors += "Auction cannot be null;\n";
+		} else {
+			if (Utils.isBlank(auction.getAMLogin())) {
+				errors += "AMLogin cannot be null over 254 length;\n";
+			} else if (Utils.isLogin(auction.getAMLogin())) {
+				errors += "AMLogin invalid format;\n";
+			}
+			if(Utils.isBlank(auction.getAuctionStartPrice())){
+				errors += "AuctionStartPrice cannot be null over 254 length;\n";
+			} else if(!Utils.isCurrency(auction.getAuctionStartPrice())){
+				errors += "AuctionStartPrice invalid format;\n";
+			}
+
+			if(Utils.isBlank(auction.getAuctionDeliveryDesc())){
+				errors += "AuctionDeliveryDesc cannot be null over 254 length;\n";
+			}
+
+			if(Utils.isBlank(auction.getAuctionTitle())){
+				errors += "AuctionTitle cannot be null over 254 length;\n";
+			}
+
+			if(Utils.isBlank(auction.getAuctionDescription())){
+				errors += "AuctionDescription cannot be null over 254 length;\n";
+			}
+			if(null == auction.getAuctionEnd()){
+				errors += "AuctionEnd cannot be null;\n";
+				
+			}
+			if(null == auction.getAuctionStart()){
+				errors += "AuctionStart cannot be null;\n";
+				
+			}
+		}
+		if(auctionManagerContactData == null){
+			errors += "AuctionManagerContactData cannot be null;\n";
+			
+		} else {
+			if(Utils.isBlank(auctionManagerContactData.getAMAccountBank())){
+				errors += "AMAccountBank cannot be null over 254 length;\n";				
+			}
+			if(Utils.isBlank(auctionManagerContactData.getAMAccountNb())){
+				errors += "AMAccountNb cannot be null over 254 length;\n";				
+			} else if(!Utils.isBankAccount(auctionManagerContactData.getAMAccountNb())){
+				errors += "AMAccountNb invalid back account";
+			}
+
+			if(Utils.isBlank(auctionManagerContactData.getAMEmail())){
+				errors += "AMEmail cannot be null over 254 length;\n";				
+			} else if(!Utils.isEmail(auctionManagerContactData.getAMEmail())){
+				errors += "AMEmail invalid email format";
+			}
+
+			if(Utils.isBlank(auctionManagerContactData.getAMName())){
+				errors += "AMName cannot be null all over 254 length;\n";				
+			} 
+
+			if(Utils.isBlank(auctionManagerContactData.getAMName())){
+				errors += "AMSurname cannot be null over 254 length;\n";				
+			} 
+
+			if(Utils.isBlank(auctionManagerContactData.getAMPhone())){
+				errors += "AMPhone cannot be null over 254 length;\n";				
+			} else if(!Utils.isPhone(auctionManagerContactData.getAMPhone())){
+				errors += "AMPhone invalid email format";
+			}
+		}
+		return Utils.isBlank(errors) ? null : errors;
 	}
 
 }

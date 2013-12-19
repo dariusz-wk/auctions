@@ -21,6 +21,8 @@ public class AuctionDaoImpl extends BaseDaoImpl<Auction, Long> implements Auctio
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public Auction getEager(Long id) {
 		Auction auction = get(id);
+		if(auction==null)
+			return null;
 		Hibernate.initialize(auction.getBetList());
 		Hibernate.initialize(auction.getAuctionImgUrl());
 		Hibernate.initialize(auction.getAuctionManagerContact());
