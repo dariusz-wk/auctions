@@ -10,6 +10,7 @@ import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.junit.After;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import pl.edu.agh.eaiib.auctions.DBCleanerBean;
 import pl.edu.agh.eaiib.auctions.model.AMContact;
 import pl.edu.agh.eaiib.auctions.model.Auction;
 import pl.edu.agh.eaiib.auctions.model.Bet;
@@ -24,7 +26,7 @@ import pl.edu.agh.eaiib.auctions.model.BuyerContact;
 import pl.edu.agh.eaiib.auctions.model.Image;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "/test-config.xml" })
+@ContextConfiguration(locations = { "/test-config.xml","/test-db-init.xml" })
 public class AuctionDaoTest {
 
 	@Autowired

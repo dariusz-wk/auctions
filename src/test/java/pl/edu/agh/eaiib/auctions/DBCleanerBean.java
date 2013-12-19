@@ -1,4 +1,4 @@
-package pl.edu.agh.eaiib.auctions.dao;
+package pl.edu.agh.eaiib.auctions;
 
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;

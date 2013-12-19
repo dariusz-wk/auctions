@@ -13,9 +13,17 @@
 	
 	<bean id="auctionService" class="pl.edu.agh.eaiib.auctions.service.AuctionServiceImpl"/>
 			
-	<bean id="authService" class="pl.edu.agh.eaiib.auctions.service.AuthServiceImpl"/>
+	<bean id="authService" class="pl.edu.agh.eaiib.auctions.service.AuthServiceImpl">
+		<property name="demo" value="${demo}"/>
+	</bean>
 	
 	<bean id="sendMailService" class="pl.edu.agh.eaiib.auctions.service.SendMailServiceImpl">
-		<property name="host" value="localhost"/>
+		<property name="host" value="${mail.host}"/>
+		<property name="auth" value="${mail.auth.enabled}"/>
+		<property name="passwd" value="${mail.passwd}"/>
+		<property name="port" value="${mail.port}"/>
+		<property name="starttls" value="${mail.starttls.enabled}"/>
+		<property name="user" value="${mail.user}"/>
+		<property name="demo" value="${demo}"/>
 	</bean>
 </beans>

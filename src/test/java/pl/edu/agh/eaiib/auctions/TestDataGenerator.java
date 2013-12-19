@@ -1,4 +1,4 @@
-package pl.edu.agh.eaiib.auctions.dao;
+package pl.edu.agh.eaiib.auctions;
 import java.sql.*;
 import java.util.ArrayList;
 

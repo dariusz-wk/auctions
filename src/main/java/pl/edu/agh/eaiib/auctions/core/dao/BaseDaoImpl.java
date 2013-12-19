@@ -42,7 +42,10 @@ public abstract class BaseDaoImpl<B extends BaseBean<S>, S extends Serializable>
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public S save(B obj) {
 		HibernateTemplate ht = getHibernateTemplate();
-		return (S) ht.save(obj);
+		@SuppressWarnings("unchecked")
+		S id = (S) ht.save(obj);
+		ht.flush();	 
+		return id;
 	}
 
 	@Override
@@ -58,7 +61,7 @@ public abstract class BaseDaoImpl<B extends BaseBean<S>, S extends Serializable>
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public void update(B obj) {
-		HibernateTemplate ht = getHibernateTemplate();
-		ht.update(obj);
+		Session session = getSessionFactory().getCurrentSession();
+		session.merge(obj);
 	}
 }

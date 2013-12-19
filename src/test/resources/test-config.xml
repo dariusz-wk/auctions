@@ -21,5 +21,5 @@
 	
 	<import resource="classpath:beans.xml" />
 	
-	<bean id="cleanerBean" class="pl.edu.agh.eaiib.auctions.dao.DBCleanerBean"/>
+	<bean id="cleanerBean" class="pl.edu.agh.eaiib.auctions.DBCleanerBean"/>
 </beans>

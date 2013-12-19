@@ -12,6 +12,8 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class AuthServiceImpl implements AuthService {
+	
+	private boolean demo;
 
 	@Override
 	public boolean hasManagementPrivileges(WebServiceContext context, String login) {
@@ -35,7 +37,11 @@ public class AuthServiceImpl implements AuthService {
         } 
         return new LoginAndPasswd(userList.get(0), passList.get(0));
 	}
-	
+
+	public void setDemo(boolean demo) {
+		this.demo = demo;
+	}
+
 	private static class LoginAndPasswd{
 		String login;
 		String passowrd;
