@@ -1,7 +1,9 @@
 package pl.edu.agh.eaiib.auctions.dao;
 
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -13,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import pl.edu.agh.eaiib.auctions.core.dao.BaseDaoImpl;
 import pl.edu.agh.eaiib.auctions.model.Auction;
+import pl.edu.agh.eaiib.auctions.model.Bet;
 import pl.edu.agh.eaiib.auctions.utils.Utils;
 @Transactional
 public class AuctionDaoImpl extends BaseDaoImpl<Auction, Long> implements AuctionDao {
@@ -56,11 +59,6 @@ public class AuctionDaoImpl extends BaseDaoImpl<Auction, Long> implements Auctio
 			crit.add(Restrictions.eq("amLogin", amLogin));			
 		}
 
-		if(Utils.isNotBlank(clientLogin)){
-			//TODO: fill me
-			
-			
-		}
 		@SuppressWarnings("unchecked")
 		List<Auction> list= crit.list();
 		for(Auction auction: list){
@@ -70,6 +68,23 @@ public class AuctionDaoImpl extends BaseDaoImpl<Auction, Long> implements Auctio
 			Hibernate.initialize(auction.getBuyerContact());
 		}
 	
+
+		if(Utils.isNotBlank(clientLogin)){
+			//TODO: workaround
+			Iterator<Auction> iter = list.iterator();
+			while(iter.hasNext()){
+				boolean containsClientBet = false;
+				for(Bet bet: iter.next().getBetList()){
+					if(bet.getCientId().equals(clientLogin)){
+						containsClientBet=true;
+						break;
+					}
+				}
+				if(!containsClientBet){
+					iter.remove();
+				}
+			}			
+		}
 		return list;
 	}
 

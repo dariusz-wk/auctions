@@ -90,7 +90,7 @@ public class Utils extends org.apache.commons.lang.StringUtils {
 	}
 
 	public static boolean isBlank(String t) {
-		if (t.length() > 254)
+		if (t != null && t.length() > 254)
 			return false;
 		return org.apache.commons.lang.StringUtils.isBlank(t);
 	}

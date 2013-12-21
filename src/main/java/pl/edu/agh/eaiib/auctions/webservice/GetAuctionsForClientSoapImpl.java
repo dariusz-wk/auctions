@@ -26,6 +26,7 @@ import pl.edu.agh.eaiib.auctions.xsd.BetType;
 public class GetAuctionsForClientSoapImpl extends SoapWebService implements GetAuctionsForClientSoap {
 
 	private static final Logger log = Logger.getLogger(GetAuctionsForClientSoapImpl.class);
+
 	@Override
 	public void getAuctionsForClient(Holder<String> clientLogin, AuctionListFilterType auctionListFilter, Holder<AuctionListType> auctionList, Holder<String> errors) {
 		log.trace("getAuctionsForManager " + clientLogin.value);
@@ -39,10 +40,17 @@ public class GetAuctionsForClientSoapImpl extends SoapWebService implements GetA
 			errors.value = "Lack of provileges!";
 			return;
 		}
-
+		if (auctionListFilter == null) {
+			errors.value = "auctionListFilter is required";
+			return;
+		}
+		if(Utils.isBlank(clientLoginName) || !Utils.isLogin(clientLoginName)) {
+			errors.value = "invalid login";
+			return;
+		}
 		List<Auction> auctionListItems = new ArrayList<Auction>();
 
-		if (auctionListFilter.getAuctionId() != null) {
+		if (Utils.isNotBlank(auctionListFilter.getAuctionId() )) {
 			log.debug("Get specifix auction " + auctionListFilter.getAuctionId());
 			Long auctionId = Utils.parseLong(auctionListFilter.getAuctionId());
 			Auction a = auctionService.get(auctionId);
@@ -54,7 +62,7 @@ public class GetAuctionsForClientSoapImpl extends SoapWebService implements GetA
 
 			String amLoginV = null;
 			String clientLoginV = null;
-			if (auctionListFilter.isMy()!=null && auctionListFilter.isMy() == true)
+			if (auctionListFilter.isMy() != null && auctionListFilter.isMy() == true)
 				clientLoginV = clientLoginName;
 			Date from = Utils.formatDate(auctionListFilter.getFilterDateFrom());
 			Date till = Utils.formatDate(auctionListFilter.getFilterDateTill());

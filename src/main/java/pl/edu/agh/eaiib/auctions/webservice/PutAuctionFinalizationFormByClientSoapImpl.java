@@ -4,6 +4,7 @@ import javax.jws.WebService;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.ws.Holder;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
 import pl.edu.agh.eaiib.auctions.core.webservice.SoapWebService;
@@ -88,8 +89,27 @@ public class PutAuctionFinalizationFormByClientSoapImpl extends SoapWebService i
 	}
 
 	private String validate(ClientContactDataType clientContactData) {
-		// TODO Auto-generated method stub
-		return null;
+		String error = "";
+		if(clientContactData == null){
+			error += "ClientContactData cannot be null";
+		} else {
+			if(Utils.isBlank(clientContactData.getClientAddress())){
+				error += "ClientAddres cannot be null and over 255 long";
+			}
+			if(Utils.isEmail(clientContactData.getClientEmail())){
+				error += "ClientEmail invalid email format";
+			}
+			if(Utils.isBlank(clientContactData.getClientName())){
+				error+="Client Name cannot be null or longer than 255";
+			}
+			if(Utils.isBlank(clientContactData.getClientSurname())){
+				error+="ClientSurname cannot be null or longer than 255";
+			}
+			if(Utils.isPhone(clientContactData.getClientPhone())){
+				error+="ClientPhone invalid format";
+			}
+		}
+		return StringUtils.isBlank(error)?null:error;
 	}
 
 }

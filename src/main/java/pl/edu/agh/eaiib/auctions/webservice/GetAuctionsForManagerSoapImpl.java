@@ -40,6 +40,14 @@ public class GetAuctionsForManagerSoapImpl extends SoapWebService implements Get
 			errors.value = "Lack of provileges!";
 			return;
 		}
+		if (auctionListFilter == null) {
+			errors.value = "auctionListFilter is required";
+			return;
+		}
+		if(Utils.isBlank(amLoginName) || !Utils.isLogin(amLoginName)) {
+			errors.value = "invalid login";
+			return;
+		}
 
 		List<Auction> auctionListItems = new ArrayList<Auction>();
 
