@@ -1,0 +1,1371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="A" soapui-version="4.6.1" abortOnError="false" runType="SEQUENTIAL" resourceRoot="" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="PutBetByClientSoap" type="wsdl" bindingName="{http://eaiib.agh.edu.pl/auctions/wsdl/}PutBetByClientSoap" soapVersion="1_2" anonymous="optional" definition="http://127.0.0.1:8080/auctions/services/PutAuctionByManager?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://127.0.0.1:8080/auctions/services/PutBetByClient</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://eaiib.agh.edu.pl/auction/PutBetByClient" name="PutBetByClient" bindingOperationName="PutBetByClient" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1:8080/auctions/services/PutBetByClient</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:xsd="http://eaiib.agh.edu.pl/auctions/xsd/">
+   <soap:Header/>
+   <soap:Body>
+      <xsd:PutBetByClient>
+         <xsd:ClientLogin>Clinet3</xsd:ClientLogin>
+         <xsd:AuctionId>6</xsd:AuctionId>
+         <xsd:Bet>
+            <xsd:BetPrice>2230</xsd:BetPrice>
+
+         </xsd:Bet>
+      </xsd:PutBetByClient>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://eaiib.agh.edu.pl/auctions/wsdl/PutBetByClientSoap/PutBetByClientRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="PutAuctionByManagerSoap" type="wsdl" bindingName="{http://eaiib.agh.edu.pl/auctions/wsdl/}PutAuctionByManagerSoap" soapVersion="1_2" anonymous="optional" definition="http://127.0.0.1:8080/auctions/services/PutAuctionByManager?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://127.0.0.1:8080/auctions/services/PutAuctionByManager</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://eaiib.agh.edu.pl/auction/PutAuctionByManager" name="PutAuctionByManager" bindingOperationName="PutAuctionByManager" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="Username" value="AMTEST"/>
+  &lt;con:entry key="Password" value="342nini32"/>
+&lt;/xml-fragment></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1:8080/auctions/services/PutAuctionByManager</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:xsd="http://eaiib.agh.edu.pl/auctions/xsd/">
+   <soap:Header/>
+   <soap:Body>
+      <xsd:PutAuctionByManager>
+         <xsd:Auction>
+            <xsd:AuctionTitle>Laptop po leasingu</xsd:AuctionTitle>
+            <xsd:AuctionImgUrl>http://www.digitaltrends.com/wp-content/uploads/2012/10/samsung-series-5-ultra-touch.jpeg</xsd:AuctionImgUrl>
+            <xsd:AuctionStart>2013-12-01T12:00:00Z</xsd:AuctionStart>
+            <xsd:AuctionEnd>2013-12-10T15:00:00Z</xsd:AuctionEnd>
+            <xsd:AuctionStartPrice>1400.00</xsd:AuctionStartPrice>
+            <xsd:AuctionDescription>Put desc here!</xsd:AuctionDescription>
+            <xsd:AuctionDeliveryDesc>Odbiór osobisty</xsd:AuctionDeliveryDesc>
+         </xsd:Auction>
+         <xsd:AMLogin>AMTEST</xsd:AMLogin>
+         <xsd:AuctionManagerContactData>
+            <xsd:AMName>Adam</xsd:AMName>
+            <xsd:AMSurname>Marek</xsd:AMSurname>
+            <xsd:AMPhone>888888888</xsd:AMPhone>
+            <xsd:AMEmail>adam.marek@mail.com</xsd:AMEmail>
+            <xsd:AMAccountNb>1232423420000003210213</xsd:AMAccountNb>
+            <xsd:AMAccountBank>BZWBK</xsd:AMAccountBank>
+         </xsd:AuctionManagerContactData>
+      </xsd:PutAuctionByManager>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://eaiib.agh.edu.pl/auctions/wsdl/PutAuctionByManagerSoap/PutAuctionByManagerRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="GetAuctionsForClientSoap" type="wsdl" bindingName="{http://eaiib.agh.edu.pl/auctions/wsdl/}GetAuctionsForClientSoap" soapVersion="1_2" anonymous="optional" definition="http://127.0.0.1:8080/auctions/services/PutAuctionByManager?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://127.0.0.1:8080/auctions/services/GetAuctionsForClient</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://eaiib.agh.edu.pl/auction/GetAuctionsForClient" name="GetAuctionsForClient" bindingOperationName="GetAuctionsForClient" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1:8080/auctions/services/GetAuctionsForClient</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:xsd="http://eaiib.agh.edu.pl/auctions/xsd/">
+   <soap:Header/>
+   <soap:Body>
+      <xsd:GetAuctionsForClient>
+         <xsd:ClientLogin></xsd:ClientLogin>
+         <xsd:AuctionListFilter>
+            <xsd:My>true</xsd:My>
+         </xsd:AuctionListFilter>
+      </xsd:GetAuctionsForClient>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://eaiib.agh.edu.pl/auctions/wsdl/GetAuctionsForClientSoap/GetAuctionsForClientRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="GetAuctionsForManagerSoap" type="wsdl" bindingName="{http://eaiib.agh.edu.pl/auctions/wsdl/}GetAuctionsForManagerSoap" soapVersion="1_2" anonymous="optional" definition="http://127.0.0.1:8080/auctions/services/PutAuctionByManager?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://127.0.0.1:8080/auctions/services/PutAuctionByManager?wsdl"><con:part><con:url>http://127.0.0.1:8080/auctions/services/PutAuctionByManager?wsdl</con:url><con:content><![CDATA[<definitions name="AuctionManagerAPI" targetNamespace="http://eaiib.agh.edu.pl/auctions/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:ev="http://eaiib.agh.edu.pl/auctions/xsd/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://eaiib.agh.edu.pl/auctions/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <documentation>Auction Module API wsdl
+		v1.0.0 Dariusz Wołek</documentation>
+  <types>
+    <xsd:schema elementFormDefault="qualified" targetNamespace="http://eaiib.agh.edu.pl/auctions/xsd/">
+      <xsd:element name="Error" type="xsd:string"/>
+      <xsd:element name="GetAuctionsForClient" type="ev:GetAuctionsForClient"/>
+      <xsd:element name="GetAuctionsForClientResponse" type="ev:GetAuctionsForClientResponse"/>
+      <xsd:element name="PutBetByClient" type="ev:PutBetByClient"/>
+      <xsd:element name="PutBetByClientResponse" type="ev:PutBetByClientResponse"/>
+      <xsd:element name="PutAuctionFinalizationFormByClient" type="ev:PutAuctionFinalizationFormByClient"/>
+      <xsd:element name="PutAuctionFinalizationFormByClientResponse" type="ev:PutAuctionFinalizationFormByClientResponse"/>
+      <xsd:element name="GetAuctionsForManager" type="ev:GetAuctionsForManager"/>
+      <xsd:element name="GetAuctionsForManagerResponse" type="ev:GetAuctionsForManagerResponse"/>
+      <xsd:element name="PutAuctionByManager" type="ev:PutAuctionByManager"/>
+      <xsd:element name="PutAuctionByManagerResponse" type="ev:PutAuctionByManagerResponse"/>
+      <xsd:complexType name="PutAuctionByManager">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="Auction" type="ev:AuctionType"/>
+          <xsd:element maxOccurs="1" minOccurs="1" name="AMLogin" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="1" name="AuctionManagerContactData" type="ev:AuctionManagerContactDataType"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="PutAuctionByManagerResponse">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="0" name="Auction" type="ev:AuctionType"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="AMLogin" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="Errors" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="PutAuctionFinalizationFormByClient">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="AuctionId" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="1" name="ClientLogin" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="1" name="ClientContactData" type="ev:ClientContactDataType"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="PutAuctionFinalizationFormByClientResponse">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="0" name="AMLogin" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="ClientLogin" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="AuctionManagerContactData" type="ev:AuctionManagerContactDataType"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="Auction" type="ev:AuctionType"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="Errors" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="PutBetByClient">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="ClientLogin" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="1" name="AuctionId" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="1" name="Bet" type="ev:BetType"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="PutBetByClientResponse">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="0" name="ClientLogin" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="Auction" type="ev:AuctionType"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="Errors" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GetAuctionsForManager">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="AMLogin" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="AuctionListFilter" type="ev:AuctionListFilterType"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GetAuctionsForManagerResponse">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="0" name="AMLogin" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="AuctionList" type="ev:AuctionListType"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="Errors" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GetAuctionsForClient">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="ClientLogin" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="AuctionListFilter" type="ev:AuctionListFilterType"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GetAuctionsForClientResponse">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="0" name="ClientLogin" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="AuctionList" type="ev:AuctionListType"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="Errors" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="AuctionListFilterType">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="0" name="AuctionId" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="AuctionTitleFilter" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="Finished" type="xsd:boolean"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="My" type="xsd:boolean"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="FilterDateFrom" type="xsd:dateTime"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="FilterDateTill" type="xsd:dateTime"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="AuctionListType">
+        <xsd:sequence>
+          <xsd:element maxOccurs="unbounded" minOccurs="1" name="Auction" type="ev:AuctionType"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="AuctionType">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="0" name="AuctionId" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="AuctionTitle" type="xsd:string"/>
+          <xsd:element maxOccurs="unbounded" minOccurs="0" name="AuctionImgUrl" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="AuctionStart" type="xsd:dateTime"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="AuctionEnd" type="xsd:dateTime"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="AuctionStartPrice" type="ev:Price"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="AuctionCurrentPrice" type="ev:Price"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="AuctionDescription" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="AuctionDeliveryDesc" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="Finished" type="xsd:boolean"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="Won" type="xsd:boolean"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="Finalized" type="xsd:boolean"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="AMLogin" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="BetList" type="ev:BetListType"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="AuctionManagerContactDataType">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="AMName" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="1" name="AMSurname" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="1" name="AMPhone" type="ev:Phone"/>
+          <xsd:element maxOccurs="1" minOccurs="1" name="AMEmail" type="ev:Email"/>
+          <xsd:element maxOccurs="1" minOccurs="1" name="AMAccountNb" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="1" name="AMAccountBank" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ClientContactDataType">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="ClientName" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="1" name="ClientSurname" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="1" name="ClientAddress" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="1" name="ClientPhone" type="ev:Phone"/>
+          <xsd:element maxOccurs="1" minOccurs="1" name="ClientEmail" type="ev:Email"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="BetListType">
+        <xsd:sequence>
+          <xsd:element maxOccurs="unbounded" minOccurs="1" name="Bet" type="ev:BetType"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="BetType">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="BetPrice" type="ev:Price"/>
+          <xsd:element maxOccurs="1" minOccurs="1" name="BetTime" type="xsd:dateTime"/>
+          <xsd:element maxOccurs="1" minOccurs="1" name="ClientLogin" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="Phone">
+        <xsd:restriction base="xsd:string">
+          <xsd:pattern value="[0-9]{9,11}"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="Email">
+        <xsd:restriction base="xsd:string">
+          <xsd:pattern value="[a-zA-Z0-9]+@.[a-zA-Z0-9]+.[a-zA-Z0-9]+"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="Price">
+        <xsd:restriction base="xsd:string">
+          <xsd:pattern value="[0-9]+.[0-9]{2}"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:schema>
+  </types>
+  <message name="PutBetByClientSoapIn">
+    <part element="ev:PutBetByClient" name="PutBetByClient"></part>
+  </message>
+  <message name="PutAuctionFinalizationFormByClientSoapOut">
+    <part element="ev:PutAuctionFinalizationFormByClientResponse" name="PutAuctionFinalizationFormByClientResponse"></part>
+  </message>
+  <message name="GetAuctionsForManagerSoapOut">
+    <part element="ev:GetAuctionsForManagerResponse" name="GetAuctionsForManagerResponse"></part>
+  </message>
+  <message name="GetAuctionsForClientSoapIn">
+    <part element="ev:GetAuctionsForClient" name="GetAuctionsForClient"></part>
+  </message>
+  <message name="GetAuctionsForClientSoapOut">
+    <part element="ev:GetAuctionsForClientResponse" name="GetAuctionsForClientResponse"></part>
+  </message>
+  <message name="GetAuctionsForManagerSoapIn">
+    <part element="ev:GetAuctionsForManager" name="GetAuctionsForManager"></part>
+  </message>
+  <message name="PutAuctionFinalizationFormByClientSoapIn">
+    <part element="ev:PutAuctionFinalizationFormByClient" name="PutAuctionFinalizationFormByClient"></part>
+  </message>
+  <message name="PutAuctionByManagerSoapOut">
+    <part element="ev:PutAuctionByManagerResponse" name="PutAuctionByManagerResponse"></part>
+  </message>
+  <message name="PutBetByClientSoapOut">
+    <part element="ev:PutBetByClientResponse" name="PutBetByClientResponse"></part>
+  </message>
+  <message name="PutAuctionByManagerSoapIn">
+    <part element="ev:PutAuctionByManager" name="PutAuctionByManager"></part>
+  </message>
+  <message name="Error">
+    <part element="ev:Error" name="error"></part>
+  </message>
+  <portType name="GetAuctionsForClientSoap">
+    <operation name="GetAuctionsForClient">
+      <documentation>Method for searching auctions by client (all not finished + taken part)</documentation>
+      <input message="tns:GetAuctionsForClientSoapIn" name="GetAuctionsForClientSoapIn"></input>
+      <output message="tns:GetAuctionsForClientSoapOut" name="GetAuctionsForClientSoapOut"></output>
+    </operation>
+  </portType>
+  <portType name="GetAuctionsForManagerSoap">
+    <operation name="GetAuctionsForManager">
+      <documentation>Methor for searching auctions by menager (only own auctions)</documentation>
+      <input message="tns:GetAuctionsForManagerSoapIn" name="GetAuctionsForManagerSoapIn"></input>
+      <output message="tns:GetAuctionsForManagerSoapOut" name="GetAuctionsForManagerSoapOut"></output>
+    </operation>
+  </portType>
+  <portType name="PutAuctionFinalizationFormByClientSoap">
+    <operation name="PutAuctionFinalizationFormByClient">
+      <documentation>Method for pushing into system required form with finalization data</documentation>
+      <input message="tns:PutAuctionFinalizationFormByClientSoapIn" name="PutAuctionFinalizationFormByClientSoapIn"></input>
+      <output message="tns:PutAuctionFinalizationFormByClientSoapOut" name="PutAuctionFinalizationFormByClientSoapOut"></output>
+    </operation>
+  </portType>
+  <portType name="PutAuctionByManagerSoap">
+    <operation name="PutAuctionByManager">
+      <documentation>Method for pushing data about auction by Auction Manager into the module</documentation>
+      <input message="tns:PutAuctionByManagerSoapIn" name="PutAuctionByManagerSoapIn"></input>
+      <output message="tns:PutAuctionByManagerSoapOut" name="PutAuctionByManagerSoapOut"></output>
+    </operation>
+  </portType>
+  <portType name="PutBetByClientSoap">
+    <operation name="PutBetByClient">
+      <documentation>Method for pushing bets by Client for aucion</documentation>
+      <input message="tns:PutBetByClientSoapIn" name="PutBetByClientSoapIn"></input>
+      <output message="tns:PutBetByClientSoapOut" name="PutBetByClientSoapOut"></output>
+    </operation>
+  </portType>
+  <binding name="GetAuctionsForClientSoap" type="tns:GetAuctionsForClientSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="GetAuctionsForClient">
+      <soap12:operation soapAction="http://eaiib.agh.edu.pl/auction/GetAuctionsForClient" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <binding name="GetAuctionsForManagerSoap" type="tns:GetAuctionsForManagerSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="GetAuctionsForManager">
+      <soap12:operation soapAction="http://eaiib.agh.edu.pl/auction/GetAuctionsForManager" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <binding name="PutAuctionFinalizationFormByClientSoap" type="tns:PutAuctionFinalizationFormByClientSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="PutAuctionFinalizationFormByClient">
+      <soap12:operation soapAction="http://eaiib.agh.edu.pl/auction/PutAuctionFinalizationFormByClient" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <binding name="PutAuctionByManagerSoap" type="tns:PutAuctionByManagerSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="PutAuctionByManager">
+      <soap12:operation soapAction="http://eaiib.agh.edu.pl/auction/PutAuctionByManager" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <binding name="PutBetByClientSoap" type="tns:PutBetByClientSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="PutBetByClient">
+      <soap12:operation soapAction="http://eaiib.agh.edu.pl/auction/PutBetByClient" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="AuctionAPI">
+    <port binding="tns:PutBetByClientSoap" name="PutBetByClientPort">
+      <soap12:address location="http://127.0.0.1:8080/auctions/services/PutBetByClient"/>
+    </port>
+    <port binding="tns:PutAuctionByManagerSoap" name="PutAuctionByManagerPort">
+      <soap12:address location="http://127.0.0.1:8080/auctions/services/PutAuctionByManager"/>
+    </port>
+    <port binding="tns:GetAuctionsForClientSoap" name="GetAuctionsForClientPort">
+      <soap12:address location="http://127.0.0.1:8080/auctions/services/GetAuctionsForClient"/>
+    </port>
+    <port binding="tns:GetAuctionsForManagerSoap" name="GetAuctionsForManagerPort">
+      <soap12:address location="http://127.0.0.1:8080/auctions/services/GetAuctionsForManager"/>
+    </port>
+    <port binding="tns:PutAuctionFinalizationFormByClientSoap" name="PutAuctionFinalizationFormByClientPort">
+      <soap12:address location="http://127.0.0.1:8080/auctions/services/PutAuctionFinalizationFormByClient"/>
+    </port>
+  </service>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://127.0.0.1:8080/auctions/services/GetAuctionsForManager</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://eaiib.agh.edu.pl/auction/GetAuctionsForManager" name="GetAuctionsForManager" bindingOperationName="GetAuctionsForManager" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="username" value="AMTEST"/>
+  &lt;con:entry key="password" value="dasdasdasd"/>
+&lt;/xml-fragment></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1:8080/auctions/services/GetAuctionsForManager</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:xsd="http://eaiib.agh.edu.pl/auctions/xsd/">
+   <soap:Header/>
+   <soap:Body>
+      <xsd:GetAuctionsForManager>
+         <xsd:AMLogin>AMTEST</xsd:AMLogin>
+         <xsd:AuctionListFilter>
+         
+         </xsd:AuctionListFilter>
+      </xsd:GetAuctionsForManager>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://eaiib.agh.edu.pl/auctions/wsdl/GetAuctionsForManagerSoap/GetAuctionsForManagerRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="Request 2"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1:8080/auctions/services/GetAuctionsForManager</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:xsd="http://eaiib.agh.edu.pl/auctions/xsd/">
+   <soap:Header/>
+   <soap:Body>
+      <xsd:GetAuctionsForManager>
+         <xsd:AMLogin>AMTEST</xsd:AMLogin>
+        <xsd:AuctionListFilter>
+           <xsd:My>true</xsd:My>
+            </xsd:AuctionListFilter>
+      </xsd:GetAuctionsForManager>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://eaiib.agh.edu.pl/auctions/wsdl/GetAuctionsForManagerSoap/GetAuctionsForManagerRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="PutAuctionFinalizationFormByClientSoap" type="wsdl" bindingName="{http://eaiib.agh.edu.pl/auctions/wsdl/}PutAuctionFinalizationFormByClientSoap" soapVersion="1_2" anonymous="optional" definition="http://127.0.0.1:8080/auctions/services/PutAuctionByManager?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://127.0.0.1:8080/auctions/services/PutAuctionByManager?wsdl"><con:part><con:url>http://127.0.0.1:8080/auctions/services/PutAuctionByManager?wsdl</con:url><con:content><![CDATA[<definitions name="AuctionManagerAPI" targetNamespace="http://eaiib.agh.edu.pl/auctions/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:ev="http://eaiib.agh.edu.pl/auctions/xsd/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://eaiib.agh.edu.pl/auctions/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <documentation>Auction Module API wsdl
+		v1.0.0 Dariusz Wołek</documentation>
+  <types>
+    <xsd:schema elementFormDefault="qualified" targetNamespace="http://eaiib.agh.edu.pl/auctions/xsd/">
+      <xsd:element name="Error" type="xsd:string"/>
+      <xsd:element name="GetAuctionsForClient" type="ev:GetAuctionsForClient"/>
+      <xsd:element name="GetAuctionsForClientResponse" type="ev:GetAuctionsForClientResponse"/>
+      <xsd:element name="PutBetByClient" type="ev:PutBetByClient"/>
+      <xsd:element name="PutBetByClientResponse" type="ev:PutBetByClientResponse"/>
+      <xsd:element name="PutAuctionFinalizationFormByClient" type="ev:PutAuctionFinalizationFormByClient"/>
+      <xsd:element name="PutAuctionFinalizationFormByClientResponse" type="ev:PutAuctionFinalizationFormByClientResponse"/>
+      <xsd:element name="GetAuctionsForManager" type="ev:GetAuctionsForManager"/>
+      <xsd:element name="GetAuctionsForManagerResponse" type="ev:GetAuctionsForManagerResponse"/>
+      <xsd:element name="PutAuctionByManager" type="ev:PutAuctionByManager"/>
+      <xsd:element name="PutAuctionByManagerResponse" type="ev:PutAuctionByManagerResponse"/>
+      <xsd:complexType name="PutAuctionByManager">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="Auction" type="ev:AuctionType"/>
+          <xsd:element maxOccurs="1" minOccurs="1" name="AMLogin" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="1" name="AuctionManagerContactData" type="ev:AuctionManagerContactDataType"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="PutAuctionByManagerResponse">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="Auction" type="ev:AuctionType"/>
+          <xsd:element maxOccurs="1" minOccurs="1" name="AMLogin" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="PutAuctionFinalizationFormByClient">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="AuctionId" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="1" name="ClientLogin" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="1" name="ClientContactData" type="ev:ClientContactDataType"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="PutAuctionFinalizationFormByClientResponse">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="AMLogin" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="1" name="ClientLogin" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="1" name="AuctionManagerContactData" type="ev:AuctionManagerContactDataType"/>
+          <xsd:element maxOccurs="1" minOccurs="1" name="Auction" type="ev:AuctionType"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="PutBetByClient">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="ClientLogin" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="1" name="AuctionId" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="1" name="Bet" type="ev:BetType"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="PutBetByClientResponse">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="ClientLogin" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="1" name="Auction" type="ev:AuctionType"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GetAuctionsForManager">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="AMLogin" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="AuctionListFilter" type="ev:AuctionListFilterType"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GetAuctionsForManagerResponse">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="AMLogin" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="1" name="AuctionList" type="ev:AuctionListType"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GetAuctionsForClient">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="ClientLogin" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="AuctionListFilter" type="ev:AuctionListFilterType"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GetAuctionsForClientResponse">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="ClientLogin" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="1" name="AuctionList" type="ev:AuctionListType"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="AuctionListFilterType">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="0" name="AuctionId" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="AuctionTitleFilter" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="Finished" type="xsd:boolean"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="My" type="xsd:boolean"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="FilterDateFrom" type="xsd:dateTime"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="FilterDateTill" type="xsd:dateTime"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="AuctionListType">
+        <xsd:sequence>
+          <xsd:element maxOccurs="unbounded" minOccurs="1" name="Auction" type="ev:AuctionType"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="AuctionType">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="0" name="AuctionId" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="AuctionTitle" type="xsd:string"/>
+          <xsd:element maxOccurs="unbounded" minOccurs="0" name="AuctionImgUrl" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="AuctionStart" type="xsd:dateTime"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="AuctionEnd" type="xsd:dateTime"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="AuctionStartPrice" type="ev:Price"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="AuctionCurrentPrice" type="ev:Price"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="AuctionDescription" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="AuctionDeliveryDesc" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="Finished" type="xsd:boolean"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="Won" type="xsd:boolean"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="Finalized" type="xsd:boolean"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="AMLogin" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="BetList" type="ev:BetListType"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="AuctionManagerContactDataType">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="AMName" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="1" name="AMSurname" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="1" name="AMPhone" type="ev:Phone"/>
+          <xsd:element maxOccurs="1" minOccurs="1" name="AMEmail" type="ev:Email"/>
+          <xsd:element maxOccurs="1" minOccurs="1" name="AMAccountNb" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="1" name="AMAccountBank" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ClientContactDataType">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="ClientName" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="1" name="ClientSurname" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="1" name="ClientAddress" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="1" name="ClientPhone" type="ev:Phone"/>
+          <xsd:element maxOccurs="1" minOccurs="1" name="ClientEmail" type="ev:Email"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="BetListType">
+        <xsd:sequence>
+          <xsd:element maxOccurs="unbounded" minOccurs="1" name="Bet" type="ev:BetType"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="BetType">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="BetPrice" type="ev:Price"/>
+          <xsd:element maxOccurs="1" minOccurs="1" name="BetTime" type="xsd:dateTime"/>
+          <xsd:element maxOccurs="1" minOccurs="1" name="ClientLogin" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="Phone">
+        <xsd:restriction base="xsd:string">
+          <xsd:pattern value="[0-9]{9,11}"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="Email">
+        <xsd:restriction base="xsd:string">
+          <xsd:pattern value="[a-zA-Z0-9]+@.[a-zA-Z0-9]+.[a-zA-Z0-9]+"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="Price">
+        <xsd:restriction base="xsd:string">
+          <xsd:pattern value="[0-9]+.[0-9]{2}"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:schema>
+  </types>
+  <message name="PutBetByClientSoapIn">
+    <part element="ev:PutBetByClient" name="PutBetByClient"></part>
+  </message>
+  <message name="PutAuctionFinalizationFormByClientSoapOut">
+    <part element="ev:PutAuctionFinalizationFormByClientResponse" name="PutAuctionFinalizationFormByClientResponse"></part>
+  </message>
+  <message name="GetAuctionsForManagerSoapOut">
+    <part element="ev:GetAuctionsForManagerResponse" name="GetAuctionsForManagerResponse"></part>
+  </message>
+  <message name="GetAuctionsForClientSoapIn">
+    <part element="ev:GetAuctionsForClient" name="GetAuctionsForClient"></part>
+  </message>
+  <message name="GetAuctionsForClientSoapOut">
+    <part element="ev:GetAuctionsForClientResponse" name="GetAuctionsForClientResponse"></part>
+  </message>
+  <message name="GetAuctionsForManagerSoapIn">
+    <part element="ev:GetAuctionsForManager" name="GetAuctionsForManager"></part>
+  </message>
+  <message name="PutAuctionFinalizationFormByClientSoapIn">
+    <part element="ev:PutAuctionFinalizationFormByClient" name="PutAuctionFinalizationFormByClient"></part>
+  </message>
+  <message name="PutAuctionByManagerSoapOut">
+    <part element="ev:PutAuctionByManagerResponse" name="PutAuctionByManagerResponse"></part>
+  </message>
+  <message name="PutBetByClientSoapOut">
+    <part element="ev:PutBetByClientResponse" name="PutBetByClientResponse"></part>
+  </message>
+  <message name="PutAuctionByManagerSoapIn">
+    <part element="ev:PutAuctionByManager" name="PutAuctionByManager"></part>
+  </message>
+  <message name="Error">
+    <part element="ev:Error" name="error"></part>
+  </message>
+  <portType name="GetAuctionsForClientSoap">
+    <operation name="GetAuctionsForClient">
+      <documentation>Method for searching auctions by client (all not finished + taken part)</documentation>
+      <input message="tns:GetAuctionsForClientSoapIn" name="GetAuctionsForClientSoapIn"></input>
+      <output message="tns:GetAuctionsForClientSoapOut" name="GetAuctionsForClientSoapOut"></output>
+    </operation>
+  </portType>
+  <portType name="GetAuctionsForManagerSoap">
+    <operation name="GetAuctionsForManager">
+      <documentation>Methor for searching auctions by menager (only own auctions)</documentation>
+      <input message="tns:GetAuctionsForManagerSoapIn" name="GetAuctionsForManagerSoapIn"></input>
+      <output message="tns:GetAuctionsForManagerSoapOut" name="GetAuctionsForManagerSoapOut"></output>
+    </operation>
+  </portType>
+  <portType name="PutAuctionFinalizationFormByClientSoap">
+    <operation name="PutAuctionFinalizationFormByClient">
+      <documentation>Method for pushing into system required form with finalization data</documentation>
+      <input message="tns:PutAuctionFinalizationFormByClientSoapIn" name="PutAuctionFinalizationFormByClientSoapIn"></input>
+      <output message="tns:PutAuctionFinalizationFormByClientSoapOut" name="PutAuctionFinalizationFormByClientSoapOut"></output>
+    </operation>
+  </portType>
+  <portType name="PutAuctionByManagerSoap">
+    <operation name="PutAuctionByManager">
+      <documentation>Method for pushing data about auction by Auction Manager into the module</documentation>
+      <input message="tns:PutAuctionByManagerSoapIn" name="PutAuctionByManagerSoapIn"></input>
+      <output message="tns:PutAuctionByManagerSoapOut" name="PutAuctionByManagerSoapOut"></output>
+    </operation>
+  </portType>
+  <portType name="PutBetByClientSoap">
+    <operation name="PutBetByClient">
+      <documentation>Method for pushing bets by Client for aucion</documentation>
+      <input message="tns:PutBetByClientSoapIn" name="PutBetByClientSoapIn"></input>
+      <output message="tns:PutBetByClientSoapOut" name="PutBetByClientSoapOut"></output>
+    </operation>
+  </portType>
+  <binding name="GetAuctionsForClientSoap" type="tns:GetAuctionsForClientSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="GetAuctionsForClient">
+      <soap12:operation soapAction="http://eaiib.agh.edu.pl/auction/GetAuctionsForClient" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <binding name="GetAuctionsForManagerSoap" type="tns:GetAuctionsForManagerSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="GetAuctionsForManager">
+      <soap12:operation soapAction="http://eaiib.agh.edu.pl/auction/GetAuctionsForManager" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <binding name="PutAuctionFinalizationFormByClientSoap" type="tns:PutAuctionFinalizationFormByClientSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="PutAuctionFinalizationFormByClient">
+      <soap12:operation soapAction="http://eaiib.agh.edu.pl/auction/PutAuctionFinalizationFormByClient" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <binding name="PutAuctionByManagerSoap" type="tns:PutAuctionByManagerSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="PutAuctionByManager">
+      <soap12:operation soapAction="http://eaiib.agh.edu.pl/auction/PutAuctionByManager" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <binding name="PutBetByClientSoap" type="tns:PutBetByClientSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="PutBetByClient">
+      <soap12:operation soapAction="http://eaiib.agh.edu.pl/auction/PutBetByClient" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="AuctionAPI">
+    <port binding="tns:PutBetByClientSoap" name="PutBetByClientPort">
+      <soap12:address location="http://127.0.0.1:8080/auctions/services/PutBetByClient"/>
+    </port>
+    <port binding="tns:PutAuctionByManagerSoap" name="PutAuctionByManagerPort">
+      <soap12:address location="http://127.0.0.1:8080/auctions/services/PutAuctionByManager"/>
+    </port>
+    <port binding="tns:GetAuctionsForClientSoap" name="GetAuctionsForClientPort">
+      <soap12:address location="http://127.0.0.1:8080/auctions/services/GetAuctionsForClient"/>
+    </port>
+    <port binding="tns:GetAuctionsForManagerSoap" name="GetAuctionsForManagerPort">
+      <soap12:address location="http://127.0.0.1:8080/auctions/services/GetAuctionsForManager"/>
+    </port>
+    <port binding="tns:PutAuctionFinalizationFormByClientSoap" name="PutAuctionFinalizationFormByClientPort">
+      <soap12:address location="http://127.0.0.1:8080/auctions/services/PutAuctionFinalizationFormByClient"/>
+    </port>
+  </service>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://127.0.0.1:8080/auctions/services/PutAuctionFinalizationFormByClient</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://eaiib.agh.edu.pl/auction/PutAuctionFinalizationFormByClient" name="PutAuctionFinalizationFormByClient" bindingOperationName="PutAuctionFinalizationFormByClient" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1:8080/auctions/services/PutAuctionFinalizationFormByClient</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:xsd="http://eaiib.agh.edu.pl/auctions/xsd/">
+   <soap:Header/>
+   <soap:Body>
+      <xsd:PutAuctionFinalizationFormByClient>
+         <xsd:AuctionId>?</xsd:AuctionId>
+         <xsd:ClientLogin>?</xsd:ClientLogin>
+         <xsd:ClientContactData>
+            <xsd:ClientName>?</xsd:ClientName>
+            <xsd:ClientSurname>?</xsd:ClientSurname>
+            <xsd:ClientAddress>?</xsd:ClientAddress>
+            <xsd:ClientPhone>?</xsd:ClientPhone>
+            <xsd:ClientEmail>?</xsd:ClientEmail>
+         </xsd:ClientContactData>
+      </xsd:PutAuctionFinalizationFormByClient>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://eaiib.agh.edu.pl/auctions/wsdl/PutAuctionFinalizationFormByClientSoap/PutAuctionFinalizationFormByClientRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="UserServiceImplServiceSoapBinding" type="wsdl" bindingName="{http://service.useraccounts.agh.edu.pl/}UserServiceImplServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="file:/D:/Projects/auctions/src/main/resources/integration/UserService.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/D:/Projects/auctions/src/main/resources/integration/UserService.wsdl"><con:part><con:url>file:/D:/Projects/auctions/src/main/resources/integration/UserService.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="UserServiceImplService" targetNamespace="http://service.useraccounts.agh.edu.pl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://service.useraccounts.agh.edu.pl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http">
+  <wsdl:types>
+    <xs:schema elementFormDefault="unqualified" targetNamespace="http://service.useraccounts.agh.edu.pl/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="authorization" type="tns:authorization"/>
+      <xs:element name="authorizationResponse" type="tns:authorizationResponse"/>
+      <xs:element name="changeEmail" type="tns:changeEmail"/>
+      <xs:element name="changeEmailResponse" type="tns:changeEmailResponse"/>
+      <xs:element name="changePassword" type="tns:changePassword"/>
+      <xs:element name="changePasswordResponse" type="tns:changePasswordResponse"/>
+      <xs:element name="getUsers" type="tns:getUsers"/>
+      <xs:element name="getUsersResponse" type="tns:getUsersResponse"/>
+      <xs:element name="register" type="tns:register"/>
+      <xs:element name="registerResponse" type="tns:registerResponse"/>
+      <xs:element name="remindPassword" type="tns:remindPassword"/>
+      <xs:element name="remindPasswordResponse" type="tns:remindPasswordResponse"/>
+      <xs:element name="removeUser" type="tns:removeUser"/>
+      <xs:element name="removeUserResponse" type="tns:removeUserResponse"/>
+      <xs:complexType name="register">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="login" type="xs:string"/>
+          <xs:element minOccurs="0" name="email" type="xs:string"/>
+          <xs:element minOccurs="0" name="password" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="registerResponse">
+        <xs:sequence>
+          <xs:element name="return" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="changePassword">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="login" type="xs:string"/>
+          <xs:element minOccurs="0" name="oldPassword" type="xs:string"/>
+          <xs:element minOccurs="0" name="newPassword" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="changePasswordResponse">
+        <xs:sequence>
+          <xs:element name="return" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="changeEmail">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="login" type="xs:string"/>
+          <xs:element minOccurs="0" name="email" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="changeEmailResponse">
+        <xs:sequence>
+          <xs:element name="return" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="remindPassword">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="login" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="remindPasswordResponse">
+        <xs:sequence>
+          <xs:element name="return" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getUsers">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="getUsersResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="authorization">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="login" type="xs:string"/>
+          <xs:element minOccurs="0" name="password" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="authorizationResponse">
+        <xs:sequence>
+          <xs:element name="return" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="removeUser">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="login" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="removeUserResponse">
+        <xs:sequence>
+          <xs:element name="return" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="authorizationResponse">
+    <wsdl:part element="tns:authorizationResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="remindPassword">
+    <wsdl:part element="tns:remindPassword" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="register">
+    <wsdl:part element="tns:register" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="changeEmail">
+    <wsdl:part element="tns:changeEmail" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="registerResponse">
+    <wsdl:part element="tns:registerResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="changePassword">
+    <wsdl:part element="tns:changePassword" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="changeEmailResponse">
+    <wsdl:part element="tns:changeEmailResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUsers">
+    <wsdl:part element="tns:getUsers" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeUser">
+    <wsdl:part element="tns:removeUser" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="changePasswordResponse">
+    <wsdl:part element="tns:changePasswordResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="remindPasswordResponse">
+    <wsdl:part element="tns:remindPasswordResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUsersResponse">
+    <wsdl:part element="tns:getUsersResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeUserResponse">
+    <wsdl:part element="tns:removeUserResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="authorization">
+    <wsdl:part element="tns:authorization" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="UserService">
+    <wsdl:operation name="register">
+      <wsdl:input message="tns:register" name="register"></wsdl:input>
+      <wsdl:output message="tns:registerResponse" name="registerResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="changePassword">
+      <wsdl:input message="tns:changePassword" name="changePassword"></wsdl:input>
+      <wsdl:output message="tns:changePasswordResponse" name="changePasswordResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="changeEmail">
+      <wsdl:input message="tns:changeEmail" name="changeEmail"></wsdl:input>
+      <wsdl:output message="tns:changeEmailResponse" name="changeEmailResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="remindPassword">
+      <wsdl:input message="tns:remindPassword" name="remindPassword"></wsdl:input>
+      <wsdl:output message="tns:remindPasswordResponse" name="remindPasswordResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUsers">
+      <wsdl:input message="tns:getUsers" name="getUsers"></wsdl:input>
+      <wsdl:output message="tns:getUsersResponse" name="getUsersResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="authorization">
+      <wsdl:input message="tns:authorization" name="authorization"></wsdl:input>
+      <wsdl:output message="tns:authorizationResponse" name="authorizationResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeUser">
+      <wsdl:input message="tns:removeUser" name="removeUser"></wsdl:input>
+      <wsdl:output message="tns:removeUserResponse" name="removeUserResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="UserServiceImplServiceSoapBinding" type="tns:UserService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="changePassword">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="changePassword">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="changePasswordResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="register">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="register">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="registerResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="changeEmail">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="changeEmail">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="changeEmailResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUsers">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getUsers">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUsersResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="remindPassword">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="remindPassword">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="remindPasswordResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="authorization">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="authorization">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="authorizationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeUser">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="removeUser">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeUserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="UserServiceImplService">
+    <wsdl:port binding="tns:UserServiceImplServiceSoapBinding" name="UserServiceImplPort">
+      <soap:address location="http://localhost:8080/userAccounts/services/UserService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/userAccounts/services/UserService</con:endpoint><con:endpoint>http://Darek-Work-PC:8088/mockUserServiceImplServiceSoapBinding</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="authorization" bindingOperationName="authorization" type="Request-Response" outputName="authorizationResponse" inputName="authorization" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/userAccounts/services/UserService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.useraccounts.agh.edu.pl/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:authorization>
+         <!--Optional:-->
+         <login>?</login>
+         <!--Optional:-->
+         <password>?</password>
+      </ser:authorization>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.useraccounts.agh.edu.pl/UserService/authorization"/></con:call></con:operation><con:operation isOneWay="false" action="" name="changeEmail" bindingOperationName="changeEmail" type="Request-Response" outputName="changeEmailResponse" inputName="changeEmail" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/userAccounts/services/UserService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.useraccounts.agh.edu.pl/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:changeEmail>
+         <!--Optional:-->
+         <login>?</login>
+         <!--Optional:-->
+         <email>?</email>
+      </ser:changeEmail>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.useraccounts.agh.edu.pl/UserService/changeEmail"/></con:call></con:operation><con:operation isOneWay="false" action="" name="changePassword" bindingOperationName="changePassword" type="Request-Response" outputName="changePasswordResponse" inputName="changePassword" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/userAccounts/services/UserService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.useraccounts.agh.edu.pl/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:changePassword>
+         <!--Optional:-->
+         <login>?</login>
+         <!--Optional:-->
+         <oldPassword>?</oldPassword>
+         <!--Optional:-->
+         <newPassword>?</newPassword>
+      </ser:changePassword>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.useraccounts.agh.edu.pl/UserService/changePassword"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getUsers" bindingOperationName="getUsers" type="Request-Response" outputName="getUsersResponse" inputName="getUsers" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/userAccounts/services/UserService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.useraccounts.agh.edu.pl/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getUsers/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.useraccounts.agh.edu.pl/UserService/getUsers"/></con:call></con:operation><con:operation isOneWay="false" action="" name="register" bindingOperationName="register" type="Request-Response" outputName="registerResponse" inputName="register" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/userAccounts/services/UserService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.useraccounts.agh.edu.pl/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:register>
+         <!--Optional:-->
+         <login>?</login>
+         <!--Optional:-->
+         <email>?</email>
+         <!--Optional:-->
+         <password>?</password>
+      </ser:register>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.useraccounts.agh.edu.pl/UserService/register"/></con:call></con:operation><con:operation isOneWay="false" action="" name="remindPassword" bindingOperationName="remindPassword" type="Request-Response" outputName="remindPasswordResponse" inputName="remindPassword" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/userAccounts/services/UserService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.useraccounts.agh.edu.pl/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:remindPassword>
+         <!--Optional:-->
+         <login>?</login>
+      </ser:remindPassword>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.useraccounts.agh.edu.pl/UserService/remindPassword"/></con:call></con:operation><con:operation isOneWay="false" action="" name="removeUser" bindingOperationName="removeUser" type="Request-Response" outputName="removeUserResponse" inputName="removeUser" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/userAccounts/services/UserService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.useraccounts.agh.edu.pl/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:removeUser>
+         <!--Optional:-->
+         <login>?</login>
+      </ser:removeUser>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.useraccounts.agh.edu.pl/UserService/removeUser"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="RoleServiceImplServiceSoapBinding" type="wsdl" bindingName="{http://service.useraccounts.agh.edu.pl/}RoleServiceImplServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="file:/D:/Projects/auctions/src/main/resources/integration/RoleService.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/D:/Projects/auctions/src/main/resources/integration/RoleService.wsdl"><con:part><con:url>file:/D:/Projects/auctions/src/main/resources/integration/RoleService.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="RoleServiceImplService" targetNamespace="http://service.useraccounts.agh.edu.pl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://service.useraccounts.agh.edu.pl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://service.useraccounts.agh.edu.pl/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="addRole" type="tns:addRole"/>
+      <xs:element name="addRoleResponse" type="tns:addRoleResponse"/>
+      <xs:element name="createRole" type="tns:createRole"/>
+      <xs:element name="createRoleResponse" type="tns:createRoleResponse"/>
+      <xs:element name="getAllRoles" type="tns:getAllRoles"/>
+      <xs:element name="getAllRolesResponse" type="tns:getAllRolesResponse"/>
+      <xs:element name="getUserRole" type="tns:getUserRole"/>
+      <xs:element name="getUserRoleResponse" type="tns:getUserRoleResponse"/>
+      <xs:element name="removeRole" type="tns:removeRole"/>
+      <xs:element name="removeRoleResponse" type="tns:removeRoleResponse"/>
+      <xs:element name="revokeRole" type="tns:revokeRole"/>
+      <xs:element name="revokeRoleResponse" type="tns:revokeRoleResponse"/>
+      <xs:complexType name="getUserRole">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="login" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getUserRoleResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="addRole">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="login" type="xs:string"/>
+          <xs:element minOccurs="0" name="role" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="addRoleResponse">
+        <xs:sequence>
+          <xs:element name="return" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getAllRoles">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="getAllRolesResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="createRole">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="role" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="createRoleResponse">
+        <xs:sequence>
+          <xs:element name="return" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="removeRole">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="role" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="removeRoleResponse">
+        <xs:sequence>
+          <xs:element name="return" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="revokeRole">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="login" type="xs:string"/>
+          <xs:element minOccurs="0" name="role" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="revokeRoleResponse">
+        <xs:sequence>
+          <xs:element name="return" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="UserException" type="tns:UserException"/>
+      <xs:complexType name="UserException">
+        <xs:sequence>
+          <xs:element name="exceptionCode" nillable="true" type="xs:int"/>
+          <xs:element minOccurs="0" name="message" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="createRole">
+    <wsdl:part element="tns:createRole" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllRolesResponse">
+    <wsdl:part element="tns:getAllRolesResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserRole">
+    <wsdl:part element="tns:getUserRole" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeRole">
+    <wsdl:part element="tns:removeRole" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="revokeRole">
+    <wsdl:part element="tns:revokeRole" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllRoles">
+    <wsdl:part element="tns:getAllRoles" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createRoleResponse">
+    <wsdl:part element="tns:createRoleResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="revokeRoleResponse">
+    <wsdl:part element="tns:revokeRoleResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UserException">
+    <wsdl:part element="tns:UserException" name="UserException"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addRoleResponse">
+    <wsdl:part element="tns:addRoleResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeRoleResponse">
+    <wsdl:part element="tns:removeRoleResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserRoleResponse">
+    <wsdl:part element="tns:getUserRoleResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addRole">
+    <wsdl:part element="tns:addRole" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="RoleService">
+    <wsdl:operation name="getUserRole">
+      <wsdl:input message="tns:getUserRole" name="getUserRole"></wsdl:input>
+      <wsdl:output message="tns:getUserRoleResponse" name="getUserRoleResponse"></wsdl:output>
+      <wsdl:fault message="tns:UserException" name="UserException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addRole">
+      <wsdl:input message="tns:addRole" name="addRole"></wsdl:input>
+      <wsdl:output message="tns:addRoleResponse" name="addRoleResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllRoles">
+      <wsdl:input message="tns:getAllRoles" name="getAllRoles"></wsdl:input>
+      <wsdl:output message="tns:getAllRolesResponse" name="getAllRolesResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createRole">
+      <wsdl:input message="tns:createRole" name="createRole"></wsdl:input>
+      <wsdl:output message="tns:createRoleResponse" name="createRoleResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeRole">
+      <wsdl:input message="tns:removeRole" name="removeRole"></wsdl:input>
+      <wsdl:output message="tns:removeRoleResponse" name="removeRoleResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="revokeRole">
+      <wsdl:input message="tns:revokeRole" name="revokeRole"></wsdl:input>
+      <wsdl:output message="tns:revokeRoleResponse" name="revokeRoleResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="RoleServiceImplServiceSoapBinding" type="tns:RoleService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="addRole">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addRole">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addRoleResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserRole">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getUserRole">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUserRoleResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createRole">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="createRole">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="createRoleResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllRoles">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getAllRoles">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAllRolesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeRole">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="removeRole">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeRoleResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="revokeRole">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="revokeRole">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="revokeRoleResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="RoleServiceImplService">
+    <wsdl:port binding="tns:RoleServiceImplServiceSoapBinding" name="RoleServiceImplPort">
+      <soap:address location="http://localhost:8080/userAccounts/services/RoleService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/userAccounts/services/RoleService</con:endpoint><con:endpoint>http://Darek-Work-PC:8089/mockRoleServiceImplServiceSoapBinding</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="addRole" bindingOperationName="addRole" type="Request-Response" outputName="addRoleResponse" inputName="addRole" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/userAccounts/services/RoleService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.useraccounts.agh.edu.pl/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:addRole>
+         <!--Optional:-->
+         <login>?</login>
+         <!--Optional:-->
+         <role>?</role>
+      </ser:addRole>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.useraccounts.agh.edu.pl/RoleService/addRole"/></con:call></con:operation><con:operation isOneWay="false" action="" name="createRole" bindingOperationName="createRole" type="Request-Response" outputName="createRoleResponse" inputName="createRole" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/userAccounts/services/RoleService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.useraccounts.agh.edu.pl/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:createRole>
+         <!--Optional:-->
+         <role>?</role>
+      </ser:createRole>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.useraccounts.agh.edu.pl/RoleService/createRole"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getAllRoles" bindingOperationName="getAllRoles" type="Request-Response" outputName="getAllRolesResponse" inputName="getAllRoles" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/userAccounts/services/RoleService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.useraccounts.agh.edu.pl/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getAllRoles/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.useraccounts.agh.edu.pl/RoleService/getAllRoles"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getUserRole" bindingOperationName="getUserRole" type="Request-Response" outputName="getUserRoleResponse" inputName="getUserRole" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/userAccounts/services/RoleService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.useraccounts.agh.edu.pl/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getUserRole>
+         <!--Optional:-->
+         <login>?</login>
+      </ser:getUserRole>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.useraccounts.agh.edu.pl/RoleService/getUserRole"/></con:call></con:operation><con:operation isOneWay="false" action="" name="removeRole" bindingOperationName="removeRole" type="Request-Response" outputName="removeRoleResponse" inputName="removeRole" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/userAccounts/services/RoleService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.useraccounts.agh.edu.pl/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:removeRole>
+         <!--Optional:-->
+         <role>?</role>
+      </ser:removeRole>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.useraccounts.agh.edu.pl/RoleService/removeRole"/></con:call></con:operation><con:operation isOneWay="false" action="" name="revokeRole" bindingOperationName="revokeRole" type="Request-Response" outputName="revokeRoleResponse" inputName="revokeRole" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/userAccounts/services/RoleService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.useraccounts.agh.edu.pl/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:revokeRole>
+         <!--Optional:-->
+         <login>?</login>
+         <!--Optional:-->
+         <role>?</role>
+      </ser:revokeRole>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.useraccounts.agh.edu.pl/RoleService/revokeRole"/></con:call></con:operation></con:interface><con:mockService port="8088" path="/mockUserServiceImplServiceSoapBinding" host="Darek-Work-PC" name="UserServiceImplServiceSoapBinding MockService"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:mockOperation name="authorization" interface="UserServiceImplServiceSoapBinding" operation="authorization"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>Response 1</con:defaultResponse><con:response name="Response 1" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.useraccounts.agh.edu.pl/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:authorizationResponse>
+         <return>0</return>
+      </ser:authorizationResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.useraccounts.agh.edu.pl/UserService/authorizationResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="changeEmail" interface="UserServiceImplServiceSoapBinding" operation="changeEmail"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>Response 1</con:defaultResponse><con:response name="Response 1" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.useraccounts.agh.edu.pl/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:changeEmailResponse>
+         <return>?</return>
+      </ser:changeEmailResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.useraccounts.agh.edu.pl/UserService/changeEmailResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="changePassword" interface="UserServiceImplServiceSoapBinding" operation="changePassword"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>Response 1</con:defaultResponse><con:response name="Response 1" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.useraccounts.agh.edu.pl/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:changePasswordResponse>
+         <return>?</return>
+      </ser:changePasswordResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.useraccounts.agh.edu.pl/UserService/changePasswordResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="getUsers" interface="UserServiceImplServiceSoapBinding" operation="getUsers"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>Response 1</con:defaultResponse><con:response name="Response 1" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.useraccounts.agh.edu.pl/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getUsersResponse>
+         <!--Zero or more repetitions:-->
+         <return>?</return>
+      </ser:getUsersResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.useraccounts.agh.edu.pl/UserService/getUsersResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="register" interface="UserServiceImplServiceSoapBinding" operation="register"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>Response 1</con:defaultResponse><con:response name="Response 1" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.useraccounts.agh.edu.pl/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:registerResponse>
+         <return>?</return>
+      </ser:registerResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.useraccounts.agh.edu.pl/UserService/registerResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="remindPassword" interface="UserServiceImplServiceSoapBinding" operation="remindPassword"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>Response 1</con:defaultResponse><con:response name="Response 1" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.useraccounts.agh.edu.pl/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:remindPasswordResponse>
+         <return>?</return>
+      </ser:remindPasswordResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.useraccounts.agh.edu.pl/UserService/remindPasswordResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="removeUser" interface="UserServiceImplServiceSoapBinding" operation="removeUser"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>Response 1</con:defaultResponse><con:response name="Response 1" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.useraccounts.agh.edu.pl/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:removeUserResponse>
+         <return>?</return>
+      </ser:removeUserResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.useraccounts.agh.edu.pl/UserService/removeUserResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:properties/></con:mockService><con:mockService port="8089" path="/mockRoleServiceImplServiceSoapBinding" host="Darek-Work-PC" name="RoleServiceImplServiceSoapBinding MockService"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:mockOperation name="addRole" interface="RoleServiceImplServiceSoapBinding" operation="addRole"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>Response 1</con:defaultResponse><con:response name="Response 1" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.useraccounts.agh.edu.pl/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:addRoleResponse>
+         <return>?</return>
+      </ser:addRoleResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.useraccounts.agh.edu.pl/RoleService/addRoleResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="createRole" interface="RoleServiceImplServiceSoapBinding" operation="createRole"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>Response 1</con:defaultResponse><con:response name="Response 1" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.useraccounts.agh.edu.pl/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:createRoleResponse>
+         <return>?</return>
+      </ser:createRoleResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.useraccounts.agh.edu.pl/RoleService/createRoleResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="getAllRoles" interface="RoleServiceImplServiceSoapBinding" operation="getAllRoles"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>Response 1</con:defaultResponse><con:response name="Response 1" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.useraccounts.agh.edu.pl/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getAllRolesResponse>
+         <!--Zero or more repetitions:-->
+         <return>?</return>
+      </ser:getAllRolesResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.useraccounts.agh.edu.pl/RoleService/getAllRolesResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="getUserRole" interface="RoleServiceImplServiceSoapBinding" operation="getUserRole"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>Response 1</con:defaultResponse><con:response name="Response 1" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.useraccounts.agh.edu.pl/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getUserRoleResponse>
+         <!--Zero or more repetitions:-->
+         <return>AUCTION_MANAGER_ROLE</return>
+         <return>CLINET</return>
+
+         <return>AUCTION_CLIENT_ROLE</return>
+
+      </ser:getUserRoleResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.useraccounts.agh.edu.pl/RoleService/getUserRoleResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="removeRole" interface="RoleServiceImplServiceSoapBinding" operation="removeRole"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>Response 1</con:defaultResponse><con:response name="Response 1" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.useraccounts.agh.edu.pl/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:removeRoleResponse>
+         <return>?</return>
+      </ser:removeRoleResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.useraccounts.agh.edu.pl/RoleService/removeRoleResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="revokeRole" interface="RoleServiceImplServiceSoapBinding" operation="revokeRole"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>Response 1</con:defaultResponse><con:response name="Response 1" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.useraccounts.agh.edu.pl/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:revokeRoleResponse>
+         <return>?</return>
+      </ser:revokeRoleResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.useraccounts.agh.edu.pl/RoleService/revokeRoleResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:properties/></con:mockService><con:properties/><con:wssContainer/><con:sensitiveInformation/></con:soapui-project>

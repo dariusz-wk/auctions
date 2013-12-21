@@ -22,4 +22,7 @@
 	<import resource="classpath:beans.xml" />
 	
 	<bean id="cleanerBean" class="pl.edu.agh.eaiib.auctions.DBCleanerBean"/>
+	<bean id="roleWebServiceClient" class="pl.edu.agh.useraccounts.service.RoleServiceMock"/>
+	<bean id="userWebServiceClient" class="pl.edu.agh.useraccounts.service.UserServiceMock"/>
+
 </beans>
