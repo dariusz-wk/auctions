@@ -19,97 +19,97 @@ import pl.edu.agh.eaiib.auctions.xsd.AuctionType;
 import pl.edu.agh.eaiib.auctions.xsd.ClientContactDataType;
 
 @WebService(targetNamespace = "http://eaiib.agh.edu.pl/auctions/wsdl/", name = "PutAuctionFinalizationFormByClientSoap")
-@XmlSeeAlso({pl.edu.agh.eaiib.auctions.xsd.ObjectFactory.class})
+@XmlSeeAlso({ pl.edu.agh.eaiib.auctions.xsd.ObjectFactory.class })
 public class PutAuctionFinalizationFormByClientSoapImpl extends SoapWebService implements PutAuctionFinalizationFormByClientSoap {
 
-	private static final Logger log = Logger.getLogger(PutAuctionFinalizationFormByClientSoapImpl.class);
-	
-	@Override
-	public void putAuctionFinalizationFormByClient(String auctionId, Holder<String> clientLogin, ClientContactDataType clientContactData, Holder<String> amLogin, Holder<AuctionManagerContactDataType> auctionManagerContactData,
-			Holder<AuctionType> auction, Holder<String> errors) {
-		log.trace("putAuctionFinalizationFormByClient " + clientLogin.value);
-		// get references to incoming data
-		String clientLoginName = clientLogin.value;
-		Long auctionI = Utils.parseLong(auctionId);
+    private static final Logger log = Logger.getLogger(PutAuctionFinalizationFormByClientSoapImpl.class);
 
-		// clear holders for output
-		clientLogin.value = null;
+    @Override
+    public void putAuctionFinalizationFormByClient(String auctionId, Holder<String> clientLogin, ClientContactDataType clientContactData,
+            Holder<String> amLogin, Holder<AuctionManagerContactDataType> auctionManagerContactData, Holder<AuctionType> auction, Holder<String> errors) {
+        log.trace("putAuctionFinalizationFormByClient " + clientLogin.value);
+        // get references to incoming data
+        String clientLoginName = clientLogin.value;
+        Long auctionI = Utils.parseLong(auctionId);
 
-		if (!hasClientPrivilages(clientLoginName)) {
-			log.trace("Lack of privileges!");
-			errors.value = "Lack of provileges!";
-			return;
-		}
-		
-		String errorMsg = null;
-		if (null != (errorMsg = validate(clientContactData))) {
-			log.error("error: " + errorMsg);
-			errors.value = "errorMsg";
-			return;
-		}
-		
-		Auction auctionBean = auctionService.get(auctionI);
-		
-		Bet bestBet = auctionBean.getBetList().get(auctionBean.getBetList().size()-1);
-		if(auction == null || auctionBean.getFinished() == false || auctionBean.getFinalized() || !bestBet.getCientId().equals(clientLoginName) ){
-			log.trace("Lack of privileges!");
-			errors.value = "Lack of provileges!";
-			return;
-		}
-		
-		
-		BuyerContact contact = new BuyerContact();
-		contact.setAddress(clientContactData.getClientAddress());
-		contact.setAuction(auctionBean);
-		contact.setEmail(clientContactData.getClientEmail());
-		contact.setLogin(clientLoginName);
-		contact.setName(clientContactData.getClientName());
-		contact.setPhone(clientContactData.getClientPhone());
-		contact.setSurname(clientContactData.getClientSurname());
-		auctionBean.setFinalized(true);
-		
-		auctionService.update(auctionBean);
-		
-		AMContact amContact = auctionBean.getAuctionManagerContact();
-		AuctionManagerContactDataType auctionManagerContact = new AuctionManagerContactDataType();
-		auctionManagerContact.setAMAccountBank(amContact.getBank());
-		auctionManagerContact.setAMAccountNb(amContact.getBankAccountNb());
-		auctionManagerContact.setAMEmail(amContact.getEmail());
-		auctionManagerContact.setAMName(amContact.getName());
-		auctionManagerContact.setAMPhone(amContact.getPhone());
-		auctionManagerContact.setAMSurname(amContact.getSurname());
-		auctionManagerContactData.value = auctionManagerContact;
-		
-		clientLogin.value = clientLoginName;
-		amLogin.value = auctionBean.getAmLogin();
-		AuctionType auctionOut = new AuctionType();
-		auctionOut.setAuctionCurrentPrice(Utils.formatCurrency(auctionBean.getAuctionCurrentPrice()));
-		auctionOut.setAuctionTitle(auctionBean.getAuctionTitle());
-		auctionOut.setFinalized(auctionBean.getFinalized());
-	}
+        // clear holders for output
+        clientLogin.value = null;
 
-	private String validate(ClientContactDataType clientContactData) {
-		String error = "";
-		if(clientContactData == null){
-			error += "ClientContactData cannot be null";
-		} else {
-			if(Utils.isBlank(clientContactData.getClientAddress())){
-				error += "ClientAddres cannot be null and over 255 long";
-			}
-			if(Utils.isEmail(clientContactData.getClientEmail())){
-				error += "ClientEmail invalid email format";
-			}
-			if(Utils.isBlank(clientContactData.getClientName())){
-				error+="Client Name cannot be null or longer than 255";
-			}
-			if(Utils.isBlank(clientContactData.getClientSurname())){
-				error+="ClientSurname cannot be null or longer than 255";
-			}
-			if(Utils.isPhone(clientContactData.getClientPhone())){
-				error+="ClientPhone invalid format";
-			}
-		}
-		return StringUtils.isBlank(error)?null:error;
-	}
+        String e = null;
+        if ( !hasClientPrivilages(clientLoginName, e) ) {
+            log.trace("Lack of privileges!");
+            errors.value = e;
+            return;
+        }
+
+        String errorMsg = null;
+        if ( null != (errorMsg = validate(clientContactData)) ) {
+            log.error("error: " + errorMsg);
+            errors.value = "errorMsg";
+            return;
+        }
+
+        Auction auctionBean = auctionService.get(auctionI);
+
+        Bet bestBet = auctionBean.getBetList().get(auctionBean.getBetList().size() - 1);
+        if ( auction == null || auctionBean.getFinished() == false || auctionBean.getFinalized() || !bestBet.getCientId().equals(clientLoginName) ) {
+            log.trace("Lack of privileges!");
+            errors.value = "Lack of provileges!";
+            return;
+        }
+
+        BuyerContact contact = new BuyerContact();
+        contact.setAddress(clientContactData.getClientAddress());
+        contact.setAuction(auctionBean);
+        contact.setEmail(clientContactData.getClientEmail());
+        contact.setLogin(clientLoginName);
+        contact.setName(clientContactData.getClientName());
+        contact.setPhone(clientContactData.getClientPhone());
+        contact.setSurname(clientContactData.getClientSurname());
+        auctionBean.setFinalized(true);
+
+        auctionService.update(auctionBean);
+
+        AMContact amContact = auctionBean.getAuctionManagerContact();
+        AuctionManagerContactDataType auctionManagerContact = new AuctionManagerContactDataType();
+        auctionManagerContact.setAMAccountBank(amContact.getBank());
+        auctionManagerContact.setAMAccountNb(amContact.getBankAccountNb());
+        auctionManagerContact.setAMEmail(amContact.getEmail());
+        auctionManagerContact.setAMName(amContact.getName());
+        auctionManagerContact.setAMPhone(amContact.getPhone());
+        auctionManagerContact.setAMSurname(amContact.getSurname());
+        auctionManagerContactData.value = auctionManagerContact;
+
+        clientLogin.value = clientLoginName;
+        amLogin.value = auctionBean.getAmLogin();
+        AuctionType auctionOut = new AuctionType();
+        auctionOut.setAuctionCurrentPrice(Utils.formatCurrency(auctionBean.getAuctionCurrentPrice()));
+        auctionOut.setAuctionTitle(auctionBean.getAuctionTitle());
+        auctionOut.setFinalized(auctionBean.getFinalized());
+    }
+
+    private String validate(ClientContactDataType clientContactData) {
+        String error = "";
+        if ( clientContactData == null ) {
+            error += "ClientContactData cannot be null";
+        } else {
+            if ( Utils.isBlank(clientContactData.getClientAddress()) ) {
+                error += "ClientAddres cannot be null and over 255 long";
+            }
+            if ( Utils.isEmail(clientContactData.getClientEmail()) ) {
+                error += "ClientEmail invalid email format";
+            }
+            if ( Utils.isBlank(clientContactData.getClientName()) ) {
+                error += "Client Name cannot be null or longer than 255";
+            }
+            if ( Utils.isBlank(clientContactData.getClientSurname()) ) {
+                error += "ClientSurname cannot be null or longer than 255";
+            }
+            if ( Utils.isPhone(clientContactData.getClientPhone()) ) {
+                error += "ClientPhone invalid format";
+            }
+        }
+        return StringUtils.isBlank(error) ? null : error;
+    }
 
 }

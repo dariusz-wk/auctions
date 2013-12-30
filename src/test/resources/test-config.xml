@@ -24,5 +24,6 @@
 	<bean id="cleanerBean" class="pl.edu.agh.eaiib.auctions.DBCleanerBean"/>
 	<bean id="roleWebServiceClient" class="pl.edu.agh.useraccounts.service.RoleServiceMock"/>
 	<bean id="userWebServiceClient" class="pl.edu.agh.useraccounts.service.UserServiceMock"/>
+	<bean id="userParametersWebServiceClient" class="pl.edu.agh.useraccounts.service.UsersParametersServiceMock"/>
 
 </beans>

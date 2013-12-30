@@ -10,23 +10,25 @@ import pl.edu.agh.eaiib.auctions.service.AuthService;
 
 public class SoapWebService {
 
-	@Autowired
-	protected AuctionService auctionService;
-	@Autowired
-	protected AuthService authService;
-	@Resource
-	WebServiceContext context;
+    @Autowired
+    protected AuctionService auctionService;
 
-	public SoapWebService() {
-		super();
-	}
+    @Autowired
+    protected AuthService authService;
 
-	protected boolean hasMgmtPrivilages(String value) {
-		return authService.hasManagementPrivileges(context, value);
-	}
+    @Resource
+    WebServiceContext context;
 
-	protected boolean hasClientPrivilages(String value) {
-		return authService.hasClientPrivileges(context, value);
-	}
+    public SoapWebService() {
+        super();
+    }
+
+    protected boolean hasMgmtPrivilages(String value, String error) {
+        return authService.hasManagementPrivileges(context, value, error);
+    }
+
+    protected boolean hasClientPrivilages(String value, String error) {
+        return authService.hasClientPrivileges(context, value, error);
+    }
 
 }

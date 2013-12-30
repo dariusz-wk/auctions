@@ -17,6 +17,7 @@
 		<property name="demo" value="${integration.demo}"/>
 		<property name="roleWebServiceClient" ref="roleWebServiceClient"/>
 		<property name="userWebServiceClient" ref="userWebServiceClient"/>
+		<property name="usersParametersService" ref="userParametersWebServiceClient"/>
 	</bean>
 	
 	<bean id="sendMailService" class="pl.edu.agh.eaiib.auctions.service.SendMailServiceImpl">

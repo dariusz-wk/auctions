@@ -3,132 +3,150 @@ package pl.edu.agh.eaiib.auctions.service;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
-import javax.xml.ws.BindingProvider;
 import javax.xml.ws.WebServiceContext;
 import javax.xml.ws.handler.MessageContext;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.log4j.Logger;
 
 import pl.edu.agh.useraccounts.service.RoleService;
 import pl.edu.agh.useraccounts.service.UserException_Exception;
 import pl.edu.agh.useraccounts.service.UserService;
+import pl.edu.agh.useraccounts.service.UsersParametersService;
 
 public class AuthServiceImpl implements AuthService {
 
-	private static final String USERNAME_PROPERTY = "username";
+    private static Logger log = Logger.getLogger(AuthServiceImpl.class);
 
-	private static final String PASSWORD_PROPERTY = "password";
+    private static final String USERNAME_PROPERTY = "username";
 
-	private boolean demo;
+    private static final String PASSWORD_PROPERTY = "password";
 
-	public static String AUCTION_MANAGER_ROLE = "AUCTION_MANAGER_ROLE";
-	public static String AUCTION_CLIENT_ROLE = "AUCTION_CLIENT_ROLE";
-	
-	private RoleService roleWebServiceClient;
+    private boolean demo;
 
-	private UserService userWebServiceClient;
+    public static String AUCTION_MANAGER_ROLE = "AUCTION_MANAGER_ROLE";
 
-	@Override
-	public boolean hasManagementPrivileges(WebServiceContext context, String login) {
-		LoginAndPasswd lp = getLoginAndPasswd(context);
-		if (!demo) {
-			if (false == login.equals(lp.login)) {
-				return false;
-			}
-			int result = getUserWebServiceClient().authorization(lp.login, lp.passowrd);
-			if (result == 0) {
-				List<String> roles;
-				try {
-					roles = getRoleWebServiceClient().getUserRole(lp.login);
-				} catch (UserException_Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-					return false;
-				}
-				if (!roles.contains(AUCTION_MANAGER_ROLE)) {
-					return false;
-				}
-				return true;
-			}
-			return false;
-		}
-		System.out.println(lp.toString());
-		return true;
-	}
+    public static String AUCTION_CLIENT_ROLE = "AUCTION_CLIENT_ROLE";
 
-	@Override
-	public boolean hasClientPrivileges(WebServiceContext context, String login) {
-		LoginAndPasswd lp = getLoginAndPasswd(context);
-		if (!demo) {
-			if (false == login.equals(lp.login)) {
-				return false;
-			}
-			int result = getUserWebServiceClient().authorization(lp.login, lp.passowrd);
-			if (result == 0) {
-				List<String> roles;
-				try {
-					roles = getRoleWebServiceClient().getUserRole(lp.login);
-				} catch (UserException_Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-					return false;
-				}
-				if (!roles.contains(AUCTION_CLIENT_ROLE)) {
-					return false;
-				}
-				return true;
-			}
-			return false;
-		}
-		return true;
-	}
+    public static String EMAIL = "email";
 
-	private LoginAndPasswd getLoginAndPasswd(WebServiceContext context) {
-		MessageContext mctx = context.getMessageContext();
-		Map http_headers = (Map) mctx.get(MessageContext.HTTP_REQUEST_HEADERS);
-		List<String> userList = (List<String>) http_headers.get(USERNAME_PROPERTY);
-		List<String> passList = (List<String>) http_headers.get(PASSWORD_PROPERTY);
-		if (userList == null || passList == null || userList.isEmpty() || passList.isEmpty()) {
-			return new LoginAndPasswd("", "");
-		}
-		return new LoginAndPasswd(userList.get(0), passList.get(0));
-	}
+    private RoleService roleWebServiceClient;
 
-	public void setDemo(boolean demo) {
-		this.demo = demo;
-	}
+    private UserService userWebServiceClient;
 
-	public RoleService getRoleWebServiceClient() {
-		return roleWebServiceClient;
-	}
+    private UsersParametersService usersParametersService;
 
-	public void setRoleWebServiceClient(RoleService roleWebServiceClient) {
-		this.roleWebServiceClient = roleWebServiceClient;
-	}
+    @Override
+    public boolean hasManagementPrivileges(WebServiceContext context, String login, String error) {
+        return authorise(context, login, AUCTION_MANAGER_ROLE, error);
+    }
 
-	public UserService getUserWebServiceClient() {
-		return userWebServiceClient;
-	}
+    @Override
+    public boolean hasClientPrivileges(WebServiceContext context, String login, String error) {
+        return authorise(context, login, AUCTION_CLIENT_ROLE, error);
+    }
 
-	public void setUserWebServiceClient(UserService userWebServiceClient) {
-		this.userWebServiceClient = userWebServiceClient;
-	}
+    private boolean authorise(WebServiceContext context, String login, String roleName, String error) {
+        LoginAndPasswd lp = getLoginAndPasswd(context);
+        if ( !demo ) {
+            if ( false == login.equals(lp.login) ) {
+                error = "Login missmatch in request and header";
+                log.debug(error);
+                return false;
+            }
+            int result = getUserWebServiceClient().authorization(lp.login, lp.passowrd);
+            if ( result == 0 ) {
+                List<String> roles;
+                try {
+                    roles = getRoleWebServiceClient().getUserRole(lp.login);
+                } catch (UserException_Exception e) {
+                    log.warn(e.getMessage(), e);
+                    error = e.getMessage();
+                    return false;
+                }
+                if ( !roles.contains(roleName) ) {
+                    error = "Missing role " + roleName + " for user";
+                    log.debug(error);
+                    return false;
+                }
+                return true;
+            }
+            error = "Authorisation Service error: return code " + result;
+            log.debug(error);
+            return false;
+        }
+        log.debug("Auth successfull " + login + " " + roleName);
+        return true;
+    }
 
-	private static class LoginAndPasswd {
-		String login;
-		String passowrd;
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    private LoginAndPasswd getLoginAndPasswd(WebServiceContext context) {
+        MessageContext mctx = context.getMessageContext();
+        Map http_headers = (Map) mctx.get(MessageContext.HTTP_REQUEST_HEADERS);
+        List<String> userList = (List<String>) http_headers.get(USERNAME_PROPERTY);
+        List<String> passList = (List<String>) http_headers.get(PASSWORD_PROPERTY);
+        LoginAndPasswd lp;
+        if ( userList == null || passList == null || userList.isEmpty() || passList.isEmpty() ) {
+            lp = new LoginAndPasswd("", "");
+        } else {
+            lp = new LoginAndPasswd(userList.get(0), passList.get(0));
+        }
+        log.debug(lp);
+        return lp;
+    }
 
-		public LoginAndPasswd(String login, String passwd) {
-			this.login = login;
-			this.passowrd = passwd;
-		}
+    public void setDemo(boolean demo) {
+        this.demo = demo;
+    }
 
-		@Override
-		public String toString() {
-			return ToStringBuilder.reflectionToString(this);
-		}
-	}
+    public RoleService getRoleWebServiceClient() {
+        return roleWebServiceClient;
+    }
+
+    public void setRoleWebServiceClient(RoleService roleWebServiceClient) {
+        this.roleWebServiceClient = roleWebServiceClient;
+    }
+
+    public UserService getUserWebServiceClient() {
+        return userWebServiceClient;
+    }
+
+    public void setUserWebServiceClient(UserService userWebServiceClient) {
+        this.userWebServiceClient = userWebServiceClient;
+    }
+
+    private static class LoginAndPasswd {
+        String login;
+
+        String passowrd;
+
+        public LoginAndPasswd(String login, String passwd) {
+            this.login = login;
+            this.passowrd = passwd;
+        }
+
+        @Override
+        public String toString() {
+            return ToStringBuilder.reflectionToString(this);
+        }
+    }
+
+    @Override
+    public String getEmail(String login) {
+        try {
+            return usersParametersService.getUserParam(login, EMAIL);
+        } catch (UserException_Exception e) {
+            log.warn(e.getMessage(), e);
+            return null;
+        }
+    }
+
+    public UsersParametersService getUsersParametersService() {
+        return usersParametersService;
+    }
+
+    public void setUsersParametersService(UsersParametersService usersParametersService) {
+        this.usersParametersService = usersParametersService;
+    }
 
 }

@@ -25,80 +25,84 @@ import pl.edu.agh.eaiib.auctions.xsd.BetType;
 @XmlSeeAlso({ pl.edu.agh.eaiib.auctions.xsd.ObjectFactory.class })
 public class GetAuctionsForClientSoapImpl extends SoapWebService implements GetAuctionsForClientSoap {
 
-	private static final Logger log = Logger.getLogger(GetAuctionsForClientSoapImpl.class);
+    private static final Logger log = Logger.getLogger(GetAuctionsForClientSoapImpl.class);
 
-	@Override
-	public void getAuctionsForClient(Holder<String> clientLogin, AuctionListFilterType auctionListFilter, Holder<AuctionListType> auctionList, Holder<String> errors) {
-		log.trace("getAuctionsForManager " + clientLogin.value);
-		// get references to incoming data
-		String clientLoginName = clientLogin.value;
+    @Override
+    public void getAuctionsForClient(Holder<String> clientLogin, AuctionListFilterType auctionListFilter, Holder<AuctionListType> auctionList,
+            Holder<String> errors) {
+        log.trace("getAuctionsForManager " + clientLogin.value);
+        // get references to incoming data
+        String clientLoginName = clientLogin.value;
 
-		clientLogin.value = null;
+        clientLogin.value = null;
 
-		if (!hasClientPrivilages(clientLoginName)) {
-			log.trace("Lack of privileges!");
-			errors.value = "Lack of provileges!";
-			return;
-		}
-		if (auctionListFilter == null) {
-			errors.value = "auctionListFilter is required";
-			return;
-		}
-		if(Utils.isBlank(clientLoginName) || !Utils.isLogin(clientLoginName)) {
-			errors.value = "invalid login";
-			return;
-		}
-		List<Auction> auctionListItems = new ArrayList<Auction>();
+        String e = null;
+        if ( !hasClientPrivilages(clientLoginName, e) ) {
+            log.trace("Lack of privileges!");
+            errors.value = e;
+            return;
+        }
+        if ( auctionListFilter == null ) {
+            errors.value = "auctionListFilter is required";
+            return;
+        }
+        if ( Utils.isBlank(clientLoginName) || !Utils.isLogin(clientLoginName) ) {
+            errors.value = "invalid login";
+            return;
+        }
+        List<Auction> auctionListItems = new ArrayList<Auction>();
 
-		if (Utils.isNotBlank(auctionListFilter.getAuctionId() )) {
-			log.debug("Get specifix auction " + auctionListFilter.getAuctionId());
-			Long auctionId = Utils.parseLong(auctionListFilter.getAuctionId());
-			Auction a = auctionService.get(auctionId);
-			auctionListItems.add(a);
-		} else {
-			String title = Utils.isBlank(auctionListFilter.getAuctionTitleFilter()) ? null : auctionListFilter.getAuctionTitleFilter();
-			boolean finished = auctionListFilter.isFinished() == null ? false : auctionListFilter.isFinished();
-			boolean finalized = false;
+        if ( Utils.isNotBlank(auctionListFilter.getAuctionId()) ) {
+            log.debug("Get specifix auction " + auctionListFilter.getAuctionId());
+            Long auctionId = Utils.parseLong(auctionListFilter.getAuctionId());
+            Auction a = auctionService.get(auctionId);
+            auctionListItems.add(a);
+        } else {
+            String title = Utils.isBlank(auctionListFilter.getAuctionTitleFilter()) ? null : auctionListFilter.getAuctionTitleFilter();
+            boolean finished = auctionListFilter.isFinished() == null ? false : auctionListFilter.isFinished();
+            boolean finalized = false;
 
-			String amLoginV = null;
-			String clientLoginV = null;
-			if (auctionListFilter.isMy() != null && auctionListFilter.isMy() == true)
-				clientLoginV = clientLoginName;
-			Date from = Utils.formatDate(auctionListFilter.getFilterDateFrom());
-			Date till = Utils.formatDate(auctionListFilter.getFilterDateTill());
+            String amLoginV = null;
+            String clientLoginV = null;
+            if ( auctionListFilter.isMy() != null && auctionListFilter.isMy() == true ) {
+                clientLoginV = clientLoginName;
+            }
+            Date from = Utils.formatDate(auctionListFilter.getFilterDateFrom());
+            Date till = Utils.formatDate(auctionListFilter.getFilterDateTill());
 
-			auctionListItems.addAll(auctionService.find(title, finished, finalized, amLoginV, clientLoginV, from, till));
+            auctionListItems.addAll(auctionService.find(title, finished, finalized, amLoginV, clientLoginV, from, till));
 
-		}
+        }
 
-		auctionList.value = formatAuctionData(auctionListItems);
+        auctionList.value = formatAuctionData(auctionListItems);
 
-	}
+    }
 
-	private AuctionListType formatAuctionData(List<Auction> auctionListItems) {
-		AuctionListType auctionListHolder = new AuctionListType();
-		for (Auction auctionBean : auctionListItems) {
-			AuctionType auction = new AuctionType();
-			auction.setAMLogin(auctionBean.getAmLogin());
-			auction.setAuctionCurrentPrice(Utils.formatCurrency(auctionBean.getAuctionCurrentPrice() == null ? auctionBean.getAuctionStartPrice() : auctionBean.getAuctionCurrentPrice()));
-			auction.setAuctionDeliveryDesc(auctionBean.getAuctionDeliveryDesc());
-			auction.setAuctionDescription(auctionBean.getAuctionDescription());
-			auction.setAuctionEnd(Utils.formatGeorgianCalendar(auctionBean.getAuctionEnd()));
-			auction.setAuctionTitle(auctionBean.getAuctionTitle());
-			auction.setBetList(new BetListType());
+    private AuctionListType formatAuctionData(List<Auction> auctionListItems) {
+        AuctionListType auctionListHolder = new AuctionListType();
+        for (Auction auctionBean : auctionListItems) {
+            AuctionType auction = new AuctionType();
+            auction.setAMLogin(auctionBean.getAmLogin());
+            auction.setAuctionCurrentPrice(Utils.formatCurrency(auctionBean.getAuctionCurrentPrice() == null ? auctionBean.getAuctionStartPrice() : auctionBean
+                    .getAuctionCurrentPrice()));
+            auction.setAuctionDeliveryDesc(auctionBean.getAuctionDeliveryDesc());
+            auction.setAuctionDescription(auctionBean.getAuctionDescription());
+            auction.setAuctionEnd(Utils.formatGeorgianCalendar(auctionBean.getAuctionEnd()));
+            auction.setAuctionTitle(auctionBean.getAuctionTitle());
+            auction.setBetList(new BetListType());
 
-			for (int i = auctionBean.getBetList().size() - 1; i >= 0; i--) {
-				Bet betBean = auctionBean.getBetList().get(i);
-				BetType bet = new BetType();
-				bet.setBetPrice(Utils.formatCurrency(betBean.getBetPrice()));
-				bet.setClientLogin(betBean.getCientId());
-				bet.setBetTime(Utils.formatGeorgianCalendar(betBean.getBetTime()));
-				auction.getBetList().getBet().add(bet);
-			}
+            for (int i = auctionBean.getBetList().size() - 1; i >= 0; i--) {
+                Bet betBean = auctionBean.getBetList().get(i);
+                BetType bet = new BetType();
+                bet.setBetPrice(Utils.formatCurrency(betBean.getBetPrice()));
+                bet.setClientLogin(betBean.getCientId());
+                bet.setBetTime(Utils.formatGeorgianCalendar(betBean.getBetTime()));
+                auction.getBetList().getBet().add(bet);
+            }
 
-			auctionListHolder.getAuction().add(auction);
-		}
-		return auctionListHolder;
-	}
+            auctionListHolder.getAuction().add(auction);
+        }
+        return auctionListHolder;
+    }
 
 }
