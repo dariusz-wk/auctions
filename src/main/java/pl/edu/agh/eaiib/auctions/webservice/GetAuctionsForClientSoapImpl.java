@@ -36,10 +36,10 @@ public class GetAuctionsForClientSoapImpl extends SoapWebService implements GetA
 
         clientLogin.value = null;
 
-        String e = null;
+        List<String> e = new ArrayList<String>();
         if ( !hasClientPrivilages(clientLoginName, e) ) {
             log.trace("Lack of privileges!");
-            errors.value = e;
+            errors.value = e.toString();
             return;
         }
         if ( auctionListFilter == null ) {

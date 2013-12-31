@@ -18,9 +18,9 @@ public class AuthServiceImpl implements AuthService {
 
     private static Logger log = Logger.getLogger(AuthServiceImpl.class);
 
-    private static final String USERNAME_PROPERTY = "username";
+    public static final String USERNAME_PROPERTY = "username";
 
-    private static final String PASSWORD_PROPERTY = "password";
+    public static final String PASSWORD_PROPERTY = "password";
 
     private boolean demo;
 
@@ -37,20 +37,20 @@ public class AuthServiceImpl implements AuthService {
     private UsersParametersService usersParametersService;
 
     @Override
-    public boolean hasManagementPrivileges(WebServiceContext context, String login, String error) {
+    public boolean hasManagementPrivileges(WebServiceContext context, String login, List<String> error) {
         return authorise(context, login, AUCTION_MANAGER_ROLE, error);
     }
 
     @Override
-    public boolean hasClientPrivileges(WebServiceContext context, String login, String error) {
+    public boolean hasClientPrivileges(WebServiceContext context, String login, List<String> error) {
         return authorise(context, login, AUCTION_CLIENT_ROLE, error);
     }
 
-    private boolean authorise(WebServiceContext context, String login, String roleName, String error) {
+    private boolean authorise(WebServiceContext context, String login, String roleName, List<String> error) {
         LoginAndPasswd lp = getLoginAndPasswd(context);
         if ( !demo ) {
             if ( false == login.equals(lp.login) ) {
-                error = "Login missmatch in request and header";
+                error.add("Login missmatch in request and header");
                 log.debug(error);
                 return false;
             }
@@ -61,17 +61,17 @@ public class AuthServiceImpl implements AuthService {
                     roles = getRoleWebServiceClient().getUserRole(lp.login);
                 } catch (UserException_Exception e) {
                     log.warn(e.getMessage(), e);
-                    error = e.getMessage();
+                    error.add(e.getMessage());
                     return false;
                 }
                 if ( !roles.contains(roleName) ) {
-                    error = "Missing role " + roleName + " for user";
+                    error.add("Missing role " + roleName + " for user");
                     log.debug(error);
                     return false;
                 }
                 return true;
             }
-            error = "Authorisation Service error: return code " + result;
+            error.add("Authorisation Service error: return code " + result);
             log.debug(error);
             return false;
         }

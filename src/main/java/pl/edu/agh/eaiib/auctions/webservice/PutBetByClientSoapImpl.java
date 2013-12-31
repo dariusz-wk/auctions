@@ -1,6 +1,8 @@
 package pl.edu.agh.eaiib.auctions.webservice;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.jws.WebService;
 import javax.xml.bind.annotation.XmlSeeAlso;
@@ -31,10 +33,10 @@ public class PutBetByClientSoapImpl extends SoapWebService implements PutBetByCl
 
         clientLoginHolder.value = null;
 
-        String e = null;
+        List<String> e = new ArrayList<String>();
         if ( !hasClientPrivilages(clientLogin, e) ) {
             log.trace("Lack of privileges!");
-            errors.value = e;
+            errors.value = e.toString();
             return;
         }
 

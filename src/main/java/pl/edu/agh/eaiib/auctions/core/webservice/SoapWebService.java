@@ -1,5 +1,7 @@
 package pl.edu.agh.eaiib.auctions.core.webservice;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.xml.ws.WebServiceContext;
 
@@ -23,11 +25,11 @@ public class SoapWebService {
         super();
     }
 
-    protected boolean hasMgmtPrivilages(String value, String error) {
+    protected boolean hasMgmtPrivilages(String value, List<String> error) {
         return authService.hasManagementPrivileges(context, value, error);
     }
 
-    protected boolean hasClientPrivilages(String value, String error) {
+    protected boolean hasClientPrivilages(String value, List<String> error) {
         return authService.hasClientPrivileges(context, value, error);
     }
 

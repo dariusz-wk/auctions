@@ -19,7 +19,9 @@ public class UsersParametersServiceMock implements UsersParametersService {
     public String getUserParam(@WebParam(name = "login", targetNamespace = "")
     String login, @WebParam(name = "paramKey", targetNamespace = "")
     String paramKey) throws UserException_Exception {
-        // TODO Auto-generated method stub
+        if ( login.equals("AMaccount") && paramKey.equals("email") ) {
+            return "an@e.mail";
+        }
         return null;
     }
 

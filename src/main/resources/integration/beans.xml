@@ -23,9 +23,9 @@
         <property name="address" value="${integration.roleservice}"/>
     </bean>
     
-	<bean id="userParametersWebServiceClient" class="pl.edu.agh.useraccounts.service.UserParametersService" factory-bean="userParametersWebServiceClientFactory" factory-method="create"/>
+	<bean id="userParametersWebServiceClient" class="pl.edu.agh.useraccounts.service.UsersParametersService" factory-bean="userParametersWebServiceClientFactory" factory-method="create"/>
     <bean id="userParametersWebServiceClientFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
-        <property name="serviceClass" value="pl.edu.agh.useraccounts.service.UserParametersService"/>
+        <property name="serviceClass" value="pl.edu.agh.useraccounts.service.UsersParametersService"/>
         <property name="address" value="${integration.userparametersservice}"/>
     </bean>
     

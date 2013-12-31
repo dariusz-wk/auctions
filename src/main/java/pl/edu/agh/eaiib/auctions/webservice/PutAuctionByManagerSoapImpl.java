@@ -1,5 +1,8 @@
 package pl.edu.agh.eaiib.auctions.webservice;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.jws.WebService;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.ws.Holder;
@@ -32,10 +35,10 @@ public class PutAuctionByManagerSoapImpl extends SoapWebService implements PutAu
         amLoginHolder.value = null;
         auctionHolder.value = null;
 
-        String e = null;
+        List<String> e = new ArrayList<String>();
         if ( !hasMgmtPrivilages(amLoginName, e) ) {
             log.trace("Lack of privileges!");
-            errors.value = e;
+            errors.value = e.toString();
             return;
         }
         String errorMsg = null;
