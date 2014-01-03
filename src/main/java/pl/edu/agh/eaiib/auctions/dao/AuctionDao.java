@@ -7,7 +7,7 @@ import pl.edu.agh.eaiib.auctions.core.dao.BaseDao;
 import pl.edu.agh.eaiib.auctions.model.Auction;
 
 public interface AuctionDao extends BaseDao<Auction, Long> {
-	List<Auction> find(String title, boolean finished, boolean finalized, String amLogin, String clientLogin, Date from, Date till);
+    List<Auction> find(String title, Boolean finished, Boolean finalized, String amLogin, String clientLogin, Date from, Date till);
 
-	List<Auction> findToFinish();
+    List<Auction> findToFinish();
 }

@@ -1,4 +1,3 @@
-
 package pl.edu.agh.eaiib.auctions.xsd;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -8,11 +7,14 @@ import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
 
 /**
- * <p>Java class for BetType complex type.
+ * <p>
+ * Java class for BetType complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="BetType">
@@ -31,28 +33,24 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "BetType", propOrder = {
-    "betPrice",
-    "betTime",
-    "clientLogin"
-})
+@XmlType(name = "BetType", propOrder = { "betPrice", "betTime", "clientLogin" })
 public class BetType {
 
     @XmlElement(name = "BetPrice", required = true)
     protected String betPrice;
+
     @XmlElement(name = "BetTime", required = true)
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar betTime;
+
     @XmlElement(name = "ClientLogin", required = true)
     protected String clientLogin;
 
     /**
      * Gets the value of the betPrice property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getBetPrice() {
         return betPrice;
@@ -61,10 +59,8 @@ public class BetType {
     /**
      * Sets the value of the betPrice property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param value allowed object is {@link String }
+     * 
      */
     public void setBetPrice(String value) {
         this.betPrice = value;
@@ -73,10 +69,8 @@ public class BetType {
     /**
      * Gets the value of the betTime property.
      * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     * @return possible object is {@link XMLGregorianCalendar }
+     * 
      */
     public XMLGregorianCalendar getBetTime() {
         return betTime;
@@ -85,10 +79,8 @@ public class BetType {
     /**
      * Sets the value of the betTime property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     * @param value allowed object is {@link XMLGregorianCalendar }
+     * 
      */
     public void setBetTime(XMLGregorianCalendar value) {
         this.betTime = value;
@@ -97,10 +89,8 @@ public class BetType {
     /**
      * Gets the value of the clientLogin property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getClientLogin() {
         return clientLogin;
@@ -109,13 +99,15 @@ public class BetType {
     /**
      * Sets the value of the clientLogin property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param value allowed object is {@link String }
+     * 
      */
     public void setClientLogin(String value) {
         this.clientLogin = value;
     }
 
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
+    }
 }

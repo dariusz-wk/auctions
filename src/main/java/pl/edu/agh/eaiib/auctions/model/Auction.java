@@ -22,220 +22,227 @@ import pl.edu.agh.eaiib.auctions.core.model.BaseBean;
 @Table(name = "AUCTION")
 public class Auction extends BaseBean<Long> {
 
-	@Id
-	@GeneratedValue
-	@Column(name = "AUCTION_ID")
-	protected Long id;
+    @Id
+    @GeneratedValue
+    @Column(name = "AUCTION_ID")
+    protected Long id;
 
-	@Column(name = "AUCTION_TITLE")
-	protected String auctionTitle;
+    @Column(name = "AUCTION_TITLE")
+    protected String auctionTitle;
 
-	@Column(name = "AUCTION_START")
-	protected Date auctionStart;
+    @Column(name = "AUCTION_START")
+    protected Date auctionStart;
 
-	@Column(name = "AUCTION_END")
-	protected Date auctionEnd;
+    @Column(name = "AUCTION_END")
+    protected Date auctionEnd;
 
-	@Column(name = "AUCTION_START_PRICE")
-	protected double auctionStartPrice;
+    @Column(name = "AUCTION_START_PRICE")
+    protected double auctionStartPrice;
 
-	@Column(name = "AUCTION_CURRENT_PRICE")
-	protected Double auctionCurrentPrice;
+    @Column(name = "AUCTION_CURRENT_PRICE")
+    protected Double auctionCurrentPrice;
 
-	@Column(name = "AUCTION_DESC")
-	protected String auctionDescription;
+    @Column(name = "AUCTION_DESC")
+    protected String auctionDescription;
 
-	@Column(name = "AUCTION_DELIVERY_DESC")
-	protected String auctionDeliveryDesc;
+    @Column(name = "AUCTION_DELIVERY_DESC")
+    protected String auctionDeliveryDesc;
 
-	@Column(name = "AUCTION_FINISHED")
-	protected Boolean finished;
+    @Column(name = "AUCTION_FINISHED")
+    protected Boolean finished;
 
-	@Column(name = "AUCTION_WON")
-	protected Boolean won;
+    @Column(name = "AUCTION_WON")
+    protected Boolean won;
 
-	@Column(name = "AUCTION_FINALIZED")
-	protected Boolean finalized;
+    @Column(name = "AUCTION_FINALIZED")
+    protected Boolean finalized;
 
-	@Column(name = "AUCTION_OWNER")
-	protected String amLogin;
+    @Column(name = "AUCTION_OWNER")
+    protected String amLogin;
 
-	@OneToMany(mappedBy = "auction", orphanRemoval = true)
-	@Cascade(value = { org.hibernate.annotations.CascadeType.ALL })
-	private List<Image> auctionImgUrl;
+    @OneToMany(mappedBy = "auction", orphanRemoval = true)
+    @Cascade(value = { org.hibernate.annotations.CascadeType.ALL })
+    private List<Image> auctionImgUrl;
 
-	@OneToOne(mappedBy = "auction", optional = true, orphanRemoval = true)
-	@Cascade(value = { org.hibernate.annotations.CascadeType.ALL })
-	protected AMContact auctionManagerContact;
+    @OneToOne(mappedBy = "auction", optional = true, orphanRemoval = true)
+    @Cascade(value = { org.hibernate.annotations.CascadeType.ALL })
+    protected AMContact auctionManagerContact;
 
-	@OneToOne(mappedBy = "auction", optional = true, orphanRemoval = true)
-	@Cascade(value = { org.hibernate.annotations.CascadeType.ALL })
-	protected BuyerContact buyerContact;
+    @OneToOne(mappedBy = "auction", optional = true, orphanRemoval = true)
+    @Cascade(value = { org.hibernate.annotations.CascadeType.ALL })
+    protected BuyerContact buyerContact;
 
-	@OneToMany(mappedBy = "auction", orphanRemoval = true)
-	@Cascade(value = { org.hibernate.annotations.CascadeType.ALL })
-	protected List<Bet> betList;
+    @OneToMany(mappedBy = "auction", orphanRemoval = true)
+    @Cascade(value = { org.hibernate.annotations.CascadeType.ALL })
+    protected List<Bet> betList;
 
-	@Transient
-	private	String error = null;
-	
-	@Override
-	public String toString() {
-		return ToStringBuilder.reflectionToString(this);
-	}
+    @Transient
+    private String error = null;
 
-	public Long getId() {
-		return id;
-	}
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    @Override
+    public Long getId() {
+        return id;
+    }
 
-	public String getAuctionTitle() {
-		return auctionTitle;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setAuctionTitle(String auctionTitle) {
-		this.auctionTitle = auctionTitle;
-	}
+    public String getAuctionTitle() {
+        return auctionTitle;
+    }
 
-	public Date getAuctionStart() {
-		return auctionStart;
-	}
+    public void setAuctionTitle(String auctionTitle) {
+        this.auctionTitle = auctionTitle;
+    }
 
-	public void setAuctionStart(Date auctionStart) {
-		this.auctionStart = auctionStart;
-	}
+    public Date getAuctionStart() {
+        return auctionStart;
+    }
 
-	public Date getAuctionEnd() {
-		return auctionEnd;
-	}
+    public void setAuctionStart(Date auctionStart) {
+        this.auctionStart = auctionStart;
+    }
 
-	public void setAuctionEnd(Date auctionEnd) {
-		this.auctionEnd = auctionEnd;
-	}
+    public Date getAuctionEnd() {
+        return auctionEnd;
+    }
 
-	public double getAuctionStartPrice() {
-		return auctionStartPrice;
-	}
+    public void setAuctionEnd(Date auctionEnd) {
+        this.auctionEnd = auctionEnd;
+    }
 
-	public void setAuctionStartPrice(double auctionStartPrice) {
-		this.auctionStartPrice = auctionStartPrice;
-	}
+    public double getAuctionStartPrice() {
+        return auctionStartPrice;
+    }
 
-	public Double getAuctionCurrentPrice() {
-		return auctionCurrentPrice;
-	}
+    public void setAuctionStartPrice(double auctionStartPrice) {
+        this.auctionStartPrice = auctionStartPrice;
+    }
 
-	public void setAuctionCurrentPrice(Double auctionCurrentPrice) {
-		this.auctionCurrentPrice = auctionCurrentPrice;
-	}
+    public Double getAuctionCurrentPrice() {
+        return auctionCurrentPrice;
+    }
 
-	public String getAuctionDescription() {
-		return auctionDescription;
-	}
+    public void setAuctionCurrentPrice(Double auctionCurrentPrice) {
+        this.auctionCurrentPrice = auctionCurrentPrice;
+    }
 
-	public void setAuctionDescription(String auctionDescription) {
-		this.auctionDescription = auctionDescription;
-	}
+    public String getAuctionDescription() {
+        return auctionDescription;
+    }
 
-	public String getAuctionDeliveryDesc() {
-		return auctionDeliveryDesc;
-	}
+    public void setAuctionDescription(String auctionDescription) {
+        this.auctionDescription = auctionDescription;
+    }
 
-	public void setAuctionDeliveryDesc(String auctionDeliveryDesc) {
-		this.auctionDeliveryDesc = auctionDeliveryDesc;
-	}
+    public String getAuctionDeliveryDesc() {
+        return auctionDeliveryDesc;
+    }
 
-	public Boolean getFinished() {
-		return finished;
-	}
+    public void setAuctionDeliveryDesc(String auctionDeliveryDesc) {
+        this.auctionDeliveryDesc = auctionDeliveryDesc;
+    }
 
-	public void setFinished(Boolean finished) {
-		this.finished = finished;
-	}
+    public Boolean getFinished() {
+        return finished;
+    }
 
-	public Boolean getWon() {
-		return won;
-	}
+    public void setFinished(Boolean finished) {
+        this.finished = finished;
+    }
 
-	public void setWon(Boolean won) {
-		this.won = won;
-	}
+    public Boolean getWon() {
+        return won;
+    }
 
-	public Boolean getFinalized() {
-		return finalized;
-	}
+    public void setWon(Boolean won) {
+        this.won = won;
+    }
 
-	public void setFinalized(Boolean finalized) {
-		this.finalized = finalized;
-	}
+    public Boolean getFinalized() {
+        return finalized;
+    }
 
-	public String getAmLogin() {
-		return amLogin;
-	}
+    public void setFinalized(Boolean finalized) {
+        this.finalized = finalized;
+    }
 
-	public void setAmLogin(String amLogin) {
-		this.amLogin = amLogin;
-	}
+    public String getAmLogin() {
+        return amLogin;
+    }
 
-	public List<Bet> getBetList() {
-		if (betList == null) {
-			betList = new ArrayList<Bet>();
-		}
-		return betList;
-	}
+    public void setAmLogin(String amLogin) {
+        this.amLogin = amLogin;
+    }
 
-	public void addBet(Bet bet) {
-		getBetList().add(bet);
-		bet.setAuction(this);
-	}
+    public List<Bet> getBetList() {
+        if ( betList == null ) {
+            betList = new ArrayList<Bet>();
+        }
+        return betList;
+    }
 
-	public void setBetList(List<Bet> betList) {
-		this.betList = betList;
-	}
+    public void addBet(Bet bet) {
+        getBetList().add(bet);
+        bet.setAuction(this);
+    }
 
-	public AMContact getAuctionManagerContact() {
-		return auctionManagerContact;
-	}
+    public void setBetList(List<Bet> betList) {
+        this.betList = betList;
+    }
 
-	public void setAuctionManagerContact(AMContact auctionManagerContact) {
-		this.auctionManagerContact = auctionManagerContact;
-		auctionManagerContact.setAuction(this);
-	}
+    public AMContact getAuctionManagerContact() {
+        return auctionManagerContact;
+    }
 
-	public BuyerContact getBuyerContact() {
-		return buyerContact;
-	}
+    public void setAuctionManagerContact(AMContact auctionManagerContact) {
+        this.auctionManagerContact = auctionManagerContact;
+        auctionManagerContact.setAuction(this);
+        if ( id != null ) {
+            auctionManagerContact.setId(id);
+        }
+    }
 
-	public void setBuyerContact(BuyerContact buyerContact) {
-		this.buyerContact = buyerContact;
-		buyerContact.setAuction(this);
-	}
+    public BuyerContact getBuyerContact() {
+        return buyerContact;
+    }
 
-	public List<Image> getAuctionImgUrl() {
-		if (this.auctionImgUrl == null) {
-			this.auctionImgUrl = new ArrayList<Image>();
-		}
-		return auctionImgUrl;
-	}
+    public void setBuyerContact(BuyerContact buyerContact) {
+        this.buyerContact = buyerContact;
+        this.buyerContact.setAuction(this);
+        if ( id != null ) {
+            this.buyerContact.setId(id);
+        }
+    }
 
-	public void addAuctionImgUrl(Image auctionImgUrl) {
-		getAuctionImgUrl().add(auctionImgUrl);
-		auctionImgUrl.setAuction(this);
-	}
+    public List<Image> getAuctionImgUrl() {
+        if ( this.auctionImgUrl == null ) {
+            this.auctionImgUrl = new ArrayList<Image>();
+        }
+        return auctionImgUrl;
+    }
 
-	public void setAuctionImgUrl(List<Image> auctionImgUrl) {
-		this.auctionImgUrl = auctionImgUrl;
-	}
+    public void addAuctionImgUrl(Image auctionImgUrl) {
+        getAuctionImgUrl().add(auctionImgUrl);
+        auctionImgUrl.setAuction(this);
+    }
 
-	public String getError() {
-		return error;
-	}
+    public void setAuctionImgUrl(List<Image> auctionImgUrl) {
+        this.auctionImgUrl = auctionImgUrl;
+    }
 
-	public void setError(String error) {
-		this.error = error;
-	}
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+    }
 
 }

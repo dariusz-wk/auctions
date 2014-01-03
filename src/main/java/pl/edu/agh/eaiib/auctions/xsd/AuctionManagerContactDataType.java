@@ -1,4 +1,3 @@
-
 package pl.edu.agh.eaiib.auctions.xsd;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -6,11 +5,14 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
 
 /**
- * <p>Java class for AuctionManagerContactDataType complex type.
+ * <p>
+ * Java class for AuctionManagerContactDataType complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="AuctionManagerContactDataType">
@@ -32,36 +34,32 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "AuctionManagerContactDataType", propOrder = {
-    "amName",
-    "amSurname",
-    "amPhone",
-    "amEmail",
-    "amAccountNb",
-    "amAccountBank"
-})
+@XmlType(name = "AuctionManagerContactDataType", propOrder = { "amName", "amSurname", "amPhone", "amEmail", "amAccountNb", "amAccountBank" })
 public class AuctionManagerContactDataType {
 
     @XmlElement(name = "AMName", required = true)
     protected String amName;
+
     @XmlElement(name = "AMSurname", required = true)
     protected String amSurname;
+
     @XmlElement(name = "AMPhone", required = true)
     protected String amPhone;
+
     @XmlElement(name = "AMEmail", required = true)
     protected String amEmail;
+
     @XmlElement(name = "AMAccountNb", required = true)
     protected String amAccountNb;
+
     @XmlElement(name = "AMAccountBank", required = true)
     protected String amAccountBank;
 
     /**
      * Gets the value of the amName property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getAMName() {
         return amName;
@@ -70,10 +68,8 @@ public class AuctionManagerContactDataType {
     /**
      * Sets the value of the amName property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param value allowed object is {@link String }
+     * 
      */
     public void setAMName(String value) {
         this.amName = value;
@@ -82,10 +78,8 @@ public class AuctionManagerContactDataType {
     /**
      * Gets the value of the amSurname property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getAMSurname() {
         return amSurname;
@@ -94,10 +88,8 @@ public class AuctionManagerContactDataType {
     /**
      * Sets the value of the amSurname property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param value allowed object is {@link String }
+     * 
      */
     public void setAMSurname(String value) {
         this.amSurname = value;
@@ -106,10 +98,8 @@ public class AuctionManagerContactDataType {
     /**
      * Gets the value of the amPhone property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getAMPhone() {
         return amPhone;
@@ -118,10 +108,8 @@ public class AuctionManagerContactDataType {
     /**
      * Sets the value of the amPhone property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param value allowed object is {@link String }
+     * 
      */
     public void setAMPhone(String value) {
         this.amPhone = value;
@@ -130,10 +118,8 @@ public class AuctionManagerContactDataType {
     /**
      * Gets the value of the amEmail property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getAMEmail() {
         return amEmail;
@@ -142,10 +128,8 @@ public class AuctionManagerContactDataType {
     /**
      * Sets the value of the amEmail property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param value allowed object is {@link String }
+     * 
      */
     public void setAMEmail(String value) {
         this.amEmail = value;
@@ -154,10 +138,8 @@ public class AuctionManagerContactDataType {
     /**
      * Gets the value of the amAccountNb property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getAMAccountNb() {
         return amAccountNb;
@@ -166,10 +148,8 @@ public class AuctionManagerContactDataType {
     /**
      * Sets the value of the amAccountNb property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param value allowed object is {@link String }
+     * 
      */
     public void setAMAccountNb(String value) {
         this.amAccountNb = value;
@@ -178,10 +158,8 @@ public class AuctionManagerContactDataType {
     /**
      * Gets the value of the amAccountBank property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getAMAccountBank() {
         return amAccountBank;
@@ -190,13 +168,15 @@ public class AuctionManagerContactDataType {
     /**
      * Sets the value of the amAccountBank property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param value allowed object is {@link String }
+     * 
      */
     public void setAMAccountBank(String value) {
         this.amAccountBank = value;
     }
 
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
+    }
 }

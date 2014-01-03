@@ -24,13 +24,17 @@ import pl.edu.agh.eaiib.auctions.service.AuctionService;
 import pl.edu.agh.eaiib.auctions.service.AuthServiceImpl;
 import pl.edu.agh.eaiib.auctions.utils.Utils;
 import pl.edu.agh.eaiib.auctions.webservice.PutAuctionByManagerSoapImpl;
+import pl.edu.agh.eaiib.auctions.webservice.PutAuctionFinalizationFormByClientSoapImpl;
 import pl.edu.agh.eaiib.auctions.webservice.PutBetByClientSoapImpl;
+import pl.edu.agh.eaiib.auctions.wsdl.GetAuctionsForClientSoap;
+import pl.edu.agh.eaiib.auctions.wsdl.GetAuctionsForManagerSoap;
 import pl.edu.agh.eaiib.auctions.wsdl.PutAuctionByManagerSoap;
 import pl.edu.agh.eaiib.auctions.wsdl.PutAuctionFinalizationFormByClientSoap;
 import pl.edu.agh.eaiib.auctions.wsdl.PutBetByClientSoap;
 import pl.edu.agh.eaiib.auctions.xsd.AuctionManagerContactDataType;
 import pl.edu.agh.eaiib.auctions.xsd.AuctionType;
 import pl.edu.agh.eaiib.auctions.xsd.BetType;
+import pl.edu.agh.eaiib.auctions.xsd.ClientContactDataType;
 
 public abstract class AuctionUnitTestBase {
 
@@ -56,6 +60,12 @@ public abstract class AuctionUnitTestBase {
 
     @Autowired
     AuctionDao auctionDao;
+
+    @Autowired
+    GetAuctionsForManagerSoap getAuctionsForManagerSoap;
+
+    @Autowired
+    GetAuctionsForClientSoap auctionsForClientSoap;
 
     public AuctionUnitTestBase() {
         super();
@@ -156,6 +166,36 @@ public abstract class AuctionUnitTestBase {
         Assert.assertEquals(2, b.size());
 
         Assert.assertEquals(b.get(b.size() - 1).getBetPrice(), 180.0, 0.1);
+        return id;
+    }
+
+    Long prepareAuctionFinished() {
+        Long id = prepareAuctionWithBet180();
+        Assert.assertNotNull(id);
+
+        Auction ac = auctionService.get(id);
+        Assert.assertNotNull(ac);
+
+        ac.setFinished(true);
+        auctionService.update(ac);
+
+        ClientContactDataType clientContactData = new ClientContactDataType();
+        clientContactData.setClientAddress("DOM ");
+        clientContactData.setClientEmail("an@e.mail");
+        clientContactData.setClientName("JOHN");
+        clientContactData.setClientPhone("999999999");
+        clientContactData.setClientSurname("DOE");
+
+        // CLIENT thinks he won
+        Holder<String> errors = holder("");
+        Holder<AuctionManagerContactDataType> adata = holder((AuctionManagerContactDataType) null);
+
+        ((PutAuctionFinalizationFormByClientSoapImpl) putAuctionFinalizationFormByClientSoap).setContext(getContext());
+        putAuctionFinalizationFormByClientSoap.putAuctionFinalizationFormByClient(id.toString(), holder(CLIENT2), clientContactData, holder(AMTEST), adata,
+                holder(new AuctionType()), errors);
+        log.debug(errors.value);
+        Assert.assertTrue(Utils.isBlank(errors.value));
+        Assert.assertNotNull(adata.value);
         return id;
     }
 

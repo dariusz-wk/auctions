@@ -1,4 +1,3 @@
-
 package pl.edu.agh.eaiib.auctions.xsd;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -8,11 +7,14 @@ import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
 
 /**
- * <p>Java class for AuctionListFilterType complex type.
+ * <p>
+ * Java class for AuctionListFilterType complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="AuctionListFilterType">
@@ -34,27 +36,25 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "AuctionListFilterType", propOrder = {
-    "auctionId",
-    "auctionTitleFilter",
-    "finished",
-    "my",
-    "filterDateFrom",
-    "filterDateTill"
-})
+@XmlType(name = "AuctionListFilterType", propOrder = { "auctionId", "auctionTitleFilter", "finished", "my", "filterDateFrom", "filterDateTill" })
 public class AuctionListFilterType {
 
     @XmlElement(name = "AuctionId")
     protected String auctionId;
+
     @XmlElement(name = "AuctionTitleFilter")
     protected String auctionTitleFilter;
+
     @XmlElement(name = "Finished")
     protected Boolean finished;
+
     @XmlElement(name = "My")
     protected Boolean my;
+
     @XmlElement(name = "FilterDateFrom")
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar filterDateFrom;
+
     @XmlElement(name = "FilterDateTill")
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar filterDateTill;
@@ -62,10 +62,8 @@ public class AuctionListFilterType {
     /**
      * Gets the value of the auctionId property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getAuctionId() {
         return auctionId;
@@ -74,10 +72,8 @@ public class AuctionListFilterType {
     /**
      * Sets the value of the auctionId property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param value allowed object is {@link String }
+     * 
      */
     public void setAuctionId(String value) {
         this.auctionId = value;
@@ -86,10 +82,8 @@ public class AuctionListFilterType {
     /**
      * Gets the value of the auctionTitleFilter property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getAuctionTitleFilter() {
         return auctionTitleFilter;
@@ -98,10 +92,8 @@ public class AuctionListFilterType {
     /**
      * Sets the value of the auctionTitleFilter property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param value allowed object is {@link String }
+     * 
      */
     public void setAuctionTitleFilter(String value) {
         this.auctionTitleFilter = value;
@@ -110,10 +102,8 @@ public class AuctionListFilterType {
     /**
      * Gets the value of the finished property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Boolean }
-     *     
+     * @return possible object is {@link Boolean }
+     * 
      */
     public Boolean isFinished() {
         return finished;
@@ -122,10 +112,8 @@ public class AuctionListFilterType {
     /**
      * Sets the value of the finished property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link Boolean }
-     *     
+     * @param value allowed object is {@link Boolean }
+     * 
      */
     public void setFinished(Boolean value) {
         this.finished = value;
@@ -134,10 +122,8 @@ public class AuctionListFilterType {
     /**
      * Gets the value of the my property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Boolean }
-     *     
+     * @return possible object is {@link Boolean }
+     * 
      */
     public Boolean isMy() {
         return my;
@@ -146,10 +132,8 @@ public class AuctionListFilterType {
     /**
      * Sets the value of the my property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link Boolean }
-     *     
+     * @param value allowed object is {@link Boolean }
+     * 
      */
     public void setMy(Boolean value) {
         this.my = value;
@@ -158,10 +142,8 @@ public class AuctionListFilterType {
     /**
      * Gets the value of the filterDateFrom property.
      * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     * @return possible object is {@link XMLGregorianCalendar }
+     * 
      */
     public XMLGregorianCalendar getFilterDateFrom() {
         return filterDateFrom;
@@ -170,10 +152,8 @@ public class AuctionListFilterType {
     /**
      * Sets the value of the filterDateFrom property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     * @param value allowed object is {@link XMLGregorianCalendar }
+     * 
      */
     public void setFilterDateFrom(XMLGregorianCalendar value) {
         this.filterDateFrom = value;
@@ -182,10 +162,8 @@ public class AuctionListFilterType {
     /**
      * Gets the value of the filterDateTill property.
      * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     * @return possible object is {@link XMLGregorianCalendar }
+     * 
      */
     public XMLGregorianCalendar getFilterDateTill() {
         return filterDateTill;
@@ -194,13 +172,15 @@ public class AuctionListFilterType {
     /**
      * Sets the value of the filterDateTill property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     * @param value allowed object is {@link XMLGregorianCalendar }
+     * 
      */
     public void setFilterDateTill(XMLGregorianCalendar value) {
         this.filterDateTill = value;
     }
 
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
+    }
 }

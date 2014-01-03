@@ -3,111 +3,114 @@ package pl.edu.agh.eaiib.auctions.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Parameter;
+import org.apache.commons.lang.builder.ToStringBuilder;
 
 import pl.edu.agh.eaiib.auctions.core.model.BaseBean;
 
 @Entity
-@Table(name="BUYER_CONTACT")
+@Table(name = "BUYER_CONTACT")
 public class BuyerContact extends BaseBean<Long> {
-	@Id
-	@GeneratedValue(generator="bc_gen")
-    @GenericGenerator(name="bc_gen", strategy="foreign", parameters=@Parameter(name="property", value="auction"))
-	@Column(name = "AUCTION_ID")
-	private Long id;
-	
-	@Column(name = "LOGIN")
-	private String login;
+    @Id
+    // @GeneratedValue(generator = "bc_gen")
+    // @GenericGenerator(name = "bc_gen", strategy = "foreign", parameters = @Parameter(name = "property", value = "auction"))
+    @Column(name = "AUCTION_ID")
+    private Long id;
 
-	@Column(name = "EMAIL")
-	private String email;
+    @Column(name = "LOGIN")
+    private String login;
 
-	@Column(name = "PHONE")
-	private String phone;
+    @Column(name = "EMAIL")
+    private String email;
 
-	@Column(name = "NAME")
-	private String name;
+    @Column(name = "PHONE")
+    private String phone;
 
-	@Column(name = "SURNAME")
-	private String surname;
+    @Column(name = "NAME")
+    private String name;
 
-	@Column(name = "ADDRESS")
-	private String address;
+    @Column(name = "SURNAME")
+    private String surname;
 
-	@OneToOne(fetch = FetchType.LAZY)
-	@PrimaryKeyJoinColumn
-	private Auction auction;
+    @Column(name = "ADDRESS")
+    private String address;
 
-	public Long getId() {
-		return id;
-	}
+    @OneToOne(fetch = FetchType.LAZY)
+    @PrimaryKeyJoinColumn
+    private Auction auction;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
+    }
 
-	public String getLogin() {
-		return login;
-	}
+    @Override
+    public Long getId() {
+        return id;
+    }
 
-	public void setLogin(String login) {
-		this.login = login;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public String getLogin() {
+        return login;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setLogin(String login) {
+        this.login = login;
+    }
 
-	public String getPhone() {
-		return phone;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getPhone() {
+        return phone;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
-	public String getSurname() {
-		return surname;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getAddress() {
-		return address;
-	}
+    public String getSurname() {
+        return surname;
+    }
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
 
-	public Auction getAuction() {
-		return auction;
-	}
+    public String getAddress() {
+        return address;
+    }
 
-	public void setAuction(Auction auction) {
-		this.auction = auction;
-	}
-	
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Auction getAuction() {
+        return auction;
+    }
+
+    public void setAuction(Auction auction) {
+        this.auction = auction;
+    }
 
 }

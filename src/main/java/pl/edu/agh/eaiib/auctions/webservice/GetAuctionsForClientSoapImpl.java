@@ -59,8 +59,8 @@ public class GetAuctionsForClientSoapImpl extends SoapWebService implements GetA
             auctionListItems.add(a);
         } else {
             String title = Utils.isBlank(auctionListFilter.getAuctionTitleFilter()) ? null : auctionListFilter.getAuctionTitleFilter();
-            boolean finished = auctionListFilter.isFinished() == null ? false : auctionListFilter.isFinished();
-            boolean finalized = false;
+            Boolean finished = auctionListFilter.isFinished() == null ? false : auctionListFilter.isFinished();
+            Boolean finalized = null;
 
             String amLoginV = null;
             String clientLoginV = null;

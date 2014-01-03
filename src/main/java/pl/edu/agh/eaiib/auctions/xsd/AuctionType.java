@@ -1,8 +1,8 @@
-
 package pl.edu.agh.eaiib.auctions.xsd;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -10,11 +10,14 @@ import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
 
 /**
- * <p>Java class for AuctionType complex type.
+ * <p>
+ * Java class for AuctionType complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="AuctionType">
@@ -35,6 +38,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="Finalized" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *         &lt;element name="AMLogin" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="BetList" type="{http://eaiib.agh.edu.pl/auctions/xsd/}BetListType" minOccurs="0"/>
+ *         &lt;element name="AuctionManagerContactData" type="{http://eaiib.agh.edu.pl/auctions/xsd/}AuctionManagerContactDataType" minOccurs="0"/>
+ *         &lt;element name="ClientContactData" type="{http://eaiib.agh.edu.pl/auctions/xsd/}ClientContactDataType" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -44,62 +49,66 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "AuctionType", propOrder = {
-    "auctionId",
-    "auctionTitle",
-    "auctionImgUrl",
-    "auctionStart",
-    "auctionEnd",
-    "auctionStartPrice",
-    "auctionCurrentPrice",
-    "auctionDescription",
-    "auctionDeliveryDesc",
-    "finished",
-    "won",
-    "finalized",
-    "amLogin",
-    "betList"
-})
+@XmlType(name = "AuctionType", propOrder = { "auctionId", "auctionTitle", "auctionImgUrl", "auctionStart", "auctionEnd", "auctionStartPrice",
+        "auctionCurrentPrice", "auctionDescription", "auctionDeliveryDesc", "finished", "won", "finalized", "amLogin", "betList", "auctionManagerContactData",
+        "clientContactData" })
 public class AuctionType {
 
     @XmlElement(name = "AuctionId")
     protected String auctionId;
+
     @XmlElement(name = "AuctionTitle")
     protected String auctionTitle;
+
     @XmlElement(name = "AuctionImgUrl")
     protected List<String> auctionImgUrl;
+
     @XmlElement(name = "AuctionStart")
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar auctionStart;
+
     @XmlElement(name = "AuctionEnd")
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar auctionEnd;
+
     @XmlElement(name = "AuctionStartPrice")
     protected String auctionStartPrice;
+
     @XmlElement(name = "AuctionCurrentPrice")
     protected String auctionCurrentPrice;
+
     @XmlElement(name = "AuctionDescription")
     protected String auctionDescription;
+
     @XmlElement(name = "AuctionDeliveryDesc")
     protected String auctionDeliveryDesc;
+
     @XmlElement(name = "Finished")
     protected Boolean finished;
+
     @XmlElement(name = "Won")
     protected Boolean won;
+
     @XmlElement(name = "Finalized")
     protected Boolean finalized;
+
     @XmlElement(name = "AMLogin")
     protected String amLogin;
+
     @XmlElement(name = "BetList")
     protected BetListType betList;
+
+    @XmlElement(name = "AuctionManagerContactData")
+    protected AuctionManagerContactDataType auctionManagerContactData;
+
+    @XmlElement(name = "ClientContactData")
+    protected ClientContactDataType clientContactData;
 
     /**
      * Gets the value of the auctionId property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getAuctionId() {
         return auctionId;
@@ -108,10 +117,8 @@ public class AuctionType {
     /**
      * Sets the value of the auctionId property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param value allowed object is {@link String }
+     * 
      */
     public void setAuctionId(String value) {
         this.auctionId = value;
@@ -120,10 +127,8 @@ public class AuctionType {
     /**
      * Gets the value of the auctionTitle property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getAuctionTitle() {
         return auctionTitle;
@@ -132,10 +137,8 @@ public class AuctionType {
     /**
      * Sets the value of the auctionTitle property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param value allowed object is {@link String }
+     * 
      */
     public void setAuctionTitle(String value) {
         this.auctionTitle = value;
@@ -145,26 +148,24 @@ public class AuctionType {
      * Gets the value of the auctionImgUrl property.
      * 
      * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the auctionImgUrl property.
+     * This accessor method returns a reference to the live list, not a snapshot. Therefore any modification you make to the returned list will be present
+     * inside the JAXB object. This is why there is not a <CODE>set</CODE> method for the auctionImgUrl property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
+     * 
      * <pre>
-     *    getAuctionImgUrl().add(newItem);
+     * getAuctionImgUrl().add(newItem);
      * </pre>
      * 
      * 
      * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link String }
+     * Objects of the following type(s) are allowed in the list {@link String }
      * 
      * 
      */
     public List<String> getAuctionImgUrl() {
-        if (auctionImgUrl == null) {
+        if ( auctionImgUrl == null ) {
             auctionImgUrl = new ArrayList<String>();
         }
         return this.auctionImgUrl;
@@ -173,10 +174,8 @@ public class AuctionType {
     /**
      * Gets the value of the auctionStart property.
      * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     * @return possible object is {@link XMLGregorianCalendar }
+     * 
      */
     public XMLGregorianCalendar getAuctionStart() {
         return auctionStart;
@@ -185,10 +184,8 @@ public class AuctionType {
     /**
      * Sets the value of the auctionStart property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     * @param value allowed object is {@link XMLGregorianCalendar }
+     * 
      */
     public void setAuctionStart(XMLGregorianCalendar value) {
         this.auctionStart = value;
@@ -197,10 +194,8 @@ public class AuctionType {
     /**
      * Gets the value of the auctionEnd property.
      * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     * @return possible object is {@link XMLGregorianCalendar }
+     * 
      */
     public XMLGregorianCalendar getAuctionEnd() {
         return auctionEnd;
@@ -209,10 +204,8 @@ public class AuctionType {
     /**
      * Sets the value of the auctionEnd property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     * @param value allowed object is {@link XMLGregorianCalendar }
+     * 
      */
     public void setAuctionEnd(XMLGregorianCalendar value) {
         this.auctionEnd = value;
@@ -221,10 +214,8 @@ public class AuctionType {
     /**
      * Gets the value of the auctionStartPrice property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getAuctionStartPrice() {
         return auctionStartPrice;
@@ -233,10 +224,8 @@ public class AuctionType {
     /**
      * Sets the value of the auctionStartPrice property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param value allowed object is {@link String }
+     * 
      */
     public void setAuctionStartPrice(String value) {
         this.auctionStartPrice = value;
@@ -245,10 +234,8 @@ public class AuctionType {
     /**
      * Gets the value of the auctionCurrentPrice property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getAuctionCurrentPrice() {
         return auctionCurrentPrice;
@@ -257,10 +244,8 @@ public class AuctionType {
     /**
      * Sets the value of the auctionCurrentPrice property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param value allowed object is {@link String }
+     * 
      */
     public void setAuctionCurrentPrice(String value) {
         this.auctionCurrentPrice = value;
@@ -269,10 +254,8 @@ public class AuctionType {
     /**
      * Gets the value of the auctionDescription property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getAuctionDescription() {
         return auctionDescription;
@@ -281,10 +264,8 @@ public class AuctionType {
     /**
      * Sets the value of the auctionDescription property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param value allowed object is {@link String }
+     * 
      */
     public void setAuctionDescription(String value) {
         this.auctionDescription = value;
@@ -293,10 +274,8 @@ public class AuctionType {
     /**
      * Gets the value of the auctionDeliveryDesc property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getAuctionDeliveryDesc() {
         return auctionDeliveryDesc;
@@ -305,10 +284,8 @@ public class AuctionType {
     /**
      * Sets the value of the auctionDeliveryDesc property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param value allowed object is {@link String }
+     * 
      */
     public void setAuctionDeliveryDesc(String value) {
         this.auctionDeliveryDesc = value;
@@ -317,10 +294,8 @@ public class AuctionType {
     /**
      * Gets the value of the finished property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Boolean }
-     *     
+     * @return possible object is {@link Boolean }
+     * 
      */
     public Boolean isFinished() {
         return finished;
@@ -329,10 +304,8 @@ public class AuctionType {
     /**
      * Sets the value of the finished property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link Boolean }
-     *     
+     * @param value allowed object is {@link Boolean }
+     * 
      */
     public void setFinished(Boolean value) {
         this.finished = value;
@@ -341,10 +314,8 @@ public class AuctionType {
     /**
      * Gets the value of the won property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Boolean }
-     *     
+     * @return possible object is {@link Boolean }
+     * 
      */
     public Boolean isWon() {
         return won;
@@ -353,10 +324,8 @@ public class AuctionType {
     /**
      * Sets the value of the won property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link Boolean }
-     *     
+     * @param value allowed object is {@link Boolean }
+     * 
      */
     public void setWon(Boolean value) {
         this.won = value;
@@ -365,10 +334,8 @@ public class AuctionType {
     /**
      * Gets the value of the finalized property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Boolean }
-     *     
+     * @return possible object is {@link Boolean }
+     * 
      */
     public Boolean isFinalized() {
         return finalized;
@@ -377,10 +344,8 @@ public class AuctionType {
     /**
      * Sets the value of the finalized property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link Boolean }
-     *     
+     * @param value allowed object is {@link Boolean }
+     * 
      */
     public void setFinalized(Boolean value) {
         this.finalized = value;
@@ -389,10 +354,8 @@ public class AuctionType {
     /**
      * Gets the value of the amLogin property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getAMLogin() {
         return amLogin;
@@ -401,10 +364,8 @@ public class AuctionType {
     /**
      * Sets the value of the amLogin property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param value allowed object is {@link String }
+     * 
      */
     public void setAMLogin(String value) {
         this.amLogin = value;
@@ -413,10 +374,8 @@ public class AuctionType {
     /**
      * Gets the value of the betList property.
      * 
-     * @return
-     *     possible object is
-     *     {@link BetListType }
-     *     
+     * @return possible object is {@link BetListType }
+     * 
      */
     public BetListType getBetList() {
         return betList;
@@ -425,13 +384,55 @@ public class AuctionType {
     /**
      * Sets the value of the betList property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link BetListType }
-     *     
+     * @param value allowed object is {@link BetListType }
+     * 
      */
     public void setBetList(BetListType value) {
         this.betList = value;
     }
 
+    /**
+     * Gets the value of the auctionManagerContactData property.
+     * 
+     * @return possible object is {@link AuctionManagerContactDataType }
+     * 
+     */
+    public AuctionManagerContactDataType getAuctionManagerContactData() {
+        return auctionManagerContactData;
+    }
+
+    /**
+     * Sets the value of the auctionManagerContactData property.
+     * 
+     * @param value allowed object is {@link AuctionManagerContactDataType }
+     * 
+     */
+    public void setAuctionManagerContactData(AuctionManagerContactDataType value) {
+        this.auctionManagerContactData = value;
+    }
+
+    /**
+     * Gets the value of the clientContactData property.
+     * 
+     * @return possible object is {@link ClientContactDataType }
+     * 
+     */
+    public ClientContactDataType getClientContactData() {
+        return clientContactData;
+    }
+
+    /**
+     * Sets the value of the clientContactData property.
+     * 
+     * @param value allowed object is {@link ClientContactDataType }
+     * 
+     */
+    public void setClientContactData(ClientContactDataType value) {
+        this.clientContactData = value;
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
+    }
 }

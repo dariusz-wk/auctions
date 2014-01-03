@@ -1,5 +1,8 @@
 package pl.edu.agh.eaiib.auctions.services;
 
+import java.util.Date;
+
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +19,18 @@ public class AuctionServiceTest {
 
     @Test
     public void test1() {
-        // Assert.assertEquals(4, auctionService.findToFinish().size());
-        // Assert.assertEquals(1, auctionService.find("NEXUS", false, false, null, null, null, null).size());
+        Assert.assertNotNull(auctionService);
+        Assert.assertEquals(1, auctionService.find("ROLMEX", null, null, null, null, null, null).size());
+
+        Assert.assertEquals(5, auctionService.find(null, null, null, null, null, null, null).size());
+
+        Assert.assertEquals(1, auctionService.find(null, true, null, null, null, null, null).size());
+
+        Assert.assertEquals(1, auctionService.find(null, true, null, null, null, null, null).size());
+    }
+
+    Date date(String dateString) {
+        // SimpleDateFormat sdf = new SimpleDateFormat(")
+        return null;
     }
 }

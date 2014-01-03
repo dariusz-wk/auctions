@@ -70,6 +70,7 @@ public class PutAuctionFinalizationFormByClientSoapImpl extends SoapWebService i
         contact.setPhone(clientContactData.getClientPhone());
         contact.setSurname(clientContactData.getClientSurname());
         auctionBean.setFinalized(true);
+        auctionBean.setBuyerContact(contact);
 
         auctionService.update(auctionBean);
 
