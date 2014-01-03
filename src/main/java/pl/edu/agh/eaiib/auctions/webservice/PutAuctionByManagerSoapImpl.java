@@ -44,7 +44,7 @@ public class PutAuctionByManagerSoapImpl extends SoapWebService implements PutAu
         String errorMsg = null;
         if ( null != (errorMsg = validate(auction, auctionManagerContactData)) ) {
             log.error("error: " + errorMsg);
-            errors.value = "errorMsg";
+            errors.value = errorMsg;
             return;
         }
 
@@ -69,6 +69,7 @@ public class PutAuctionByManagerSoapImpl extends SoapWebService implements PutAu
         amContact.setName(auctionManagerContactData.getAMName());
         amContact.setPhone(auctionManagerContactData.getAMPhone());
         amContact.setSurname(auctionManagerContactData.getAMSurname());
+        auctionBean.setAuctionManagerContact(amContact);
 
         Long id = auctionService.save(auctionBean);
         if ( id == null ) {
@@ -90,7 +91,7 @@ public class PutAuctionByManagerSoapImpl extends SoapWebService implements PutAu
         } else {
             if ( Utils.isBlank(auction.getAMLogin()) ) {
                 errors += "AMLogin cannot be null over 254 length;\n";
-            } else if ( Utils.isLogin(auction.getAMLogin()) ) {
+            } else if ( false == Utils.isLogin(auction.getAMLogin()) ) {
                 errors += "AMLogin invalid format;\n";
             }
             if ( Utils.isBlank(auction.getAuctionStartPrice()) ) {

@@ -19,6 +19,7 @@ public class SoapWebService {
     protected AuthService authService;
 
     @Resource
+    private
     WebServiceContext context;
 
     public SoapWebService() {
@@ -26,11 +27,19 @@ public class SoapWebService {
     }
 
     protected boolean hasMgmtPrivilages(String value, List<String> error) {
-        return authService.hasManagementPrivileges(context, value, error);
+        return authService.hasManagementPrivileges(getContext(), value, error);
     }
 
     protected boolean hasClientPrivilages(String value, List<String> error) {
-        return authService.hasClientPrivileges(context, value, error);
+        return authService.hasClientPrivileges(getContext(), value, error);
+    }
+
+    public WebServiceContext getContext() {
+        return context;
+    }
+
+    public void setContext(WebServiceContext context) {
+        this.context = context;
     }
 
 }

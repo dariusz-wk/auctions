@@ -133,6 +133,9 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public String getEmail(String login) {
+        if ( demo ) {
+            return "sample@mail.com";
+        }
         try {
             return usersParametersService.getUserParam(login, EMAIL);
         } catch (UserException_Exception e) {

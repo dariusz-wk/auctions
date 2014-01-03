@@ -99,7 +99,7 @@ public class PutAuctionFinalizationFormByClientSoapImpl extends SoapWebService i
             if ( Utils.isBlank(clientContactData.getClientAddress()) ) {
                 error += "ClientAddres cannot be null and over 255 long";
             }
-            if ( Utils.isEmail(clientContactData.getClientEmail()) ) {
+            if ( false == Utils.isEmail(clientContactData.getClientEmail()) ) {
                 error += "ClientEmail invalid email format";
             }
             if ( Utils.isBlank(clientContactData.getClientName()) ) {
@@ -108,7 +108,7 @@ public class PutAuctionFinalizationFormByClientSoapImpl extends SoapWebService i
             if ( Utils.isBlank(clientContactData.getClientSurname()) ) {
                 error += "ClientSurname cannot be null or longer than 255";
             }
-            if ( Utils.isPhone(clientContactData.getClientPhone()) ) {
+            if ( false == Utils.isPhone(clientContactData.getClientPhone()) ) {
                 error += "ClientPhone invalid format";
             }
         }
