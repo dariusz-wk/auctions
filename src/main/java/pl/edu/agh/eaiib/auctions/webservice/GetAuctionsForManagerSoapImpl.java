@@ -1,6 +1,7 @@
 package pl.edu.agh.eaiib.auctions.webservice;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -49,7 +50,15 @@ public class GetAuctionsForManagerSoapImpl extends SoapWebService implements Get
         if ( auctionListFilter == null ) {
             errors.value = "auctionListFilter is required";
             return;
-        }
+        }else {
+			if(auctionListFilter.getFilterDateFrom() != null && auctionListFilter.getFilterDateTill()!= null ){
+				if(auctionListFilter.getFilterDateFrom().toGregorianCalendar().getTime().after(auctionListFilter.getFilterDateTill().toGregorianCalendar().getTime())){
+
+					errors.value = "filterDateFrom must be before filterDateTill";
+					return;
+				}
+			}
+		}
         if ( Utils.isBlank(amLoginName) || !Utils.isLogin(amLoginName) ) {
             errors.value = "invalid login";
             return;
@@ -69,15 +78,17 @@ public class GetAuctionsForManagerSoapImpl extends SoapWebService implements Get
         } else {
             String title = Utils.isBlank(auctionListFilter.getAuctionTitleFilter()) ? null : auctionListFilter.getAuctionTitleFilter();
             Boolean finished = auctionListFilter.isFinished() == null ? false : auctionListFilter.isFinished();
-            Boolean finalized = false;
+            Boolean finalized = null;
+            Date from = Utils.formatDate(auctionListFilter.getFilterDateFrom());
+            Date till = Utils.formatDate(auctionListFilter.getFilterDateTill());
 
             String amLoginV = amLoginName;
             if ( auctionListFilter.isMy() != null && auctionListFilter.isMy() == false ) {
                 amLoginV = null;
+                if(from==null)
+                		from = Calendar.getInstance().getTime();
             }
             String clientLoginV = null;
-            Date from = Utils.formatDate(auctionListFilter.getFilterDateFrom());
-            Date till = Utils.formatDate(auctionListFilter.getFilterDateTill());
 
             auctionListItems.addAll(auctionService.find(title, finished, finalized, amLoginV, clientLoginV, from, till));
 

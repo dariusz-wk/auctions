@@ -14,8 +14,8 @@
 		<jdk.version>1.6</jdk.version>
 		<cxf.version>2.2.3</cxf.version>
 		<log4j.version>1.2.14</log4j.version>
-		<server>E:\\Projects\\dariusW\\tomcat7\\webapps</server>
-		<logs>E:\\Projects\\dariusW\\tomcat7\\logs</logs>
+		<server>D:\\Projects\\dariusW\\tomcat7\\webapps</server>
+		<logs>D:\\Projects\\dariusW\\tomcat7\\logs</logs>
 	</properties>
 
 	<dependencies>

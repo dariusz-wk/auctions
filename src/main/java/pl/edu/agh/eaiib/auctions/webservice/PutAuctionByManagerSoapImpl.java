@@ -119,6 +119,10 @@ public class PutAuctionByManagerSoapImpl extends SoapWebService implements PutAu
                 errors += "AuctionStart cannot be null;\n";
 
             }
+            if(auction.getAuctionEnd() != null && auction.getAuctionStart()!= null && auction.getAuctionStart().toGregorianCalendar().getTime().after(auction.getAuctionEnd().toGregorianCalendar().getTime())){
+
+                errors += "AuctionStart must be after AuctionEnd;\n";
+            }
         }
         if ( auctionManagerContactData == null ) {
             errors += "AuctionManagerContactData cannot be null;\n";

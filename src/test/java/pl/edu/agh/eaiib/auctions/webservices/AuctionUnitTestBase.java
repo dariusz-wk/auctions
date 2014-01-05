@@ -65,7 +65,7 @@ public abstract class AuctionUnitTestBase {
     GetAuctionsForManagerSoap getAuctionsForManagerSoap;
 
     @Autowired
-    GetAuctionsForClientSoap auctionsForClientSoap;
+    GetAuctionsForClientSoap getAuctionsForClientSoap;
 
     public AuctionUnitTestBase() {
         super();
@@ -97,7 +97,7 @@ public abstract class AuctionUnitTestBase {
         AuctionType auction = new AuctionType();
         auction.setAMLogin(AMTEST);
         auction.setAuctionDeliveryDesc("DELIVERY DESC");
-        auction.setAuctionEnd(date("2014-02-02T15:00:00Z"));
+        auction.setAuctionEnd(date("2015-02-02T15:00:00Z"));
         auction.setAuctionStart(date("2013-12-02T15:00:00Z"));
         auction.setAuctionStartPrice("120.50");
         auction.setAuctionTitle("NEW SHOOES");

@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
+
 import pl.edu.agh.eaiib.auctions.core.model.BaseBean;
 
 @Entity
@@ -31,6 +33,11 @@ public class Bet extends BaseBean<Long> {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "AUCTION_ID", nullable = false)
 	private Auction auction;
+
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this);
+	}
 
 	public Long getId() {
 		return id;

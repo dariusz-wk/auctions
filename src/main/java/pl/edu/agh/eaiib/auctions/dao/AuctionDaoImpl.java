@@ -1,5 +1,6 @@
 package pl.edu.agh.eaiib.auctions.dao;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
@@ -54,10 +55,11 @@ public class AuctionDaoImpl extends BaseDaoImpl<Auction, Long> implements Auctio
         // TODO: fix me
         if ( from != null && till != null ) {
             crit.add(Restrictions.between("auctionEnd", from, till));
+            crit.add(Restrictions.between("auctionStart", from, till));
         } else if ( from != null ) {
-            crit.add(Restrictions.ge("auctionEnd", from));
+            crit.add(Restrictions.and(Restrictions.ge("auctionEnd", from), Restrictions.le("auctionStart", from)));
         } else if ( till != null ) {
-            crit.add(Restrictions.ge("auctionEnd", till));
+            crit.add(Restrictions.and(Restrictions.ge("auctionEnd", till), Restrictions.le("auctionStart", till)));
         }
 
         if ( Utils.isNotBlank(amLogin) ) {
@@ -73,23 +75,20 @@ public class AuctionDaoImpl extends BaseDaoImpl<Auction, Long> implements Auctio
             Hibernate.initialize(auction.getBuyerContact());
         }
 
+        List<Auction> filteredList = new ArrayList<Auction>();
         if ( Utils.isNotBlank(clientLogin) ) {
-            // TODO: workaround
-            Iterator<Auction> iter = list.iterator();
-            while (iter.hasNext()) {
-                boolean containsClientBet = false;
-                for (Bet bet : iter.next().getBetList()) {
+            for (Auction a : list) {
+                for (Bet bet : a.getBetList()) {
                     if ( bet.getCientId().equals(clientLogin) ) {
-                        containsClientBet = true;
+                        filteredList.add(a);
                         break;
                     }
                 }
-                if ( !containsClientBet ) {
-                    iter.remove();
-                }
             }
+        } else {
+        	filteredList.addAll(list);
         }
-        return list;
+        return filteredList;
     }
 
     @Override
@@ -120,11 +119,7 @@ public class AuctionDaoImpl extends BaseDaoImpl<Auction, Long> implements Auctio
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void update(Auction obj) {
         Session session = getSessionFactory().getCurrentSession();
-        // if ( obj.getId() == null ) {
         session.merge(obj);
-        // } else {
-        // session.saveOrUpdate(obj);
-        // }
     }
 
 }

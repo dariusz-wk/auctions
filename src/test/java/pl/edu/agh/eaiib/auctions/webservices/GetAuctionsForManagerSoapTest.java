@@ -51,7 +51,7 @@ public class GetAuctionsForManagerSoapTest extends AuctionUnitTestBase {
 
     @Test
     public void testFinishedAuctions() {
-        int auctionsForUser = auctionDao.find(null, true, false, AMTEST, null, null, null).size();
+        int auctionsForUser = auctionDao.find(null, true, null, AMTEST, null, null, null).size();
 
         prepareAuction();
         prepareAuctionWithBet180();

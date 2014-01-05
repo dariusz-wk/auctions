@@ -2,7 +2,7 @@ INSERT INTO AUCTION VALUES(5,'AM',2.5E0,'Odbi\u00f3r osobisty','1 kg mandarynek,
 INSERT INTO AUCTION VALUES(1,'AM',25.0E0,'Odbi\u00f3r osobisty','Nieu\u017cywany kaftan bezpiecze\u0144stwa. Z gwarancj\u0105. Wszytkie metki zgodne.','2013-12-13 19:34:38.905000','2013-12-08 19:34:38.905000',10.0E0,'Super kaftan bezpiecze\u0144stwa','0','0','0');
 INSERT INTO AUCTION VALUES(2,'AM',13430.0E0,'Odbi\u00f3r osobisty','Na sprzeda\u017c samoch\u00f3d marki BentLej. Pochodzi z floty przedstawicieli handlowych wydzia\u0142u do spraw wali z zombie','2013-12-14 23:34:38.906000','2013-12-09 02:34:38.906000',10000.0E0,'Najnowszy BentLej','0','0','0');
 INSERT INTO AUCTION VALUES(3,'AM',500.0E0,'Przesy\u0142ka kurierska','Najnowszy NEXUS 5, pe\u0142na gwarancja, wszystko cacy.','2013-12-14 23:34:38.907000','2013-12-08 06:34:38.907000',100.0E0,'Najnowszy BentLej','0','0','0');
-INSERT INTO AUCTION VALUES(4,'AM',240.0E0,'Paczkomat','Zegarek rolmex. Zniszczony i niesprawny','2013-12-17 11:34:38.908000','2020-12-08 02:34:38.908000',200.0E0,'Super ROLMEX!','0','0','0');
+INSERT INTO AUCTION VALUES(4,'AM',240.0E0,'Paczkomat','Zegarek rolmex. Zniszczony i niesprawny','2020-12-17 11:34:38.908000','2013-12-08 02:34:38.908000',200.0E0,'Super ROLMEX!','0','0','0');
 INSERT INTO BET VALUES(18,1.0E0,'2013-12-03 19:34:38.898000','client2',5);
 INSERT INTO AM_CONTACT VALUES(5,'BZWmBank','65102056980000748645620123','amuser@testmail.com','AM','AMUser','854321886','am');
 INSERT INTO AM_CONTACT VALUES(3,'InteMilenium','66202056980000748325628877','AMUser@testmail.com','AM','AMUser','854321886','am');
